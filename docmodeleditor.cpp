@@ -65,7 +65,19 @@ DocModelEditor::DocModelEditor(QWidget *parent) :
      NLog::i("on row selected:");
 
  }
+void DocModelEditor::setData(void * d)
+ {
+     IExec::setData(d);
 
+     MModelDelegate * mmd =( MModelDelegate *) d;
+
+     for(int i=0;i<mmd->fields.count();i++)
+     {
+         MModelFieldDelegate * field = mmd->fields.at(i);
+        ui->mtable->insertRow(ui->mtable->rowCount());
+        setFieldData(ui->mtable->rowCount()-1,field);
+     }
+ }
 
 
 my17::TodoResult  DocModelEditor::todo(my17::Event event,void * arg)

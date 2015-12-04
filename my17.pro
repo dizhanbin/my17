@@ -25,7 +25,10 @@ SOURCES += main.cpp\
     mmodelfielddelegate.cpp \
     mmodeldelegate.cpp \
     doceventeditor.cpp \
-    meventdelegate.cpp
+    meventdelegate.cpp \
+    viewgroup.cpp \
+    lineview.cpp \
+    iconview.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -40,7 +43,10 @@ HEADERS  += mainwindow.h \
     mmodelfielddelegate.h \
     mmodeldelegate.h \
     doceventeditor.h \
-    meventdelegate.h
+    meventdelegate.h \
+    viewgroup.h \
+    lineview.h \
+    iconview.h
 
 
 FORMS    += mainwindow.ui \

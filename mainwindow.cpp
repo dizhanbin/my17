@@ -7,6 +7,7 @@
 #include "docmodeleditor.h"
 #include "doceventeditor.h"
 #include "doceventeditor.h"
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
  //  my17::event ev = my17::event_req_view_add;
 
 
+    showMaximized();
 
     MessageCenter::getInstence()->register_todo(this);
 
@@ -37,7 +39,7 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::init_left_0_menu()
+void MainWindow::init_left_0()
 {
 
 
@@ -57,12 +59,12 @@ void MainWindow::init_left_0_menu()
     ui->left_0->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     QAction *action_newmodel = new QAction("  新建数据对象  ", this);
-    QAction *action_newevent = new QAction("  新建事件  ", this);
+
     QAction *action_newbusiness = new QAction("  新建业务流程  ", this);
 
 
     ui->left_0->addAction(action_newmodel);
-    ui->left_0->addAction(action_newevent);
+
     ui->left_0->addAction(action_newbusiness);
     ui->left_0->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -78,11 +80,14 @@ void MainWindow::init_left_0_menu()
 
 
 
-    // NLog::i("menuconnect");
+    for(int i=0;i<DP->models.count();i++)
+    {
 
+        MModelDelegate * mm = DP->models.at(i);
+        QStandardItem* item_m = new QStandardItem( mm->name);
+        item00->insertRow(item00->rowCount(),item_m);
 
-
-
+    }
 
 }
 
@@ -116,8 +121,13 @@ void MainWindow::init_toolbar()
     action_add->setIcon(  QIcon(QPixmap(  ":image/icon_add.png" ))  );
     ui->toolBar->addAction(action_add);
 
+    QAction * action_save = new QAction(" 保存 ", this);
+    action_save->setIcon(  QIcon(QPixmap(  ":image/icon_save.png" ))  );
+    ui->toolBar->addAction(action_save);
+
     connect(action_del, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_del_click(bool)) );
     connect(action_add, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_add_click(bool)) );
+    connect(action_save, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_save_click(bool)) );
 
 
 }
@@ -255,6 +265,17 @@ void MainWindow::slot_left_0_menu_new_model_triggered(bool checked)
 
  }
 
+
+
+ void MainWindow::slot_toolbar_save_click(bool checked)
+ {
+
+     MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save);
+
+ }
+
+
+
 my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 {
 
@@ -264,7 +285,7 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
     {
 
         case my17::event_req_menu_init:
-            init_left_0_menu();
+            init_left_0();
             init_left_1_items();
             init_toolbar();
             init_right_1();
@@ -286,7 +307,13 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             ui->right_bottom->insertRow(0);
             ui->right_bottom->setItemDelegate(mm);
 
-            do_focus_tab_by_data(mm,mm->name);
+            if(  do_focus_tab_by_data(mm,mm->name) == -1 )
+            {
+                DocModelEditor * doc = new DocModelEditor();
+                ui->center_document->addTab(doc,mm->name);
+                doc->setData(mm);
+                ui->center_document->setCurrentWidget(doc);
+            }
 
         }
             return my17::todo_done_only;
@@ -344,6 +371,29 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
         }
 
         return my17::todo_done_only;
+
+        case my17::event_req_toolbar_save:
+        {
+
+            QString msgs;
+
+            if( DP->saveEvents() )
+                msgs.append("事件数据保存成功；\n");
+            else
+                msgs.append("事件数据保存失败；");
+
+
+            if( DP->saveModel() )
+                msgs.append("模型数据保存成功；");
+            else
+                msgs.append("模型数据保存失败；");
+
+            QMessageBox::information(NULL,"提示",msgs);
+
+
+        }
+        return my17::todo_done_only;
+
     }
 
 

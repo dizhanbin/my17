@@ -17,6 +17,7 @@ public:
     explicit DocModelEditor(QWidget *parent = 0);
     ~DocModelEditor();
     virtual my17::TodoResult  todo(my17::Event event,void * arg);
+    virtual void setData(void * d);
     void setFieldData(int row,MModelFieldDelegate * field);
 private:
     Ui::DocModelEditor *ui;

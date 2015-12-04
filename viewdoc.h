@@ -2,7 +2,8 @@
 #define VIEWDOC_H
 
 #include <QWidget>
-#include "view.h"
+
+#include "viewgroup.h"
 
 class ViewDoc : public QWidget
 {

@@ -72,6 +72,7 @@ namespace my17 {
 
             event_req_toolbar_del,
             event_req_toolbar_add,
+            event_req_toolbar_save,
 
             event_req_business_item_double_click,
 
@@ -210,7 +211,12 @@ namespace my17 {
         class D{
 
         private:
-            D(){}
+            D(){
+
+                loadModel();
+                loadEvents();
+
+            }
 
 
         public:
@@ -294,6 +300,14 @@ namespace my17 {
 
                 return events.at(index);
             }
+
+            // save load
+
+            bool saveModel();
+            void loadModel();
+
+            bool saveEvents();
+            void loadEvents();
 
         };
 

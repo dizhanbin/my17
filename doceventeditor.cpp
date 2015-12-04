@@ -100,3 +100,21 @@ void DocEventEditor::slot_onTableItemSelected(QTableWidgetItem * item)
 
 
 }
+
+
+ void DocEventEditor::setData(void * d)
+{
+
+
+     IExec::setData(d);
+
+
+
+     for(int i=0;i<DP->events.count();i++)
+     {
+         MEventDelegate * event = DP->events.at(i);
+        ui->mtable->insertRow(ui->mtable->rowCount());
+        setFieldData(ui->mtable->rowCount()-1,event);
+     }
+
+}

@@ -25,7 +25,7 @@ public://IExec implements
 
     my17::TodoResult todo(my17::Event event, void *arg);
 private:
-    void init_left_0_menu();
+    void init_left_0();
     void init_left_1_items();
     void init_toolbar();
     void init_right_1();
@@ -43,6 +43,7 @@ public slots:
 
     void slot_toolbar_del_click(bool checked = false);
     void slot_toolbar_add_click(bool checked = false);
+    void slot_toolbar_save_click(bool checked=false);
 
 public: //qtabledelegate
     /*

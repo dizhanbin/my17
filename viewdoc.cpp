@@ -1,5 +1,6 @@
 #include "viewdoc.h"
 #include <qevent.h>
+#include "lineview.h"
 
 ViewDoc::ViewDoc(QWidget *parent) :
     QWidget(parent),mPressed(false)
@@ -31,10 +32,9 @@ void ViewDoc::resizeEvent(QResizeEvent * qre)
 {
 
     qre->accept();
-
+   // NLog::i("ViewDoc::resizeEvent");
 
     this->mRootView->setSize(size().width(),size().height());
-    // this->mRootView->setPos(0,0);
 
 
 }

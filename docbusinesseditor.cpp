@@ -1,6 +1,7 @@
 #include "docbusinesseditor.h"
 #include "ui_docbusinesseditor.h"
 #include "my17.h"
+#include "iconview.h"
 
 using namespace my17;
 

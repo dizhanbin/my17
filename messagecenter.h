@@ -10,7 +10,7 @@ class IExec
   void * data;
   public:
          virtual my17::TodoResult  todo(my17::Event event,void * arg)=0;
-         void setData(void * d){ data = d;}
+         virtual void setData(void * d){ data = d;}
          void * getData(){ return data; }
 
 };
