@@ -3,6 +3,8 @@
 #include "viewgroup.h"
 #include "iconview.h"
 #include "lineview.h"
+#include "mproperty.h"
+
 using namespace my17;
 
 static R* s_r_instance = NULL;
@@ -14,6 +16,64 @@ R* R::getInstance()
     if( s_r_instance == NULL )
         s_r_instance = new R();
     return s_r_instance;
+
+}
+
+void R::loadElements()
+{
+
+    QFile file("/Users/dzb/elements.xml");
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+
+        QXmlStreamReader reader(&file);
+        reader.readNext();
+
+
+        MElement * ele;
+        while( !reader.atEnd() )
+        {
+
+            QStringRef  name = reader.name();
+            if( reader.isStartElement() )
+            {
+              if( name == "element" )
+              {
+                  ele = new MElement();
+                  ele->ele_id = reader.attributes().value("id").toString();
+                  ele->name = reader.attributes().value("name").toString();
+                  ele->iconpath = reader.attributes().value("iconpath").toString();
+
+              }
+              else if( name == "property" )
+              {
+
+                   MProperty * mp = new MProperty();
+                   ele->properties.push_back(mp);
+
+                   mp->p_name = reader.attributes().value("name").toString();
+                   mp->p_title = reader.attributes().value("title").toString();
+                   mp->p_type = reader.attributes().value("type").toString().toInt();
+                   mp->p_args = reader.attributes().value("args").toString();
+                   mp->p_value =  reader.attributes().value("value").toString();
+
+              }
+            }
+            else if( reader.isEndElement() )
+            {
+                if( name == "element" )
+                {
+                    elements.push_back(ele);
+                }
+            }
+
+            reader.readNext();
+
+        }
+
+
+    }
+
 
 }
 

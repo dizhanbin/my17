@@ -10,7 +10,7 @@
 #include "mbusinessdelegate.h"
 #include "meventdelegate.h"
 #include "murldelegate.h"
-
+#include "mproperty.h"
 class View;
 
 
@@ -36,6 +36,8 @@ class  MElement//左下角 元素
 public:
     QString name;
     QString iconpath;
+    QString ele_id;
+    QList<MProperty*> properties;
 
 public:
     MElement(){
@@ -103,7 +105,9 @@ namespace my17 {
 
 
 
-            void loadElements(){
+            void loadElements();
+            /*
+            {
 
                 MElement * e0 = new MElement();
                 e0->name = "事件";
@@ -132,6 +136,7 @@ namespace my17 {
 
 
             }
+            */
          protected:
             R(){
 

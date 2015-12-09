@@ -112,6 +112,14 @@ void View::setRoot(bool is)
 
   }
 
+
+   void View::newProperties(QList<MProperty*> ps)
+   {
+
+
+
+   }
+
 ///////////////////viewgroup
 ///
 ///

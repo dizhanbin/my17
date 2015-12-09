@@ -30,7 +30,9 @@ SOURCES += main.cpp\
     iconview.cpp \
     viewgroup.cpp \
     murldelegate.cpp \
-    docurleditor.cpp
+    docurleditor.cpp \
+    mpropertydelegate.cpp \
+    mproperty.cpp
 
 HEADERS  += mainwindow.h \
     my17.h \
@@ -49,7 +51,9 @@ HEADERS  += mainwindow.h \
     iconview.h \
     viewgroup.h \
     murldelegate.h \
-    docurleditor.h
+    docurleditor.h \
+    mpropertydelegate.h \
+    mproperty.h
 
 FORMS    += mainwindow.ui \
     docbusinesseditor.ui \

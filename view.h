@@ -57,6 +57,9 @@ public:
 
      virtual void line(View *from,View * to){};
 
+     virtual void newProperties(QList<MProperty*> ps);
+
+
 };
 
 

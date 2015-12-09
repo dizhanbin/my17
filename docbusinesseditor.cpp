@@ -59,6 +59,13 @@ void DocBusinessEditor::setData(void *d)
 
             IconView * view = new IconView(    e->iconpath  );
 
+
+
+
+            view->newProperties(e->properties);
+
+
+
             mViewDoc->addView(view );
             mViewDoc->repaint();
 
