@@ -7,6 +7,7 @@
 #include "docmodeleditor.h"
 #include "doceventeditor.h"
 #include "doceventeditor.h"
+#include "docurleditor.h"
 #include <QMessageBox>
 
 
@@ -45,13 +46,18 @@ void MainWindow::init_left_0()
 
     QStandardItemModel * model = new QStandardItemModel();
     QStandardItem* item00 = new QStandardItem("数据对象");
-    model->insertRow(0,item00);
+    model->insertRow(index_model,item00);
+
+
+    QStandardItem* item_url = new QStandardItem("请求地址");
+    model->insertRow(index_url,item_url);
+
 
     QStandardItem* item10 = new QStandardItem("事件");
-    model->insertRow(1,item10);
+    model->insertRow(index_event,item10);
 
     QStandardItem* item20 = new QStandardItem("业务");
-    model->insertRow(2,item20);
+    model->insertRow(index_business,item20);
 
 
     ui->left_0->setHeaderHidden(true);
@@ -88,6 +94,16 @@ void MainWindow::init_left_0()
         item00->insertRow(item00->rowCount(),item_m);
 
     }
+
+    for(int i=0;i<DP->business.count();i++)
+    {
+
+        MBusinessDelegate * mm = DP->business.at(i);
+        QStandardItem* item_m = new QStandardItem( mm->name);
+        item20->insertRow(item20->rowCount(),item_m);
+
+    }
+
 
 }
 
@@ -183,28 +199,54 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
 
         case -1:
        {
-            if( index.row() == 1 )
+
+            switch( index.row() )
             {
-
-                NLog::i("show event editor");
-
-               int index = do_focus_tab_by_data(&DP->events,"事件");
-               if( index == -1 )
+                case index_event:
                {
 
-                    DocEventEditor * doc = new DocEventEditor();
-                    ui->center_document->addTab(doc,"事件");
-                    doc->setData(&DP->events);
-                    ui->center_document->setCurrentWidget(doc);
 
-               }
+
+                   int index = do_focus_tab_by_data(&DP->events,"事件");
+
+                   if( index == -1 )
+                   {
+
+                        DocEventEditor * doc = new DocEventEditor();
+                        ui->center_document->addTab(doc,"事件");
+                        doc->setData(&DP->events);
+                        ui->center_document->setCurrentWidget(doc);
+
+                   }
+                   break;
+
+
+                }
+                case index_url:
+                {
+
+                     int index = do_focus_tab_by_data(&DP->urls,"请求地址");
+
+                     if( index == -1 )
+                     {
+                         DocUrlEditor * doc = new DocUrlEditor();
+                         ui->center_document->addTab(doc,"请求地址");
+                         doc->setData(&DP->urls);
+                         ui->center_document->setCurrentWidget(doc);
+
+                     }
+                     break;
+
+                }
+
 
 
             }
 
+
        }
        return;
-        case 0://model
+        case index_model://model
         {
             MModelDelegate * mm =   my17::D::getInstance()->getModel(index.row());
             MessageCenter::getInstence()->sendMessage( my17::event_req_model_selected,mm  );
@@ -212,7 +254,7 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
             return;
 
 
-        case 2://business
+        case index_business://business
        {
 
            MBusinessDelegate * mb = DP->getBusiness(index.row());
@@ -324,9 +366,16 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
                 ui->right_bottom->removeRow(0);
             MBusinessDelegate * mm  = (MBusinessDelegate*)arg;
             ui->right_bottom->insertRow(0);
+            ui->right_bottom->insertRow(0);
             ui->right_bottom->setItemDelegate(mm);
 
-            do_focus_tab_by_data(mm,mm->name);
+           if( do_focus_tab_by_data(mm,mm->name) == -1 )
+           {
+               DocBusinessEditor * doc = new DocBusinessEditor();
+               ui->center_document->addTab(doc,mm->name);
+               doc->setData(mm);
+               ui->center_document->setCurrentWidget(doc);
+           }
 
         }
             return my17::todo_done_only;
@@ -359,6 +408,18 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
         }
             return my17::todo_done_only;
+        case my17::event_req_url_item_selected:
+        {
+            MUrlDelegate * mm  = (MUrlDelegate*)arg;
+            while( ui->right_bottom->rowCount()>0 )
+                ui->right_bottom->removeRow(0);
+
+            for(int i=0;i<3;i++)
+                ui->right_bottom->insertRow(0);
+
+            ui->right_bottom->setItemDelegate(mm);
+
+        }
         case my17::event_req_event_item_selected:
         {
             MEventDelegate * med = (MEventDelegate *)arg;
@@ -380,13 +441,25 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             if( DP->saveEvents() )
                 msgs.append("事件数据保存成功；\n");
             else
-                msgs.append("事件数据保存失败；");
+                msgs.append("事件数据保存失败；\n");
 
 
             if( DP->saveModel() )
-                msgs.append("模型数据保存成功；");
+                msgs.append("模型数据保存成功；\n");
             else
-                msgs.append("模型数据保存失败；");
+                msgs.append("模型数据保存失败；\n");
+
+
+            if( DP->saveBusiness() )
+                msgs.append("业务数据保存成功；\n");
+            else
+                msgs.append("业务数据保存失败；\n");
+
+            if( DP->saveUrl() )
+                msgs.append("访问地址据保存成功；\n");
+            else
+                msgs.append("访问地址保存失败；\n");
+
 
             QMessageBox::information(NULL,"提示",msgs);
 
@@ -451,7 +524,7 @@ void MainWindow::do_add_tree_item_for_business()
     MBusinessDelegate * mb = my17::D::getInstance()->newBusiness();
 
     QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
-    QStandardItem * item = model->item(2);
+    QStandardItem * item = model->item(index_business);
     QStandardItem* item_new = new QStandardItem(mb->name);
     item->insertRow(item->rowCount(),item_new);
     ui->left_0->setCurrentIndex( item_new->index() );
@@ -468,7 +541,7 @@ void MainWindow::do_add_tree_item_for_model()
 {
 
     QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
-    QStandardItem * item = model->item(0);
+    QStandardItem * item = model->item(index_model);
 
     MModelDelegate * mm =  my17::D::getInstance()->newModel();
 
@@ -495,7 +568,7 @@ void MainWindow::do_model_data_changed(MModelDelegate * mmd)
 
      QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
 
-     QStandardItem * item =  model->item(0)->child(index);
+     QStandardItem * item =  model->item(index_model)->child(index);
 
      NLog::i("do_model_data_changed name item:%d count:%d",item,model->item(0)->rowCount());
 
@@ -516,7 +589,7 @@ void MainWindow::do_business_data_changed(MBusinessDelegate * business)
 
     QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
 
-    QStandardItem * item =  model->item(2)->child(index);
+    QStandardItem * item =  model->item(index_business)->child(index);
 
      if( item )
        item->setText( business->name  );

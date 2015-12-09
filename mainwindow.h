@@ -6,6 +6,17 @@
 #include <QItemDelegate>
 #include "messagecenter.h"
 
+typedef enum{
+
+    index_model,
+    index_url,
+    index_event,
+    index_business,
+
+
+}left_0_item_index;
+
+
 namespace Ui {
 class MainWindow;
 }

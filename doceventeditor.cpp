@@ -77,6 +77,7 @@ my17::TodoResult DocEventEditor::todo(my17::Event event,void * arg)
 
     }
 
+    return my17::todo_none;
 
 }
 

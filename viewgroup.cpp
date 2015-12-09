@@ -4,21 +4,15 @@
 
 ViewGroup::ViewGroup(){
 
-
-
+m_focus_view = NULL;
+m_current_line = NULL;
 }
 
  ViewGroup::~ViewGroup(){
 
     NLog::i("release ViewGroup ");
-    while(m_children.size()>0)
-        /*
-    {
-       View * view = m_children.at(m_children.size()-1);
-       m_children.removeAt(m_children.size()-1);
-       delete view;
-    }
-        */
+
+
     while ( !m_children.isEmpty() )
        delete m_children.takeFirst();
 
@@ -35,8 +29,14 @@ ViewGroup::ViewGroup(){
  void ViewGroup::paintChildren(QPaintEvent * event,QWidget * widget)
 {
 
+    View * focus = getFocus();
     for(View * view:m_children)
-        view->paint(event,widget);
+    {
+        if( view != focus )
+            view->paint(event,widget);
+    }
+    if( focus )
+        focus->paint(event,widget);
 
 }
 
@@ -114,7 +114,27 @@ void ViewGroup::addView(View *view)
 void ViewGroup::removeView(View *view)
 {
 
+    setFocus(NULL);
     m_children.removeOne(view);
+    removeLines(view);
+
+
+}
+
+void ViewGroup::removeLines(View *view)
+{
+
+    if( !view->isLine() )
+     for(int i=this->m_children.count()-1;i>-1;i-- )
+     {
+         View * v = m_children.at(i);
+
+         if( v->isLine() && v->isLineTo(view) )
+         {
+                m_children.removeAt(i);
+                delete v;
+         }
+     }
 
 }
 
@@ -149,5 +169,36 @@ View * ViewGroup::getCurrentLine()
 {
 
     return m_current_line;
+
+}
+
+
+
+void ViewGroup::save(QXmlStreamWriter &writer)
+{
+   // writer.writeStartElement("views");
+
+    for(int i=0;i<this->m_children.count();i++ )
+    {
+
+        View * view = m_children.at(i);
+        writer.writeStartElement("view");
+        const QString type = (view->getTypeName()+1);
+
+        writer.writeAttribute("type",type);
+        view->save(writer);
+        writer.writeEndElement();
+    }
+
+
+  //  writer.writeEndElement();
+
+}
+
+
+ bool ViewGroup::load(QXmlStreamReader &reader )
+{
+
+    return false;
 
 }

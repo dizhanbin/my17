@@ -6,7 +6,8 @@ ViewDoc::ViewDoc(QWidget *parent) :
     QWidget(parent),mPressed(false)
 {
 
-    mRootView = new ViewGroup();
+    mRootView = NULL;
+  // mRootView = new ViewGroup();
 
 }
 
@@ -14,7 +15,7 @@ ViewDoc::~ViewDoc()
 {
 
     NLog::i("release ViewDoc");
-    delete mRootView;
+   // delete mRootView;
     NLog::i("release ViewDoc end");
 }
 
@@ -31,18 +32,33 @@ void ViewDoc::paintEvent(QPaintEvent * event)
 void ViewDoc::resizeEvent(QResizeEvent * qre)
 {
 
+    QWidget::resizeEvent(qre);
     qre->accept();
    // NLog::i("ViewDoc::resizeEvent");
 
-    this->mRootView->setSize(size().width(),size().height());
 
+    try
+    {
+
+        if( mRootView )
+            this->mRootView->setSize(size().width(),size().height());
+    }catch(...)
+    {
+
+        NLog::i("resize exception..");
+    }
 
 }
 
 void ViewDoc::mousePressEvent(QMouseEvent *event)
 {
 
+
     event->accept();
+    if( !mRootView )
+        return;
+
+
     mPressed_btn_right = (event->button() == Qt::RightButton);
     View * view = mRootView->getViewAtPoint(event->pos(),mPressed_btn_right);
     if( view )
@@ -83,7 +99,8 @@ void ViewDoc::mousePressEvent(QMouseEvent *event)
 void ViewDoc::mouseReleaseEvent(QMouseEvent *event)
 {
     event->accept();
-
+    if( !mRootView )
+        return;
     if( mPressed && mPressed_btn_right )
     {
 
@@ -134,6 +151,8 @@ void ViewDoc::mouseMoveEvent(QMouseEvent *event)
 
 
     event->accept();
+    if( !mRootView )
+        return;
     if( mPressed )
     {
 

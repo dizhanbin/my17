@@ -18,6 +18,7 @@ public:
     ~DocBusinessEditor();
 
     virtual my17::TodoResult  todo(my17::Event event,void * arg);
+    virtual void setData(void *d);
 private:
     Ui::DocBusinessEditor *ui;
     ViewDoc * mViewDoc;

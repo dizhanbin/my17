@@ -91,7 +91,7 @@ QWidget *MEventDelegate::createEditor(QWidget *parent,
 
             comBox->addItem( RP->event_type_index(0) );
             comBox->addItem( RP->event_type_index(1) );
-
+            comBox->addItem( RP->event_type_index(2) );
             connect(comBox,SIGNAL(currentIndexChanged(int )),this,SLOT(slots_datachanged_type(int)) );
 
             return comBox;

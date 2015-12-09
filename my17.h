@@ -9,6 +9,9 @@
 #include "mmodeldelegate.h"
 #include "mbusinessdelegate.h"
 #include "meventdelegate.h"
+#include "murldelegate.h"
+
+class View;
 
 
 
@@ -21,23 +24,6 @@
 #define model_field_type_int "int"
 #define model_field_type_float "float"
 
-
-
-
-/*
-const QString & model_field_title_index(int index)
-{
-          switch(index)
-          {
-            case 0: return model_field_title_name;
-            case 1: return model_field_title_type;
-            case 2: return model_field_title_defv;
-            case 3: return model_field_title_descript;
-
-          }
-        return "index out range";
-};
-*/
 
 typedef enum  {
     PT_MODEL,
@@ -90,6 +76,11 @@ namespace my17 {
             event_req_event_item_selected,
             event_req_event_item_data_changed,
 
+            event_req_url_item_selected,
+            event_req_url_item_data_changed,
+
+
+
 
 
         };
@@ -133,6 +124,12 @@ namespace my17 {
                 e3->name = "判断";
                 e3->iconpath = ":/image/004.png";
                 elements.push_back( e3 );
+
+                MElement * e5 = new MElement() ;
+                e5->name = "页面";
+                e5->iconpath = ":/image/006.png";
+                elements.push_back( e5 );
+
 
             }
          protected:
@@ -185,6 +182,17 @@ namespace my17 {
             }
 
 
+            inline  const QString   url_title_index(int i)  {
+                   switch(i)
+                   {
+                     case 0: return "变量名";
+                     case 1: return "地址";
+                     case 2: return "描述";
+
+                   }
+                 return "index out range";
+             }
+
             inline  const QString   event_title_index(int i)  {
                    switch(i)
                    {
@@ -200,9 +208,30 @@ namespace my17 {
                    {
                      case 0: return "系统事件";
                      case 1: return "业务事件";
+                     case 2: return "页面跳转事件";
                    }
                  return "index out range";
              }
+
+            inline  const QString   business_type_index(int i)  {
+                   switch(i)
+                   {
+                     case 0: return "应用入口";
+                     case 1: return "业务处理";
+                   }
+                 return "index out range";
+             }
+
+
+
+
+
+
+            inline const QString  getId()
+            {
+                QDateTime time = QDateTime::currentDateTime();//获取系统现在的时间
+                return time.toString("yyyyMMddhhmmsszzz");;
+            }
 
 
         };
@@ -215,6 +244,8 @@ namespace my17 {
 
                 loadModel();
                 loadEvents();
+                loadBusiness();
+                loadUrl();
 
             }
 
@@ -234,6 +265,9 @@ namespace my17 {
                 while ( !events.isEmpty() )
                    delete events.takeFirst();
 
+                while ( !urls.isEmpty() )
+                   delete urls.takeFirst();
+
 
             }
 
@@ -244,6 +278,7 @@ namespace my17 {
             QVector<MBusinessDelegate*> business;
             QVector<MModelDelegate*> models;
             QVector<MEventDelegate*> events;
+            QVector<MUrlDelegate*> urls;
 
             MBusinessDelegate * newBusiness()
             {
@@ -290,6 +325,7 @@ namespace my17 {
             MEventDelegate * newEvent()
             {
                 MEventDelegate * event = new MEventDelegate();
+                event->event_id = R::getInstance()->getId();
                 event->event_name="Event_new";
                 events.push_back(event);
                 return event;
@@ -301,6 +337,15 @@ namespace my17 {
                 return events.at(index);
             }
 
+            MUrlDelegate * newUrl()
+            {
+
+                MUrlDelegate * url = new MUrlDelegate();
+                url->url_name = "url_new";
+                urls.push_back(url);
+                return url;
+            }
+
             // save load
 
             bool saveModel();
@@ -308,6 +353,18 @@ namespace my17 {
 
             bool saveEvents();
             void loadEvents();
+
+            bool saveBusiness();
+            void loadBusiness();
+
+            bool saveUrl();
+            void loadUrl();
+
+
+
+            View * getView(MBusinessDelegate * mbd,const QString viewid);
+            View * createView(const QString &name);
+            void dealLine(MBusinessDelegate * mbd);
 
         };
 

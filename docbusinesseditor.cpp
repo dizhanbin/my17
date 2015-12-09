@@ -29,6 +29,18 @@ DocBusinessEditor::~DocBusinessEditor()
     delete ui;
 }
 
+void DocBusinessEditor::setData(void *d)
+{
+
+    IExec::setData(d);
+    MBusinessDelegate * mbd = (MBusinessDelegate *)d;
+
+   // mbd->viewgroup = mViewDoc->getRootView();
+
+
+    mViewDoc->setRootView( mbd->viewgroup );
+
+}
 
  my17::TodoResult  DocBusinessEditor::todo(my17::Event event,void * arg)
 {
@@ -49,6 +61,22 @@ DocBusinessEditor::~DocBusinessEditor()
 
             mViewDoc->addView(view );
             mViewDoc->repaint();
+
+        }
+            return my17::todo_done;
+        case my17::event_req_toolbar_del:
+        {
+           View * view = mViewDoc->getRootView()->getFocus();
+           if( view )
+           {
+
+               mViewDoc->getRootView()->removeView(view);
+               delete view;
+               mViewDoc->repaint();
+           }
+
+
+
 
         }
             return my17::todo_done;

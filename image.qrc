@@ -8,5 +8,6 @@
         <file>image/icon_del.png</file>
         <file>image/icon_add.png</file>
         <file>image/icon_save.png</file>
+        <file>image/006.png</file>
     </qresource>
 </RCC>

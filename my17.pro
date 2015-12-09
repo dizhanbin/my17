@@ -16,9 +16,9 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     my17.cpp \
     messagecenter.cpp \
+    view.cpp \
     nlog.cpp \
     viewdoc.cpp \
-    view.cpp \
     docbusinesseditor.cpp \
     docmodeleditor.cpp \
     mbusinessdelegate.cpp \
@@ -26,10 +26,11 @@ SOURCES += main.cpp\
     mmodeldelegate.cpp \
     doceventeditor.cpp \
     meventdelegate.cpp \
-    viewgroup.cpp \
     lineview.cpp \
-    iconview.cpp
-
+    iconview.cpp \
+    viewgroup.cpp \
+    murldelegate.cpp \
+    docurleditor.cpp
 
 HEADERS  += mainwindow.h \
     my17.h \
@@ -44,15 +45,17 @@ HEADERS  += mainwindow.h \
     mmodeldelegate.h \
     doceventeditor.h \
     meventdelegate.h \
-    viewgroup.h \
     lineview.h \
-    iconview.h
-
+    iconview.h \
+    viewgroup.h \
+    murldelegate.h \
+    docurleditor.h
 
 FORMS    += mainwindow.ui \
     docbusinesseditor.ui \
     docmodeleditor.ui \
-    doceventeditor.ui
+    doceventeditor.ui \
+    docurleditor.ui
 
 OTHER_FILES +=
 

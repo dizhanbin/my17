@@ -10,11 +10,19 @@ private:
     View * from;
     View * to;
 
+
+
+
     QPoint cursor;
 
     QList<QRect> path;
 
 public:
+
+    QString fromid;
+    QString toid;
+
+
     LineView();
 
     void setFrom(View *fv);
@@ -31,8 +39,15 @@ public:
     virtual bool isPointIn(const QPoint &p);
 
     virtual bool isLine();
+     virtual bool isLineTo(View *v);
+
+    virtual void save(QXmlStreamWriter &writer);
 
 
+    virtual bool load(QXmlStreamReader &reader );
+
+
+     virtual void line(View *from,View * to);
 };
 
 

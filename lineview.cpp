@@ -176,14 +176,14 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
 
         else{
 
-           int px0 = x0;
-           int py0 = y0+ELE_WH/2;
+           int px0 = x0 + ELE_WH/2;
+           int py0 = y0+ELE_WH;
 
-           int px1 = x1+ELE_WH/2;
-           int py1 = py0;
+           int px1 = px0;
+           int py1 = y1+ELE_WH/2;
 
-           int px2 = px1;
-           int py2 = y1;
+           int px2 = x1+ELE_WH;
+           int py2 = py1;
 
            painter.drawLine(px0,py0,px1,py1);
            painter.drawLine(px1,py1,px2,py2);
@@ -299,3 +299,78 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
 
     return true;
 }
+
+ bool LineView::isLineTo(View *v)
+ {
+     return ( v && (v==from || v== to));
+ }
+
+ void LineView::save(QXmlStreamWriter &writer)
+ {
+
+    writer.writeTextElement("id",viewid);
+
+    writer.writeTextElement("x",QString::number( m_rect.x() ) );
+    writer.writeTextElement("y",QString::number( m_rect.y() ) );
+    writer.writeTextElement("w",QString::number( m_rect.width() ) );
+    writer.writeTextElement("h",QString::number( m_rect.height() ) );
+
+    writer.writeTextElement("from", from->viewid );
+    writer.writeTextElement("to", to->viewid );
+
+
+ }
+
+
+ bool LineView::load(QXmlStreamReader &reader )
+ {
+
+
+     int x,y,w,h;
+     while( true )
+     {
+
+          reader.readNext();
+          QStringRef  name = reader.name();
+          if( reader.isStartElement() )
+          {
+
+             if( name == "id" )
+                 viewid = reader.readElementText();
+             else if( name == "x" )
+                 x = reader.readElementText().toInt();
+             else if( name == "y" )
+                 y = reader.readElementText().toInt();
+             else if( name == "w" )
+                 w = reader.readElementText().toInt();
+             else if( name == "h" )
+                 h = reader.readElementText().toInt();
+             else if( name == "from" )
+                 fromid = reader.readElementText();
+             else if( name == "to" )
+                 toid = reader.readElementText();
+         }
+         else if( reader.isEndElement() )
+         {
+
+
+             if( name == "view" )
+                 return true;
+
+         }
+
+     }
+
+
+      return false;
+
+ }
+
+  void LineView::line(View *from,View * to)
+  {
+
+
+      this->from = from;
+      this->to = to;
+
+  }

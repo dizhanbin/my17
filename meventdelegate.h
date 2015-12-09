@@ -19,6 +19,7 @@ public:
    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
 
 public:
+    QString event_id;
     QString event_name;
     int event_type;
     QString event_descript;
