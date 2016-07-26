@@ -18,7 +18,7 @@ public:
     explicit DocEventEditor(QWidget *parent = 0);
     ~DocEventEditor();
 
-     virtual my17::TodoResult  todo(my17::Event event,void * arg);
+    virtual my17::TodoResult  todo(my17::Event event,void * arg);
     virtual void setData(void * d);
     void setFieldData(int row,MEventDelegate * event);
 private:

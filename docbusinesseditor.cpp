@@ -51,20 +51,14 @@ void DocBusinessEditor::setData(void *d)
     {
         case my17::event_req_business_item_double_click:
         {
-
-
             int * index = (int*)arg;
 
             MElement * e = R::getInstance()->elements.at(*index);
 
-            IconView * view = new IconView(    e->iconpath  );
-
-
-
+            IconView * view = new IconView(     );
+            view->m_element_id = e->ele_id;
 
             view->newProperties(e->properties);
-
-
 
             mViewDoc->addView(view );
             mViewDoc->repaint();

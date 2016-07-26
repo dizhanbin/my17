@@ -43,15 +43,29 @@ void MBusinessDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
 
         }
         break;
+        case 2:
+        {
+            QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
+            painter->drawText(option.rect, "流程保存名", o);
+        }
+        break;
+
 
     }
     else if( index.column() ==  1)
     switch( index.row() ){
 
+
             case 0:
             {
                 QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
                 painter->drawText(option.rect, name, o);
+            }
+            break;
+            case 2:
+            {
+                QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
+                painter->drawText(option.rect, alia, o);
             }
             break;
             case 1:
@@ -79,6 +93,15 @@ QWidget *MBusinessDelegate::createEditor(QWidget *parent,
    if( index.column() == 1 )
     switch( index.row() )
     {
+        case 2:
+        {
+             QLineEdit *m_pTxt = new QLineEdit(parent);
+             connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged_alia()) );
+
+             return m_pTxt;
+        }
+
+
         case 0:
         {
              QLineEdit *m_pTxt = new QLineEdit(parent);
@@ -118,6 +141,15 @@ void MBusinessDelegate::setEditorData(QWidget *editor, const QModelIndex &index)
    switch( index.row() )
    {
 
+        case 2:
+       {
+
+           QLineEdit * text = (QLineEdit*)editor;
+           if( text->text().length() == 0 )
+              text->setText(this->alia );
+
+       }
+        break;
         case 0:
         {
 
@@ -157,7 +189,23 @@ void MBusinessDelegate::slots_datachanged()
 
 
 }
+void MBusinessDelegate::slots_datachanged_alia()
+{
 
+      NLog::i("MModel delegate  slots_datachanged");
+
+      QLineEdit *editor = qobject_cast<QLineEdit *>(sender());
+      emit commitData(editor);
+      emit closeEditor(editor);
+
+
+      QLineEdit * text = qobject_cast<QLineEdit *>( sender() );
+      this->alia =  text->text();
+
+      MessageCenter::getInstence()->sendMessage(my17::event_req_business_data_changed,this);
+
+
+}
 
 void MBusinessDelegate::slots_datachanged_type(int t)
 {

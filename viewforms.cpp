@@ -2,13 +2,39 @@
 #include <qevent.h>
 #include "lineview.h"
 #include "messagecenter.h"
+#include "formview.h"
+#include "formlineview.h"
 
 ViewForms::ViewForms(QWidget *parent) :
     QWidget(parent),mPressed(false)
 {
 
     mRootView = NULL;
-  // mRootView = new ViewGroup();
+    mRootView = new ViewGroup();
+
+
+
+    for(MForm * mf : my17::D::getInstance()->forms )
+    {
+
+        FormView * fv = new FormView();
+        fv->form = mf;
+        fv->viewid = mf->formid;
+        fv->initFormData();
+        addView(fv);
+
+    }
+    for( MLine * ml : DP->formlines )
+    {
+        FormLineView * lv = new FormLineView();
+        lv->viewid = ml->lineid;
+        lv->fromid = ml->from;
+        lv->toid = ml->to;
+        lv->mline = ml;
+        lv->line(findViewById(lv->fromid),findViewById(lv->toid) );
+        addView(lv);
+    }
+
 
 }
 
@@ -16,7 +42,7 @@ ViewForms::~ViewForms()
 {
 
     NLog::i("release ViewForms");
-   // delete mRootView;
+    delete mRootView;
     NLog::i("release ViewForms end");
 }
 
@@ -24,8 +50,13 @@ void ViewForms::paintEvent(QPaintEvent * event)
 {
 
     event->accept();
-    if( mRootView )
-         mRootView->paint(event,this);
+    if( mRootView ){
+
+        QPainter painter(this);
+        const QPalette & pal = this->palette();
+
+         mRootView->paint(painter,pal);
+    }
 
 }
 
@@ -81,15 +112,24 @@ void ViewForms::mousePressEvent(QMouseEvent *event)
         if( mPressed_btn_right && !view->isLine() )
         {
 
-            LineView * line = new LineView();
+            FormLineView * line = new FormLineView();
             line->setFrom(view);
-            line->setPos(view->getRect()->x(),view->getRect()->y());
-            line->setDefProperty();
+            line->setPos(view->getRect()->x()+view->getRect()->width()/2,view->getRect()->y()+view->getRect()->height()/2);
+            //line->setDefProperty();
+
+            MLine * ml = new MLine();
+            ml->lineid = line->viewid;
+            ml->from = view->viewid;
+
+            line->mline = ml;
+
+            DP->formlines.push_back( ml );
+
 
 
             mRootView->addView(line);
             mRootView->setCurrentLine(line);
-
+            NLog::i("add lineview....");
 
 
         }
@@ -122,12 +162,13 @@ void ViewForms::mouseReleaseEvent(QMouseEvent *event)
             if( view && !view->isLine() )
             {
 
-               LineView * line = (LineView*) mRootView->getCurrentLine();
+               FormLineView * line = (FormLineView*) mRootView->getCurrentLine();
 
                if( line )
                {
 
                    line->setTo(view);
+                   line->mline->to = view->viewid;
                    repaint();
                }
 
@@ -135,14 +176,18 @@ void ViewForms::mouseReleaseEvent(QMouseEvent *event)
             else
             {
 
-                LineView * line = (LineView*) mRootView->getCurrentLine();
+                FormLineView * line = (FormLineView*) mRootView->getCurrentLine();
 
                 if( line )
                 {
                     mRootView->removeView(line);
+                    DP->formlines.takeLast();
                     delete line;
+
                     repaint();
+                    NLog::i("delete lineview....");
                 }
+
 
             }
 

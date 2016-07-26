@@ -24,6 +24,7 @@ public:
 
 public:
     QString name;
+    QString id;
 
     QList<MModelFieldDelegate*> fields;
 

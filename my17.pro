@@ -32,7 +32,16 @@ SOURCES += main.cpp\
     murldelegate.cpp \
     docurleditor.cpp \
     mpropertydelegate.cpp \
-    mproperty.cpp
+    mproperty.cpp \
+    doccommoneditor.cpp \
+    mbooleandelegate.cpp \
+    formview.cpp \
+    docformeditor.cpp \
+    viewforms.cpp \
+    formlineview.cpp \
+    tablemodel.cpp \
+    projectadapter.cpp \
+    commoneditdelegate.cpp
 
 HEADERS  += mainwindow.h \
     my17.h \
@@ -53,13 +62,26 @@ HEADERS  += mainwindow.h \
     murldelegate.h \
     docurleditor.h \
     mpropertydelegate.h \
-    mproperty.h
+    mproperty.h \
+    doccommoneditor.h \
+    mbooleandelegate.h \
+    formview.h \
+    docformeditor.h \
+    viewforms.h \
+    viewforms.h \
+    formlineview.h \
+    tablemodel.h \
+    projectadapter.h \
+    editoradapter.h \
+    commoneditdelegate.h
 
 FORMS    += mainwindow.ui \
     docbusinesseditor.ui \
     docmodeleditor.ui \
     doceventeditor.ui \
-    docurleditor.ui
+    docurleditor.ui \
+    doccommoneditor.ui \
+    docformeditor.ui
 
 OTHER_FILES +=
 

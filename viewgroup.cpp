@@ -40,6 +40,26 @@ m_current_line = NULL;
 
 }
 
+ void ViewGroup::paint(QPainter & painter,const QPalette & pal)
+ {
+     NLog::i("draw ViewGroup.paint ---------------");
+     View * focus = getFocus();
+     for(View * view:m_children)
+     {
+         NLog::i("draw ViewGroup.paint....%s",view->getTypeName());
+
+
+
+         if( view != focus )
+             view->paint(painter,pal);
+     }
+     if( focus )
+         focus->paint(painter,pal);
+
+
+ }
+
+
 View * ViewGroup::getChildAt(int i)
 {
     return m_children.at(i);
@@ -171,8 +191,61 @@ View * ViewGroup::getCurrentLine()
     return m_current_line;
 
 }
+View * ViewGroup::getViewById(const QString & viewid)
+{
+    for(int i=0;i<this->m_children.count();i++)
+    {
+        View * view = m_children.at(i);
+        if( view->viewid == viewid )
+            return view;
+
+    }
+    return NULL;
 
 
+}
+
+View * ViewGroup::getStart()
+{
+    for(int i=0;i<this->m_children.count();i++)
+    {
+
+        View * view = m_children.at(i);
+        if( !view->isLine() )
+        {
+
+            if( view->getElementid() == "001" )
+            {
+
+                return view;
+            }
+
+        }
+
+    }
+    return NULL;
+
+
+}
+
+void ViewGroup::createCodes(QXmlStreamWriter &writer)
+{
+
+    for(int i=0;i<this->m_children.count();i++ )
+    {
+
+        View * view = m_children.at(i);
+
+        writer.writeStartElement( view->getCodeTag() );
+        //const QString type = (view->getTypeName()+1);
+        // writer.writeAttribute("type",type);
+
+        view->createCodes(writer);
+        writer.writeEndElement();
+    }
+
+
+}
 
 void ViewGroup::save(QXmlStreamWriter &writer)
 {
@@ -182,10 +255,12 @@ void ViewGroup::save(QXmlStreamWriter &writer)
     {
 
         View * view = m_children.at(i);
-        writer.writeStartElement("view");
-        const QString type = (view->getTypeName()+1);
 
+
+        writer.writeStartElement( view->getXmlTag() );
+        const QString type = (view->getTypeName()+1);
         writer.writeAttribute("type",type);
+
         view->save(writer);
         writer.writeEndElement();
     }

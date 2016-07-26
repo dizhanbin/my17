@@ -8,10 +8,14 @@
 
 typedef enum{
 
+    index_const,
     index_model,
     index_url,
     index_event,
+    index_form,
+
     index_business,
+
 
 
 }left_0_item_index;
@@ -46,6 +50,8 @@ private:
     void do_business_data_changed(MBusinessDelegate * business);
     int do_focus_tab_by_data(void * data,const QString &name);
 
+    virtual void keyReleaseEvent(QKeyEvent * event);
+
 public slots:
     void slot_left_0_item_selected(const QModelIndex & index);
     void slot_left_0_menu_new_bus_triggered(bool checked = false);
@@ -55,6 +61,11 @@ public slots:
     void slot_toolbar_del_click(bool checked = false);
     void slot_toolbar_add_click(bool checked = false);
     void slot_toolbar_save_click(bool checked=false);
+    void slot_toolbar_run_click(bool checked=false);
+
+
+    void slot_tab_close(int index);
+
 
 public: //qtabledelegate
     /*

@@ -17,8 +17,13 @@ public:
    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
 
 public:
-    QList<MProperty*> * propertys;
+    QList<MProperty*> * properties;
 
+
+public slots:
+
+      void slots_datachanged_text();
+      void slots_datachanged_index(int i);
 
 
 

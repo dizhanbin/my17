@@ -25,11 +25,8 @@ void LineView::setTo(int x,int y)
 
 }
 
- void LineView::paint(QPaintEvent * event,QWidget * widget)
+void LineView::paint(QPainter & painter,const QPalette & pal)
 {
-
-    QPainter painter(widget);
-    const QPalette & pal = widget->palette();
 
     QColor color =   m_isfocus ? QColor(0xff,0,0) : QColor(0,0,0xff);
 
@@ -59,12 +56,24 @@ void LineView::setTo(int x,int y)
         else
         {
 
-            QPointF p0(from->getRect()->x()+getRect()->width()/2,from->getRect()->y()+getRect()->height()/2);
+            QPointF p0(from->getRect()->x()+from->getRect()->width()/2,from->getRect()->y()+from->getRect()->height()/2);
             QPointF p1(cursor.x(),cursor.y());
             painter.drawLine(p0,p1);
         }
 
     }
+
+}
+ void LineView::paint(QPaintEvent * event,QWidget * widget)
+{
+
+    QPainter painter(widget);
+    const QPalette & pal = widget->palette();
+
+
+    paint(painter,pal);
+
+
 
 
 
@@ -72,6 +81,21 @@ void LineView::setTo(int x,int y)
 
 void LineView::drawArrow(QPainter & painter,float x1,float y1,float x2,float y2)
 {
+
+    float wh = 1.5;
+    if( x1 == x2 )
+    {
+        x1 += wh;
+        x2 = x1;
+    }
+    else if( y1 == y2 )
+    {
+
+        y1 += wh;
+        y2 = y1;
+    }
+
+
 
     float l = 10.0;                   //箭头的那长度
 
@@ -98,13 +122,28 @@ void LineView::drawArrow(QPainter & painter,float x1,float y1,float x2,float y2)
 void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
 {
 
-    if( x0+ELE_WH/2 > x1 && x0+ELE_WH/2<x1+ELE_WH )
+
+    float line_wh = 3;
+
+    const QString & title = getDescript();
+
+
+    int t_x,t_y;
+    QFontMetricsF fontMetrics(painter.font());
+    int text_w =  (int)fontMetrics.width(title);
+    int text_h = 12;
+
+    int ele_w = from->getRect()->width();
+    int ele_h = from->getRect()->height();
+
+
+    if( x0+ele_w/2 > x1 && x0+ele_w/2<x1+ele_w )//竖直方向
     {
 
         if( y1>y0)
         {
-            int px0 = x0+ELE_WH/2;
-            int py0 = y0+ELE_WH;
+            int px0 = x0+ele_w/2;
+            int py0 = y0+ele_h;
 
             int px1 = px0;
             int py1 = y1;
@@ -116,16 +155,18 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
             path.append(QRect(px0,py0,px1-px0,py1-py0) );
 
 
+
+
         }
         else
         {
 
 
-            int px0 = x0+ELE_WH/2;
+            int px0 = x0+ele_w/2;
             int py0 = y0;
 
             int px1 = px0;
-            int py1 = y1+ELE_WH;
+            int py1 = y1+ele_h;
             painter.drawLine(px0,py0,px1,py1);
             drawArrow(painter,px0,py0,px1,py1);
 
@@ -134,33 +175,40 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
 
         }
 
+        t_x = x0/2+x1/2;
+        t_y = y0/2+y1/2;
 
     }
-    else if( x0+ELE_WH/2 > x1+ELE_WH  )//left
+    else if( x0+ele_w/2 > x1+ele_w  )//left 从上到左下
     {
-        if( y0+ELE_WH/2>y1 && y0+ELE_WH/2<y1+ELE_WH)
+        if( y0+ele_h/2>y1 && y0+ele_h/2<y1+ele_h)//
        {
            int px0 = x0;
-           int py0 = y0+ELE_WH/2;
+           int py0 = y0+ele_h/2;
 
-           int px1 = x1+ELE_WH;
+           int px1 = x1+ele_w;
            int py1 = py0;
            painter.drawLine(px0,py0,px1,py1);
            drawArrow(painter,px0,py0,px1,py1);
 
            path.clear();
            path.append(QRect(px0,py0,px1-px0,py1-py0) );
+
+           t_x = x0/2+x1/2;
+           t_y = y0/2+y1/2;
+
+
        }
 
-       else if( y0+ELE_WH/2>y1+ELE_WH)
+       else if( y0+ele_h/2>y1+ele_h)
         {
-            int px0 = x0+ELE_WH/2;
+            int px0 = x0+ele_w/2;
             int py0 = y0;
 
             int px1 = px0;
-            int py1 = y1+ELE_WH/2;
+            int py1 = y1+ele_h/2;
 
-            int px2 = x1+ELE_WH;
+            int px2 = x1+ele_w;
             int py2 = py1;
 
             painter.drawLine(px0,py0,px1,py1);
@@ -171,18 +219,24 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
             path.clear();
             path.append(QRect(px0,py0,px1-px0,py1-py0) );
             path.append(QRect(px1,py1,px2-px1,py2-py1) );
+
+
+            t_x = px1/2+px2/2;
+
+            t_y = py1-text_h;
+
         }
 
 
         else{
 
-           int px0 = x0 + ELE_WH/2;
-           int py0 = y0+ELE_WH;
+           int px0 = x0 + ele_w/2;
+           int py0 = y0+ele_h;
 
            int px1 = px0;
-           int py1 = y1+ELE_WH/2;
+           int py1 = y1+ele_h/2;
 
-           int px2 = x1+ELE_WH;
+           int px2 = x1+ele_w;
            int py2 = py1;
 
            painter.drawLine(px0,py0,px1,py1);
@@ -194,16 +248,21 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
            path.append(QRect(px0,py0,px1-px0,py1-py0) );
            path.append(QRect(px1,py1,px2-px1,py2-py1) );
 
+
+           t_x = px1/2+px2/2;
+
+           t_y = py1-text_h;
+
        }
 
     }
     else{//right
 
 
-        if( y0+ELE_WH/2>y1 && y0+ELE_WH/2<y1+ELE_WH)
+        if( y0+ele_h/2>y1 && y0+ele_h/2<y1+ele_h)
        {
-           int px0 = x0+ELE_WH;
-           int py0 = y0+ELE_WH/2;
+           int px0 = x0+ele_w;
+           int py0 = y0+ele_h/2;
 
            int px1 = x1;
            int py1 = py0;
@@ -214,15 +273,19 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
            path.append(QRect(px0,py0,px1-px0,py1-py0) );
 
 
+           t_x = px0/2+px1/2;
+
+           t_y = py0-text_h;
+
        }
 
-       else if( y0+ELE_WH/2>y1+ELE_WH)  //right north
+       else if( y0+ele_h/2>y1+ele_h)  //right north
         {
-            int px0 = x0+ELE_WH/2;
+            int px0 = x0+ele_w/2;
             int py0 = y0;
 
-            int px1 = px0;//x1+ELE_WH/2;
-            int py1 = y1+ELE_WH/2;
+            int px1 = px0;//x1+ele_w/2;
+            int py1 = y1+ele_h/2;
 
             int px2 =  x1;
             int py2 =  py1;
@@ -235,16 +298,22 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
             path.clear();
             path.append(QRect(px0,py0,px1-px0,py1-py0) );
             path.append(QRect(px1,py1,px2-px1,py2-py1) );
+
+            t_x = px1/2+px2/2;
+
+            t_y = py1-text_h;
+
+
         }
 
 
         else{
 
-           int px0 = x0+ELE_WH/2;
-           int py0 = y0+ELE_WH;
+           int px0 = x0+ele_w/2;
+           int py0 = y0+ele_h;
 
            int px1 = px0;
-           int py1 = y1+ELE_WH/2;
+           int py1 = y1+ele_h/2;
 
            int px2 = x1;
            int py2 = py1;
@@ -258,6 +327,11 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
            path.append(QRect(px0,py0,px1-px0,py1-py0) );
            path.append(QRect(px1,py1,px2-px1,py2-py1) );
 
+           t_x = px1/2+px2/2;
+
+           t_y = py1-text_h;
+
+
        }
 
 
@@ -265,6 +339,12 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
 
     }
 
+
+
+
+
+
+    painter.drawText(t_x-text_w/2,t_y,title );
 
 
 
@@ -305,6 +385,27 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
      return ( v && (v==from || v== to));
  }
 
+
+const QString &  LineView::getCodeTag()
+ {
+
+     return "Line";
+
+ }
+
+ void LineView::createCodes(QXmlStreamWriter &writer)
+ {
+
+     writer.writeTextElement("id",viewid);
+     writer.writeTextElement("from", from->viewid );
+     writer.writeTextElement("to", to->viewid );
+
+     writer.writeTextElement("condition", properties.at(0)->p_value );
+
+
+ }
+
+
  void LineView::save(QXmlStreamWriter &writer)
  {
 
@@ -319,6 +420,7 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
     writer.writeTextElement("to", to->viewid );
 
 
+    saveData(writer,"condition");
  }
 
 
@@ -332,6 +434,9 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
 
           reader.readNext();
           QStringRef  name = reader.name();
+
+         // NLog::i("LineView tag:"+name.toString());
+
           if( reader.isStartElement() )
           {
 
@@ -349,12 +454,14 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
                  fromid = reader.readElementText();
              else if( name == "to" )
                  toid = reader.readElementText();
+             else if( name == "condition" )
+                 loadData(reader);
          }
          else if( reader.isEndElement() )
          {
 
 
-             if( name == "view" )
+             if( name == "view" || name == "Line")
                  return true;
 
          }
@@ -374,3 +481,27 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
       this->to = to;
 
   }
+
+   const QString & LineView::getXmlTag(){
+
+       return "Line";
+   }
+
+    void LineView::setDefProperty()
+    {
+        MProperty * mp = new MProperty();
+
+        mp->p_name = "value";
+        mp->p_title = "条件";
+        mp->p_type = 0;
+
+        this->properties.append(mp);
+
+    }
+   const  QString &  LineView::getDescript()
+    {
+
+
+        return getProperties().at(0)->p_value;
+
+    }

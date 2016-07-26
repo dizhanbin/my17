@@ -20,11 +20,17 @@ public:
 
     virtual ~ViewGroup();
     virtual void paint(QPaintEvent * event,QWidget * widget);
+    virtual void paint(QPainter & painter,const QPalette & pal);
     virtual void paintChildren(QPaintEvent * event,QWidget * widget);
     View * getChildAt(int i);
     void setFocus(View * child);
     virtual void save(QXmlStreamWriter &writer);
+    virtual void createCodes(QXmlStreamWriter &writer);
     virtual bool load(QXmlStreamReader &reader );
+
+
+    View * getViewById(const QString & viewid);
+    View * getStart();
 
 
 public:

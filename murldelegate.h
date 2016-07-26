@@ -16,6 +16,7 @@ public:
 
    virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
 public:
+    QString url_id;
     QString url_name;
     QString url_address;
     QString url_descript;

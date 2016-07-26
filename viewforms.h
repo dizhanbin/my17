@@ -1,51 +1,86 @@
-#ifndef VIEWGROUP_H
-#define VIEWGROUP_H
-#include "view.h"
+#ifndef ViewForms_H
+#define ViewForms_H
 
+#include <QWidget>
 
+#include "viewgroup.h"
 
-
-class ViewGroup:public View
+class ViewForms : public QWidget
 {
-
+    Q_OBJECT
 public:
-    QList<View*> m_children;
+    explicit ViewForms(QWidget *parent = 0);
 
-    View * m_focus_view;
-    View * m_current_line;
+    virtual  ~ViewForms();
+protected:
+     void paintEvent(QPaintEvent * event);
 
+    virtual void resizeEvent(QResizeEvent * qre);
+
+
+
+signals:
+
+public slots:
+
+private:
+      ViewGroup * mRootView;
+      bool mPressed;
+      bool mPressed_btn_right;
 public:
+    void setRootView(ViewGroup *view)
+    {
 
-    ViewGroup();
-
-    virtual ~ViewGroup();
-    virtual void paint(QPaintEvent * event,QWidget * widget);
-    virtual void paintChildren(QPaintEvent * event,QWidget * widget);
-    View * getChildAt(int i);
-    void setFocus(View * child);
-    virtual void save(QXmlStreamWriter &writer);
-    virtual bool load(QXmlStreamReader &reader );
+        mRootView = view;
 
 
-public:
+    }
 
-    virtual void setSize(int p_width,int p_height);
-    virtual void setPos(int x,int y);
-    virtual void requireLayout();
-    virtual View * getViewAtPoint(const QPoint & p,bool rightbutton=false );
-    void addView(View *view);
+    void layoutViews() {
 
-    void removeLines(View *view);
-    void removeView(View *view);
+        mRootView->setSize(this->rect().width(),this->rect().height());
+        mRootView->setPos(0,0);
 
-    int getChildCount();
-    View * getFocus();
-    bool hasFocusView();
-    void setCurrentLine(View * v);
-    View * getCurrentLine();
+    }
+    ViewGroup * getRootView()
+    {
+
+        return mRootView;
+
+    }
+
+    void addView(View * view){
+
+
+        mRootView->addView(view);
+
+    }
+
+
+    View * findViewById(const QString & viewid)
+    {
+        View * view = NULL;
+        for(int i=0;i<mRootView->m_children.count();i++)
+        {
+            view = mRootView->m_children.at(i);
+            if( view->viewid == viewid )
+            {
+
+                return view;
+
+            }
+        }
+        return NULL;
+
+    }
+
+protected:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+
 
 
 };
 
-
-#endif // VIEWGROUP_H
+#endif // ViewForms_H

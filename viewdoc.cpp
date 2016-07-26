@@ -1,6 +1,7 @@
 #include "viewdoc.h"
 #include <qevent.h>
 #include "lineview.h"
+#include "messagecenter.h"
 
 ViewDoc::ViewDoc(QWidget *parent) :
     QWidget(parent),mPressed(false)
@@ -65,7 +66,12 @@ void ViewDoc::mousePressEvent(QMouseEvent *event)
     {
 
         if( !mPressed_btn_right )
+        {
              mRootView->setFocus(view);
+
+             MC->sendMessage(my17::event_req_business_item_selected,view);
+
+        }
         mPressed = true;
         int x = view->getRect()->x();
         int y = view->getRect()->y();
@@ -78,8 +84,13 @@ void ViewDoc::mousePressEvent(QMouseEvent *event)
             LineView * line = new LineView();
             line->setFrom(view);
             line->setPos(view->getRect()->x(),view->getRect()->y());
+            line->setDefProperty();
+
+
             mRootView->addView(line);
             mRootView->setCurrentLine(line);
+
+
 
         }
 

@@ -25,11 +25,18 @@ class View;
 #define model_field_type_float "float"
 
 
+#define  T_SYS  1//系统事件
+#define  T_BUSINESS  (1<<1)//业务事件
+
+#define   TAB_INDEX_GCXX 1001
+
+
 typedef enum  {
     PT_MODEL,
     PT_BUSINESS,
 
 } property_type;
+
 
 class  MElement//左下角 元素
 {
@@ -37,16 +44,109 @@ public:
     QString name;
     QString iconpath;
     QString ele_id;
+    QString descript;
+
+    QString c_android;
+    QString c_ios;
+
     QList<MProperty*> properties;
 
 public:
     MElement(){
 
     };
-    ~MElement(){};
+    ~MElement(){
+
+        while( properties.size() > 0 )
+        {
+
+            MProperty * me = properties.at(0);
+            properties.removeFirst();
+            delete me;
+        }
+
+    };
 
 };
 
+class MForm
+{
+public:
+    QString formid;
+    int x,y,w,h;
+    QList<MProperty*> properties;
+
+    MForm():x(100),y(100),w(60),h(80){
+
+
+    }
+     ~MForm(){
+
+        while( properties.size() > 0 )
+            properties.takeAt(0);
+
+    }
+
+
+};
+
+class MLine
+{
+public:
+    QString lineid;
+    QString from;
+    QString to;
+
+    QList<MProperty*> properties;
+
+    MLine(){
+
+
+
+    }
+    ~MLine(){
+
+       while( properties.size() > 0 )
+           properties.takeAt(0);
+
+   }
+
+
+};
+
+
+class MData{
+
+public :
+
+    QString key;
+    QString value;
+    QString descript;
+
+    MData(){
+
+    }
+
+
+};
+
+
+class MPropertyEdit{
+
+ public:
+
+     QString descript;
+     QList<MProperty*> properties;
+
+     MPropertyEdit(){}
+     ~MPropertyEdit(){
+
+         while( properties.count()>0)
+             properties.takeAt(0);
+
+     }
+
+};
 
 
 namespace my17 {
@@ -61,18 +161,21 @@ namespace my17 {
             event_req_toolbar_del,
             event_req_toolbar_add,
             event_req_toolbar_save,
+            event_req_toolbar_run,
 
             event_req_business_item_double_click,
 
             event_req_model_selected,
+            event_req_const_selected,
 
-            event_req_model_data_changed,
+            event_req_model_data_changed,//10
 
             event_req_model_field_selected,
             event_req_model_field_changed,//index
 
 
             event_req_business_selected,
+            event_req_business_item_selected,//select one view
             event_req_business_data_changed,
 
             event_req_event_item_selected,
@@ -82,6 +185,13 @@ namespace my17 {
             event_req_url_item_data_changed,
 
 
+            event_req_form_item_selected,//form item
+
+
+
+
+            event_property_selectd,//属性编辑 MPropertyEdit
+            event_property_changed,//
 
 
 
@@ -106,37 +216,7 @@ namespace my17 {
 
 
             void loadElements();
-            /*
-            {
 
-                MElement * e0 = new MElement();
-                e0->name = "事件";
-                e0->iconpath = ":/image/001.png";
-                elements.push_back( e0 );
-
-                MElement * e1 = new MElement() ;
-                e1->name = "网络请求";
-                e1->iconpath = ":/image/002.png";
-                elements.push_back( e1 );
-
-                MElement * e2 = new MElement() ;
-                e2->name = "发送事件";
-                e2->iconpath = ":/image/005.png";
-                elements.push_back( e2 );
-
-                MElement * e3 = new MElement() ;
-                e3->name = "判断";
-                e3->iconpath = ":/image/004.png";
-                elements.push_back( e3 );
-
-                MElement * e5 = new MElement() ;
-                e5->name = "页面";
-                e5->iconpath = ":/image/006.png";
-                elements.push_back( e5 );
-
-
-            }
-            */
          protected:
             R(){
 
@@ -147,7 +227,7 @@ namespace my17 {
 
           public:
 
-              QVector<MElement*> elements;
+              QVector<MElement*> elements;//控件
               ~R(){
 
                 NLog::i("release R");
@@ -162,6 +242,20 @@ namespace my17 {
 
             static R* getInstance();
 
+
+            const MElement * getElement(const QString & id)
+            {
+
+                for(int i=0;i<elements.size();i++)
+                {
+                    MElement * ele = elements.at(i);
+                    if( ele->ele_id == id )
+                    {
+                        return ele;
+                    }
+                }
+                return NULL;
+             }
 
 
            inline  const QString   model_title_index(int i)  {
@@ -198,7 +292,7 @@ namespace my17 {
                  return "index out range";
              }
 
-            inline  const QString   event_title_index(int i)  {
+            inline  const QString  event_title_index(int i)  {
                    switch(i)
                    {
                      case 0: return "事件名";
@@ -209,13 +303,25 @@ namespace my17 {
                  return "index out range";
              }
             inline  const QString   event_type_index(int i)  {
-                   switch(i)
-                   {
-                     case 0: return "系统事件";
-                     case 1: return "业务事件";
-                     case 2: return "页面跳转事件";
-                   }
-                 return "index out range";
+
+
+                    NLog::i("-------------------");
+                    NLog::i("i=%d",i);
+
+
+
+                  QString str="";
+
+                  if( i&T_SYS) str = "系统";
+                  else if( i&T_BUSINESS  ) str = "业务";
+
+
+
+
+                  return str;
+
+
+
              }
 
             inline  const QString   business_type_index(int i)  {
@@ -238,6 +344,19 @@ namespace my17 {
                 return time.toString("yyyyMMddhhmmsszzz");;
             }
 
+            MProperty * getPropertyByName(QList<MProperty*> & properties,const QString &name)
+            {
+                for(MProperty * p : properties)
+                {
+
+                    if( p->p_name == name )
+                        return p;
+
+                }
+                return NULL;
+
+            }
+
 
         };
 
@@ -247,10 +366,13 @@ namespace my17 {
         private:
             D(){
 
+                loadProjectInfos();
                 loadModel();
                 loadEvents();
                 loadBusiness();
                 loadUrl();
+                loadForms();
+
 
             }
 
@@ -272,6 +394,8 @@ namespace my17 {
 
                 while ( !urls.isEmpty() )
                    delete urls.takeFirst();
+                while( !forms.isEmpty() )
+                    delete forms.takeFirst();
 
 
             }
@@ -284,6 +408,12 @@ namespace my17 {
             QVector<MModelDelegate*> models;
             QVector<MEventDelegate*> events;
             QVector<MUrlDelegate*> urls;
+
+            QVector<MForm *> forms;
+            QVector<MLine *> formlines;
+
+            QVector<MData *> projectinfos;
+
 
             MBusinessDelegate * newBusiness()
             {
@@ -306,6 +436,7 @@ namespace my17 {
 
                 MModelDelegate * model = new MModelDelegate();
                 model->name = "Model";
+                model->id = R::getInstance()->getId();
                 models.push_back(model);
                 return model;
 
@@ -346,6 +477,7 @@ namespace my17 {
             {
 
                 MUrlDelegate * url = new MUrlDelegate();
+                url->url_id = R::getInstance()->getId();
                 url->url_name = "url_new";
                 urls.push_back(url);
                 return url;
@@ -365,11 +497,84 @@ namespace my17 {
             bool saveUrl();
             void loadUrl();
 
+            bool saveForms();
+            void loadForms();
 
+            bool saveProjectInfos();
+            void loadProjectInfos();
+
+
+            bool loadProperties(QList<MProperty *> & properties, QXmlStreamReader &reader );
+            bool saveProperties(QList<MProperty *> & properties,QXmlStreamWriter &writer,const QString &tag);
 
             View * getView(MBusinessDelegate * mbd,const QString viewid);
             View * createView(const QString &name);
             void dealLine(MBusinessDelegate * mbd);
+
+
+           int  getModelIndexById(const QString &id);
+           int  getEventIndexById(const QString &id);
+           int getUrlIndexById(const QString &id);
+
+
+
+           MModelDelegate * getModelById(const QString &id);
+           MEventDelegate * getEventById(const QString &id);
+           MUrlDelegate * getUrlById(const QString &id);
+
+
+
+           bool createEvent();
+           bool createUrls();
+           bool createForms();
+           bool createBusiness();
+           bool createModels();
+           bool createProjectInfos();
+
+           bool createFile(const QString & path,const QString & strs);
+
+
+          const QString createCodes();
+
+
+
+           const QString& getPropertyValue(const QString& args,const QString& value)
+           {
+
+
+               NLog::i("getPropertyValue %s v:%s",args.toStdString().c_str(),value.toStdString().c_str() );
+               if( args ==  "$model" )
+               {
+                   MModelDelegate * mmd = getModelById(value);
+                   if( mmd )
+                       return mmd->name;
+
+               }
+               else if( args ==  "$event" )
+               {
+
+                  MEventDelegate * med = getEventById(value);
+                  if( med )
+                  {
+                      return med->event_name;
+                  }
+
+               }
+               else if( args == "$url" )
+               {
+                   MUrlDelegate * mud = getUrlById(value);
+                   if( mud )
+                       return mud->url_name;
+
+               }
+               else if( args == "$boolean" )
+               {
+                   return value;
+               }
+
+                return args+" not define";
+           }
+
 
         };
 

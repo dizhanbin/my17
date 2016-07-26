@@ -25,6 +25,15 @@ void NLog::i(const char * format,...)
 
 }
 
+void NLog::i(const QString &str,...)
+{
+
+
+
+
+}
+
+
  void NLog::i(const QString &str)
 {
      i(str.toStdString().c_str());

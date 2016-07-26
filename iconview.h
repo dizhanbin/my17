@@ -7,20 +7,25 @@ class IconView :public View
 
  public:
     QPixmap * m_bitmap;
-    QString m_iconpath;
+    QString  m_element_id;
+
 
  public:
     IconView();
-    IconView(const QString & imagepath);
     ~IconView();
-
-    void setImage(const QString & imagepath);
 
     virtual void paint(QPaintEvent * event,QWidget * widget);
 
+
+     virtual void createCodes(QXmlStreamWriter &writer);
     virtual void save(QXmlStreamWriter &writer);
     virtual bool load(QXmlStreamReader &reader );
 
+    virtual const QString & getTopDescript();//注释
+
+    virtual const QString & getCodeTag();
+
+    virtual const QString & getElementid(){ return m_element_id; };
 
 };
 

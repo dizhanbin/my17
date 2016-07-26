@@ -25,6 +25,7 @@ public:
 public:
 
     QString name;
+    QString alia;
     int type; //business_type_index
 
     ViewGroup * viewgroup;
@@ -33,6 +34,7 @@ signals:
 
 public slots:
       void slots_datachanged();
+      void slots_datachanged_alia();
       void slots_datachanged_type(int);
 
 };

@@ -74,6 +74,17 @@ my17::TodoResult DocEventEditor::todo(my17::Event event,void * arg)
 
         }
         return my17::todo_done_only;
+        case my17::event_req_toolbar_del:
+        {
+
+
+
+            int row = ui->mtable->currentIndex().row();
+            ui->mtable->removeRow( row );
+            DP->events.takeAt(row);
+
+        }
+        return my17::todo_done_only;
 
     }
 

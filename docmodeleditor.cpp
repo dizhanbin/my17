@@ -122,6 +122,21 @@ my17::TodoResult  DocModelEditor::todo(my17::Event event,void * arg)
 
     }
         return my17::todo_done_only;
+    case my17::event_req_toolbar_del:
+    {
+
+
+
+        int row = ui->mtable->currentIndex().row();
+
+        ui->mtable->removeRow(row);
+        MModelDelegate * model = static_cast<MModelDelegate *>(getData());
+        model->fields.takeAt(row);
+
+
+
+    }
+    return my17::todo_done_only;
 
 
     }

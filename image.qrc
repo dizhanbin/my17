@@ -9,5 +9,17 @@
         <file>image/icon_add.png</file>
         <file>image/icon_save.png</file>
         <file>image/006.png</file>
+        <file>image/007.png</file>
+        <file>image/form.png</file>
+        <file>image/icon_run.png</file>
+        <file>image/icon_listen.png</file>
+        <file>image/icon_speek.png</file>
+        <file>image/json_parse.png</file>
+        <file>image/json_tostring.png</file>
+        <file>image/read.png</file>
+        <file>image/store.png</file>
+        <file>image/string.png</file>
+        <file>image/write.png</file>
+        <file>image/copy.png</file>
     </qresource>
 </RCC>

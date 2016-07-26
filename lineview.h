@@ -30,6 +30,7 @@ public:
 
     void setTo(int x,int y);
     virtual void paint(QPaintEvent * event,QWidget * widget);
+    virtual void paint(QPainter & painter,const QPalette & pal);
 
     void drawArrow(QPainter & painter,float x1,float y1,float x2,float y2);
 
@@ -41,6 +42,8 @@ public:
     virtual bool isLine();
      virtual bool isLineTo(View *v);
 
+
+     virtual void createCodes(QXmlStreamWriter &writer);
     virtual void save(QXmlStreamWriter &writer);
 
 
@@ -48,6 +51,15 @@ public:
 
 
      virtual void line(View *from,View * to);
+
+    virtual const QString & getXmlTag();
+
+    void setDefProperty();
+    virtual const QString &  getDescript();
+
+
+    virtual const QString & getCodeTag();
+
 };
 
 

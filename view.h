@@ -23,11 +23,26 @@ public:
     QRect m_rect;
     bool m_isfocus;
     bool isroot;
+
+    QList<MProperty*> properties;
+
+    virtual QList<MProperty*> & getProperties(){
+        return properties;
+    }
+
+    virtual MProperty * getProperty(const QString & name);
+
+    virtual void setData(void * data){};
+    virtual void* getData(){ return NULL; };
+
+
 public:
 
    View();
    virtual void paint(QPaintEvent * event,QWidget * widget);
+   virtual void paint(QPainter & painter,const QPalette & pal);
 
+   virtual ~View();
 public:
 
 
@@ -50,7 +65,15 @@ public:
      void setFocus(bool focus);
 
      virtual void save(QXmlStreamWriter &writer);
+     virtual void saveData(QXmlStreamWriter &writer,const QString & tag);
+
+
+     virtual void createCodes(QXmlStreamWriter &writer);
+     virtual void createProprityCodes(QXmlStreamWriter &writer,const QString & tag);
+
+
      virtual bool load(QXmlStreamReader &reader );
+     virtual bool loadData(QXmlStreamReader &reader );
 
      virtual const char* getTypeName(){ return typeid(*this).name(); };
 
@@ -58,6 +81,16 @@ public:
      virtual void line(View *from,View * to){};
 
      virtual void newProperties(QList<MProperty*> ps);
+
+     virtual const QString & getDescript();
+     virtual const QString & getTopDescript();//注释
+
+     virtual const QString & getXmlTag();
+     virtual const QString & getCodeTag();
+
+
+     virtual const QString & getElementid(){ return "000"; };
+
 
 
 };

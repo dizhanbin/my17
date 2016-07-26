@@ -163,7 +163,17 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QTreeView" name="right_top"/>
+      <widget class="QLabel" name="right_top">
+       <property name="text">
+        <string>提示</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

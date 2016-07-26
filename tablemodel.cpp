@@ -1,5 +1,5 @@
 #include "tablemodel.h"
 
-TableModel::TableModel()
+TableAdapter::TableAdapter()
 {
 }

@@ -19,6 +19,7 @@ public:
 public:
     static void i(const char * format,...);
     static void i(const QString &str);
+    static void i(const QString &str,...);
     static  void outThread();
 signals:
 
@@ -26,4 +27,6 @@ public slots:
 
 };
 
+
+#define logi(arg) NLog::i(arg)
 #endif // NLOG_H

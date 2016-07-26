@@ -8,7 +8,12 @@
 #include "doceventeditor.h"
 #include "doceventeditor.h"
 #include "docurleditor.h"
+#include "doccommoneditor.h"
 #include <QMessageBox>
+#include "mpropertydelegate.h"
+#include "docformeditor.h"
+#include "projectadapter.h"
+#include "commoneditdelegate.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -44,7 +49,14 @@ void MainWindow::init_left_0()
 {
 
 
+
     QStandardItemModel * model = new QStandardItemModel();
+
+
+    QStandardItem* item_const = new QStandardItem("工程信息");
+    model->insertRow(index_const,item_const);
+
+
     QStandardItem* item00 = new QStandardItem("数据对象");
     model->insertRow(index_model,item00);
 
@@ -55,6 +67,9 @@ void MainWindow::init_left_0()
 
     QStandardItem* item10 = new QStandardItem("事件");
     model->insertRow(index_event,item10);
+
+    QStandardItem* item30 = new QStandardItem("页面");
+    model->insertRow(index_form,item30);
 
     QStandardItem* item20 = new QStandardItem("业务");
     model->insertRow(index_business,item20);
@@ -141,9 +156,18 @@ void MainWindow::init_toolbar()
     action_save->setIcon(  QIcon(QPixmap(  ":image/icon_save.png" ))  );
     ui->toolBar->addAction(action_save);
 
+
+    QAction * action_run = new QAction(" 生成 ", this);
+    action_run->setIcon(  QIcon(QPixmap(  ":image/icon_run.png" ))  );
+    ui->toolBar->addAction(action_run);
+
+
+
     connect(action_del, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_del_click(bool)) );
     connect(action_add, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_add_click(bool)) );
     connect(action_save, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_save_click(bool)) );
+    connect(action_run, SIGNAL(triggered(bool)), this, SLOT(slot_toolbar_run_click(bool)) );
+
 
 
 }
@@ -194,6 +218,9 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
 {
 
 
+
+
+    NLog::i("select left pr:%d r:%d",index.parent().row(),index.row() );
    switch( index.parent().row() )
    {
 
@@ -202,6 +229,17 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
 
             switch( index.row() )
             {
+
+
+                case index_const://const
+                 {
+
+
+                      MessageCenter::getInstence()->sendMessage( my17::event_req_const_selected,NULL);
+
+                 }
+                 return;
+
                 case index_event:
                {
 
@@ -238,6 +276,29 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
                      break;
 
                 }
+                case index_form:
+                {
+                    //DocCommonEditor * doc = new DocCommonEditor();
+                    //ui->center_document->addTab(doc,"页面");
+                   // doc->setData(&DP->urls);
+                   // ui->center_document->setCurrentWidget(doc);
+
+
+
+                    int index = do_focus_tab_by_data((void*)1,"页面");
+
+
+                    if( index == -1 )
+                    {
+                        DocFormEditor * doc = new DocFormEditor();
+                        ui->center_document->addTab(doc,"页面");
+                        ui->center_document->setCurrentWidget(doc);
+                    }
+
+
+
+                }
+                break;
 
 
 
@@ -245,7 +306,9 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
 
 
        }
-       return;
+        return;
+
+
         case index_model://model
         {
             MModelDelegate * mm =   my17::D::getInstance()->getModel(index.row());
@@ -316,7 +379,19 @@ void MainWindow::slot_left_0_menu_new_model_triggered(bool checked)
 
  }
 
+ void MainWindow::slot_toolbar_run_click(bool checked)
+ {
 
+     MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+
+ }
+
+void MainWindow::slot_tab_close(int index)
+{
+
+    ui->center_document->removeTab(index);
+
+}
 
 my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 {
@@ -332,6 +407,9 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             init_toolbar();
             init_right_1();
 
+            connect(ui->center_document,SIGNAL(tabCloseRequested(int)),this,SLOT(slot_tab_close(int)));
+
+
             return my17::todo_done_only;
         case my17::event_req_add_business:
             do_add_tree_item_for_business();
@@ -339,6 +417,29 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
         case my17::event_req_add_model:
 
             do_add_tree_item_for_model();
+            return my17::todo_done_only;
+        case my17::event_req_business_item_selected:
+        {
+
+            while( ui->right_bottom->rowCount()>0 )
+                ui->right_bottom->removeRow(0);
+            View * view = (View*)arg;
+            MPropertyDelegate * mpd = new MPropertyDelegate();
+            mpd->properties = & view->getProperties();
+
+            for(int i=0;i<mpd->properties->count();i++)
+                ui->right_bottom->insertRow(0);
+            ui->right_bottom->setItemDelegate(mpd);
+
+
+            QString  text = "提示：\n ";
+            text.append(view->getTopDescript().toStdString().c_str());
+
+
+
+            ui->right_top->setText(text);
+
+        }
             return my17::todo_done_only;
         case my17::event_req_model_selected:
         {
@@ -365,6 +466,7 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             while( ui->right_bottom->rowCount()>0 )
                 ui->right_bottom->removeRow(0);
             MBusinessDelegate * mm  = (MBusinessDelegate*)arg;
+            ui->right_bottom->insertRow(0);
             ui->right_bottom->insertRow(0);
             ui->right_bottom->insertRow(0);
             ui->right_bottom->setItemDelegate(mm);
@@ -460,8 +562,83 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             else
                 msgs.append("访问地址保存失败；\n");
 
+            if( DP->saveForms() )
+                msgs.append("页面数据保存成功；\n");
+            else
+                msgs.append("页面数据保存失败；\n");
+
+            if( DP->saveProjectInfos() )
+                msgs.append("工程数据保存成功；\n");
+            else
+                msgs.append("工程数据保存失败；\n");
+
 
             QMessageBox::information(NULL,"提示",msgs);
+
+
+        }
+        return my17::todo_done_only;
+
+        case my17::event_req_toolbar_run:
+        {
+
+
+                QString strs = QString(DP->createCodes());
+
+
+                QMessageBox::information(NULL,"提示", strs );
+
+
+
+        }
+        return my17::todo_done_only;
+        case my17::event_req_const_selected:
+        {
+
+            int index = do_focus_tab_by_data( (void*) TAB_INDEX_GCXX ,"工程信息");
+            if( index == -1 )
+            {
+                DocCommonEditor * doc = new DocCommonEditor();
+                ProjectAdapter * adapter = new ProjectAdapter();
+                doc->setAdapter(adapter);
+                doc->setData( (void*) TAB_INDEX_GCXX );
+                ui->center_document->addTab(doc,"工程信息");
+            }
+
+        }
+        return my17::todo_done_only;
+        case my17::event_property_selectd:
+        {
+
+
+
+
+            DocCommonEditor * adapter =static_cast<DocCommonEditor*>(arg) ;
+
+
+
+
+            while( ui->right_bottom->rowCount()>0 )
+                 ui->right_bottom->removeRow(0);
+
+
+            int rowcount = adapter->getEditRowCount();
+
+            for(int i=0;i<rowcount;i++){
+               ui->right_bottom->insertRow(0);
+            }
+
+
+
+            CommonEditDelegate * delegate = new CommonEditDelegate();
+            delegate->setAdapter(adapter);
+
+
+            //ui->right_top->setText( ) ;
+
+            ui->right_bottom->setItemDelegate(delegate);
+
+
 
 
         }
@@ -595,6 +772,24 @@ void MainWindow::do_business_data_changed(MBusinessDelegate * business)
        item->setText( business->name  );
 
     do_focus_tab_by_data(business,business->name);
+
+
+}
+
+void  MainWindow::keyReleaseEvent(QKeyEvent * event)
+{
+    event->accept();
+
+    //NLog::i("key Release :%d",event->key());
+
+    if( event->key() == Qt::Key_Backspace || event->key() == Qt::Key_Delete )
+    {
+
+
+
+      //  MC->sendMessage(my17::event_req_toolbar_del);
+
+    }
 
 
 }

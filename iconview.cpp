@@ -1,5 +1,5 @@
 #include "iconview.h"
-
+#include "my17.h"
 
 IconView::IconView()
 {
@@ -8,112 +8,158 @@ IconView::IconView()
 
 }
 
-void IconView::setImage(const QString & imagepath)
-{
 
-    m_bitmap = new QPixmap(imagepath);
-    m_iconpath = imagepath;
+
+
+
+IconView::~IconView(){
+
+    if( m_bitmap )
+        delete m_bitmap;
+
 }
 
-    IconView::IconView(const QString & imagepath)
+void  IconView::paint(QPaintEvent * event,QWidget * widget)
+{
+
+    QPainter painter(widget);
+    const QPalette & pal = widget->palette();
+
+    QRect drawrect = m_rect;
+    if( m_isfocus )
     {
 
-        setImage(imagepath);
-
+        int off = m_isfocus ? 3 : 2;
+        QPen pen = QPen( pal.toolTipBase().color() );
+        pen.setWidth(off);
+        painter.setPen(pen);
+        painter.setBrush( QBrush(pal.toolTipBase().color(),Qt::SolidPattern ) );
+        painter.drawRect(drawrect);
     }
-
-     IconView::~IconView(){
-
-        if( m_bitmap )
-            delete m_bitmap;
-
-    }
-
-     void  IconView::paint(QPaintEvent * event,QWidget * widget)
+    if( !m_bitmap )
     {
+        const MElement * ele =  my17::R::getInstance()->getElement(m_element_id);
+        if( ele )
+        m_bitmap = new QPixmap(ele->iconpath);
 
-        QPainter painter(widget);
-        const QPalette & pal = widget->palette();
+    }
+    if( m_bitmap )
+        painter.drawPixmap(drawrect, *m_bitmap);
 
-        QRect drawrect = m_rect;
+
+    const QString & title = getDescript();
+    if( title.length() > 0  )
+    {
         if( m_isfocus )
         {
+            QPen pen = QPen( QColor( 0xff,0,0 ) );
 
-            int off = m_isfocus ? 3 : 2;
-            QPen pen = QPen( pal.toolTipBase().color() );
-            pen.setWidth(off);
             painter.setPen(pen);
-            painter.setBrush( QBrush(pal.toolTipBase().color(),Qt::SolidPattern ) );
-            painter.drawRect(drawrect);
         }
-        if( !m_bitmap && m_iconpath.length()>0 )
+        QFontMetricsF fontMetrics(painter.font());
+
+        int strwidth = (int)fontMetrics.width(title);
+        QPointF p( drawrect.x()+(drawrect.width() - strwidth)/2,drawrect.y()-painter.font().pixelSize() );
+        painter.drawText( p,title );//,QTextOption(Qt::AlignCenter) );
+    }
+}
+
+ const QString & IconView::getCodeTag()
+{
+
+    return "item";
+
+}
+
+void IconView::createCodes(QXmlStreamWriter &writer)
+{
+
+
+
+    writer.writeAttribute("id",viewid);
+
+    const MElement * ele = RP->getElement(m_element_id);
+
+    writer.writeAttribute("c_android",ele->c_android);
+
+    writer.writeAttribute("c_ios",ele->c_ios);
+
+    //writer.writeTextElement("id",viewid);
+    //writer.writeTextElement("elementid",m_element_id);
+    //RP->getElement(m_element_id)->
+
+    createProprityCodes(writer,"data");
+
+}
+
+void IconView::save(QXmlStreamWriter &writer)
+{
+
+
+    writer.writeTextElement("id",viewid);
+    writer.writeTextElement("x",QString::number( m_rect.x() ) );
+    writer.writeTextElement("y",QString::number( m_rect.y() ) );
+    writer.writeTextElement("w",QString::number( m_rect.width() ) );
+    writer.writeTextElement("h",QString::number( m_rect.height() ) );
+    writer.writeTextElement("elementid",m_element_id);
+    saveData(writer,"data");
+
+}
+
+ const QString & IconView::getTopDescript()
+{
+
+
+
+    return my17::R::getInstance()->getElement( m_element_id )->descript;
+}
+
+bool IconView::load(QXmlStreamReader &reader )
+{
+
+    int x,y,w,h;
+    while( true )
+    {
+
+        reader.readNext();
+        QStringRef  name = reader.name();
+        if( reader.isStartElement() )
         {
-            m_bitmap = new QPixmap(m_iconpath);
+
+            if( name == "id" )
+                viewid = reader.readElementText();
+            else if( name == "x" )
+                x = reader.readElementText().toInt();
+            else if( name == "y" )
+                y = reader.readElementText().toInt();
+            else if( name == "w" )
+                w = reader.readElementText().toInt();
+            else if( name == "h" )
+                h = reader.readElementText().toInt();
+            else if( name == "elementid" )
+                m_element_id = reader.readElementText();
+            else if( name == "data" )
+                loadData(reader);
+        }
+        else if( reader.isEndElement() )
+        {
+
+
+            if( name == "view" )
+            {
+                m_rect.setLeft(x);
+                m_rect.setTop(y);
+                m_rect.setWidth(w);
+                m_rect.setHeight(h);
+
+                return true;
+            }
 
         }
-        if( m_bitmap )
-            painter.drawPixmap(drawrect, *m_bitmap);
+
     }
 
 
-     void IconView::save(QXmlStreamWriter &writer)
-     {
+    return false;
 
-
-        writer.writeTextElement("id",viewid);
-        writer.writeTextElement("x",QString::number( m_rect.x() ) );
-        writer.writeTextElement("y",QString::number( m_rect.y() ) );
-        writer.writeTextElement("w",QString::number( m_rect.width() ) );
-        writer.writeTextElement("h",QString::number( m_rect.height() ) );
-        writer.writeTextElement("iconpath",m_iconpath);
-
-
-     }
-
- bool IconView::load(QXmlStreamReader &reader )
-     {
-
-        int x,y,w,h;
-        while( true )
-        {
-
-             reader.readNext();
-             QStringRef  name = reader.name();
-             if( reader.isStartElement() )
-             {
-
-                if( name == "id" )
-                    viewid = reader.readElementText();
-                else if( name == "x" )
-                    x = reader.readElementText().toInt();
-                else if( name == "y" )
-                    y = reader.readElementText().toInt();
-                else if( name == "w" )
-                    w = reader.readElementText().toInt();
-                else if( name == "h" )
-                    h = reader.readElementText().toInt();
-                else if( name == "iconpath" )
-                    m_iconpath = reader.readElementText();
-            }
-            else if( reader.isEndElement() )
-            {
-
-
-                if( name == "view" )
-                {
-                    m_rect.setLeft(x);
-                    m_rect.setTop(y);
-                    m_rect.setWidth(w);
-                    m_rect.setHeight(h);
-
-                    return true;
-                }
-
-            }
-
-        }
-
-
-         return false;
-
-     }
+}

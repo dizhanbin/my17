@@ -14,6 +14,10 @@ public:
     QString p_value;
 
     MProperty();
+
+    MProperty * copy();
+    MProperty &operator=(const MProperty &);
+
 };
 
 #endif // MPROPERTY_H
