@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urls>
+    <url>
+        <id>199292999990</id>
+        <name>url_login</name>
+        <address>/login.do</address>
+        <descript>login url</descript>
+    </url>
+    <url>
+        <id>20151210170817045</id>
+        <name>url_getpic</name>
+        <address>/getpic.do</address>
+        <descript>获取图片</descript>
+    </url>
+</urls>

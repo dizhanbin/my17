@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+    <model name="MUser" id="20151210151339632">
+        <field>
+            <name>usrid</name>
+            <type>0</type>
+            <value></value>
+            <descript>user id</descript>
+        </field>
+        <field>
+            <name>age</name>
+            <type>1</type>
+            <value>0</value>
+            <descript>user age</descript>
+        </field>
+    </model>
+    <model name="MLogInInfo" id="20151210151339666">
+        <field>
+            <name>success_flag</name>
+            <type>1</type>
+            <value>0</value>
+            <descript>1 success 0 fail</descript>
+        </field>
+        <field>
+            <name>update_flag</name>
+            <type>1</type>
+            <value>0</value>
+            <descript>1 need update</descript>
+        </field>
+        <field>
+            <name>update_url</name>
+            <type>0</type>
+            <value> </value>
+            <descript>update url</descript>
+        </field>
+    </model>
+    <model name="Model" id="20160628150216252"/>
+    <model name="MHeroD" id="20160707170929086">
+        <field>
+            <name>name</name>
+            <type>0</type>
+            <value></value>
+            <descript>名称</descript>
+        </field>
+        <field>
+            <name>prop</name>
+            <type>0</type>
+            <value></value>
+            <descript>特长</descript>
+        </field>
+        <field>
+            <name>kw</name>
+            <type>0</type>
+            <value></value>
+            <descript>常用名</descript>
+        </field>
+        <field>
+            <name>name_l</name>
+            <type>0</type>
+            <value></value>
+            <descript>中文名</descript>
+        </field>
+        <field>
+            <name>img</name>
+            <type>0</type>
+            <value></value>
+            <descript>图片</descript>
+        </field>
+    </model>
+    <model name="MHero" id="20160707171719478">
+        <field>
+            <name>name</name>
+            <type>0</type>
+            <value></value>
+            <descript>name</descript>
+        </field>
+        <field>
+            <name>name_c</name>
+            <type>0</type>
+            <value></value>
+            <descript>中文明</descript>
+        </field>
+        <field>
+            <name>alia</name>
+            <type>0</type>
+            <value></value>
+            <descript>常用名</descript>
+        </field>
+        <field>
+            <name>img</name>
+            <type>0</type>
+            <value></value>
+            <descript>图片</descript>
+        </field>
+        <field>
+            <name>type</name>
+            <type>0</type>
+            <value></value>
+            <descript>类型</descript>
+        </field>
+    </model>
+</models>
