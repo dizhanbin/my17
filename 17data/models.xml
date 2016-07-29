@@ -99,4 +99,60 @@
             <descript>类型</descript>
         </field>
     </model>
+    <model name="MSkill" id="20160729095148247">
+        <field>
+            <name>keyid</name>
+            <type>0</type>
+            <value></value>
+            <descript>数据id</descript>
+        </field>
+        <field>
+            <name>zwm</name>
+            <type>0</type>
+            <value></value>
+            <descript>名称</descript>
+        </field>
+        <field>
+            <name>id</name>
+            <type>0</type>
+            <value></value>
+            <descript>skill id</descript>
+        </field>
+        <field>
+            <name>jnmc</name>
+            <type>0</type>
+            <value></value>
+            <descript>技能名</descript>
+        </field>
+        <field>
+            <name>jntb</name>
+            <type>0</type>
+            <value></value>
+            <descript>图片</descript>
+        </field>
+        <field>
+            <name>jnms</name>
+            <type>0</type>
+            <value></value>
+            <descript>技能描述</descript>
+        </field>
+        <field>
+            <name>mfxh</name>
+            <type>0</type>
+            <value></value>
+            <descript>魔法消耗</descript>
+        </field>
+        <field>
+            <name>djjd</name>
+            <type>0</type>
+            <value></value>
+            <descript>待定</descript>
+        </field>
+        <field>
+            <name>name</name>
+            <type>0</type>
+            <value></value>
+            <descript>唯一标示 英文名</descript>
+        </field>
+    </model>
 </models>

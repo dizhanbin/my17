@@ -19,7 +19,7 @@
 	<element id="003"  name="json解析" iconpath=":/image/json_parse.png"  descript="json解析为对象或数组" c_android="com.my17.flows.imp.JSONParse"	 c_ios="">
 
        
-            <property name="key" title="json路径" type="0" args=""  value="jsonResult.rows"/>
+            <property name="key" title="json路径" type="0" args=""  value=""/>
             <property name="class" title="类型" type="1" args="$model"  value=""/>
              <property name="in" title="json字符" type="0" args=""  value=""/>
              <property name="out" title="解析结果保存至" type="0" args=""  value="$json_result"/>
@@ -84,7 +84,7 @@
 				<property name="descript" title="描述" type="0" args="" value="保存文件" />
 	</element>	
 		
-	<element id="012" name="字符处理" iconpath=":/image/string.png"  descript="字符处理" c_android="com.my17.flows.imp.StringUtil"	 c_ios="">
+	<element id="012" name="字符处理" iconpath=":/image/string.png"  descript="字符处理\n 字符连接 变量以{}相隔 $json_path = {$field}.xml" c_android="com.my17.flows.imp.StringUtil"	 c_ios="">
 				<property name="condition" title="条件" type="0"  args="" value="" />			
 				<property name="descript" title="描述" type="0" args="" value="字符处理" />
 	</element>	
@@ -98,5 +98,42 @@
 				<property name="descript" title="描述" type="0" args="" value="对象拷贝" />
 	</element>		
 
+<element id="014" name="遍历执行" iconpath=":/image/recycle.png"  descript="遍历集合执行 \n、判断是否结束 放到 结束标志字段" c_android="com.my17.flows.imp.RecycleDo"	 c_ios="">
+             
+				<property name="data" title="数据集合" type="0"  args="" value="" />		
+				<property name="out"  title="输出参数" type="0"  args="" value="" />
+				<property name="over" title="结束标志" type="0"  args="" value="" />		
+							
+				<property name="descript" title="描述" type="0" args="" value="遍历集合执行" />
+				
+	</element>		
+	
+	<element id="015" name="读取字段值" iconpath=":/image/readobj.png"  descript="读取字段属性值" c_android="com.my17.flows.imp.ReadObj"	 c_ios="">
+             
+				<property name="data" title="数据" type="0"  args="" value="" />		
+				<property name="field"  title="字段" type="0"  args="" value="" />
+				<property name="out" title="保存到" type="0"  args="" value="" />		
+							
+				<property name="descript" title="描述" type="0" args="" value="读取字段值" />
+				
+	</element>		
+	
+	<element id="016" name="保存到数据库" iconpath=":/image/icon_save.png"  descript="保存对象到数据库 保存结果成功？1:0" c_android="com.my17.flows.imp.DBSave"	 c_ios="">
+             
+				<property name="data" title="数据" type="0"  args="" value="" />		
+				<property name="result" title="保存结果" type="0"  args="" value="" />		
+				<property name="descript" title="描述" type="0" args="" value="保存到数据库" />
+				
+	</element>		
+	
+		<element id="017" name="设置对象属性值" iconpath=":/image/setobj.png"  descript="设置对象属性值" c_android="com.my17.flows.imp.SetObj"	 c_ios="">
+             
+				<property name="data" title="数据" type="0"  args="" value="" />		
+				<property name="field" title="字段" type="0"  args="" value="" />	
+				<property name="value" title="值" type="0"  args="" value="" />	
+				<property name="descript" title="描述" type="0" args="" value="设置对象属性值" />
+				
+	</element>	
+	
 	
 </elements>

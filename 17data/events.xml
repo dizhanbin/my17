@@ -20,7 +20,7 @@
     </event>
     <event>
         <id>20160711144552045</id>
-        <name>REQ_TAB_NAV_VISIBLE</name>
+        <name>REQ_FORM_UI_INIT</name>
         <type>1</type>
         <descript>标签页是否显示</descript>
     </event>
@@ -77,5 +77,35 @@
         <name>FORM_HOT</name>
         <type>1</type>
         <descript>热门</descript>
+    </event>
+    <event>
+        <id>20160727163619964</id>
+        <name>REQ_HERO_DATA</name>
+        <type>1</type>
+        <descript>获取列表数据</descript>
+    </event>
+    <event>
+        <id>20160727163656043</id>
+        <name>REP_HERO_DATA</name>
+        <type>1</type>
+        <descript>返回应用信息列表</descript>
+    </event>
+    <event>
+        <id>20160728152907195</id>
+        <name>REQ_CONVERT_DB</name>
+        <type>1</type>
+        <descript>转化数据</descript>
+    </event>
+    <event>
+        <id>20160728160203066</id>
+        <name>REP_CONVERT_DB</name>
+        <type>1</type>
+        <descript>转化数据结束</descript>
+    </event>
+    <event>
+        <id>20160729093153384</id>
+        <name>REP_CONVERT_DB_FAIL</name>
+        <type>1</type>
+        <descript>转化数据失败</descript>
     </event>
 </events>
