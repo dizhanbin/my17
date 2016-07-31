@@ -22,7 +22,7 @@ R* R::getInstance()
 void R::loadElements()
 {
 
-    QFile file("/Users/dzb/elements.xml");
+    QFile file( DATA_DIR ( "elements.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
 
@@ -97,7 +97,7 @@ D* D::getInstance()
 void D::loadModel()
 {
 
-    QFile file("/Users/dzb/models.xml");
+    QFile file(DATA_DIR ("models.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
 
@@ -173,7 +173,7 @@ void D::loadModel()
 bool D::saveModel()
 {
 
-    QFile file("/Users/dzb/models.xml");
+    QFile file(DATA_DIR ("models.xml"));
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -217,7 +217,7 @@ bool D::saveModel()
 bool D::saveEvents()
 {
 
-    QFile file("/Users/dzb/events.xml");
+    QFile file(DATA_DIR ("events.xml"));
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -250,7 +250,7 @@ bool D::saveEvents()
 }
 void D::loadEvents()
 {
- QFile file("/Users/dzb/events.xml");
+ QFile file(DATA_DIR ("events.xml"));
  if(file.open(QIODevice::ReadOnly | QIODevice::Text))
  {
 
@@ -318,7 +318,7 @@ void D::loadEvents()
 bool D::saveBusiness()
 {
 
-    QFile file("/Users/dzb/business.xml");
+    QFile file(DATA_DIR ("business.xml"));
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -355,7 +355,7 @@ void D::loadBusiness()
 {
 
 
-    QFile file("/Users/dzb/business.xml");
+    QFile file(DATA_DIR ("business.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
 
@@ -443,7 +443,7 @@ void D::loadBusiness()
 bool D::saveForms()
 {
 
-    QFile file("/Users/dzb/forms.xml");
+    QFile file(DATA_DIR( "forms.xml" ));
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -565,7 +565,7 @@ bool D::saveProperties(QList<MProperty *> & properties,QXmlStreamWriter &writer,
 void D::loadForms()
 {
 
-    QFile file("/Users/dzb/forms.xml");
+    QFile file(DATA_DIR ("forms.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
 
@@ -704,7 +704,7 @@ View * D::createView(const QString & name)
 
 bool D::saveProjectInfos()
 {
-    QFile file("/Users/dzb/projectinfos.xml");
+    QFile file(DATA_DIR("projectinfos.xml"));
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -735,7 +735,7 @@ bool D::saveProjectInfos()
 void D::loadProjectInfos()
 {
 
-    QFile file("/Users/dzb/projectinfos.xml");
+    QFile file(DATA_DIR("projectinfos.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
 
@@ -779,7 +779,7 @@ void D::loadProjectInfos()
 bool D::saveUrl()
 {
 
-    QFile file("/Users/dzb/urls.xml");
+    QFile file(DATA_DIR("urls.xml"));
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -815,7 +815,7 @@ void D::loadUrl()
 
 
 
-    QFile file("/Users/dzb/urls.xml");
+    QFile file(DATA_DIR ("urls.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
 
@@ -985,7 +985,7 @@ int  D::getModelIndexById(const QString &id)
      strs.append("\n}\n");
 
 
-     QFile file("/Users/dzb/17out/Event.java");
+     QFile file(DATA_OUT_DIR("Event.java"));
      if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
           return false;
      QTextStream out(&file);
@@ -1019,7 +1019,7 @@ int  D::getModelIndexById(const QString &id)
      strs.append("\n}\n");
 
 
-     QFile file("/Users/dzb/17out/Urls.java");
+     QFile file(DATA_OUT_DIR("Urls.java"));
      if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
           return false;
      QTextStream out(&file);
@@ -1051,7 +1051,7 @@ int  D::getModelIndexById(const QString &id)
 
      strs.append("\n}\n");
 
-     QString filename = "/Users/dzb/17out/";
+     QString filename = DATA_OUT_DIR("");
      filename.append( formp->p_value).append(".java");
 
      QFile file(filename);
@@ -1102,7 +1102,7 @@ int  D::getModelIndexById(const QString &id)
 
 
 
-     QString filename = "/Users/dzb/17out/";
+     QString filename = DATA_OUT_DIR("");
      filename.append("FormFactory.java");
 
      QFile file(filename);
@@ -1119,7 +1119,7 @@ int  D::getModelIndexById(const QString &id)
 
  void createBusiness_one(MBusinessDelegate * mbd)
  {
-     QString path = "/Users/dzb/17out/";
+     QString path = DATA_OUT_DIR("");
      path.append(mbd->alia).append(".xml");
 
      QFile file(path);
@@ -1146,7 +1146,7 @@ int  D::getModelIndexById(const QString &id)
  bool  createModel( MModelDelegate * md)
  {
 
-     QString path = "/Users/dzb/17out/";
+     QString path = DATA_OUT_DIR("");
      path.append(md->name).append(".java");
 
 
@@ -1205,8 +1205,8 @@ int  D::getModelIndexById(const QString &id)
  bool D::createProjectInfos()
  {
 
-     const QString from_dir = "/Users/dzb/projectinfos.xml";
-     const QString to_dir = "/Users/dzb/17out/projectinfos.xml";
+     const QString from_dir = DATA_DIR( "projectinfos.xml");
+     const QString to_dir = DATA_OUT_DIR("projectinfos.xml");
      return QFile::copy(from_dir,to_dir);
 
  }
@@ -1215,11 +1215,7 @@ int  D::getModelIndexById(const QString &id)
  bool D::createBusiness()
  {
 
-     /*
-     QString from_dir = "/Users/dzb/business.xml";
-     QString to_dir = "/Users/dzb/17out/business.xml";
-     return QFile::copy(from_dir,to_dir);
-     */
+
 
 
 
@@ -1268,7 +1264,7 @@ int  D::getModelIndexById(const QString &id)
 
 
 
-     createFile("/Users/dzb/17out/FlowBoxs.java",event_xmls);
+     createFile(DATA_OUT_DIR("FlowBoxs.java"),event_xmls);
 
 
      return true;
@@ -1320,7 +1316,7 @@ int  D::getModelIndexById(const QString &id)
         return false;
     }
      **/
-     QString dirstr = "/Users/dzb/17out";
+     QString dirstr = DATA_OUT_DIR("");
 
 
      QDir dir(dirstr);

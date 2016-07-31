@@ -84,6 +84,9 @@ void IconView::createCodes(QXmlStreamWriter &writer)
 
     writer.writeAttribute("c_ios",ele->c_ios);
 
+
+    NLog::i("c_android : %s",ele->c_android.toStdString().c_str());
+
     //writer.writeTextElement("id",viewid);
     //writer.writeTextElement("elementid",m_element_id);
     //RP->getElement(m_element_id)->
