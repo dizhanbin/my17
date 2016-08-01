@@ -46,7 +46,7 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
             FormView * fv = new FormView();
 
             MProperty * mp0 = new MProperty();
-            mp0->p_name = "name";
+            mp0->p_name = "event";
             mp0->p_title = "事件";
             mp0->p_type = 1;
             mp0->p_args = "$event";

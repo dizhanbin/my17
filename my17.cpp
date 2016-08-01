@@ -1088,7 +1088,7 @@ int  D::getModelIndexById(const QString &id)
          MEventDelegate * me =  DP->getEventById( str_event );
 
 
-         strs.append("          case Event.").append(me->event_name).append(": return ")
+         strs.append("          case ").append(me->event_name).append(": return ")
                  .append(  str_android  ).append(".class;\n");
 
          d_create_form_code(form);
@@ -1130,6 +1130,9 @@ int  D::getModelIndexById(const QString &id)
          writer.setAutoFormatting(true);
          writer.writeStartDocument();
          writer.writeStartElement("business");
+
+         writer.writeAttribute("descript",mbd->name);
+
          mbd->viewgroup->createCodes(writer);
          writer.writeEndElement();
          writer.writeEndDocument();

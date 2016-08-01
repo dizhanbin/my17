@@ -21,5 +21,8 @@
         <file>image/string.png</file>
         <file>image/write.png</file>
         <file>image/copy.png</file>
+        <file>image/recycle.png</file>
+        <file>image/readobj.png</file>
+        <file>image/setobj.png</file>
     </qresource>
 </RCC>
