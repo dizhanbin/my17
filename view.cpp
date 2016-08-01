@@ -146,6 +146,9 @@ void View::setRoot(bool is)
 
            if( p->p_type == 1  )
            {
+
+
+
                writer.writeAttribute("value",DP->getPropertyValue(p->p_args,p->p_value));
            }
            else
