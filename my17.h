@@ -13,6 +13,8 @@
 #include "mproperty.h"
 class View;
 
+#define DATA_DIR(arg) QString("/Users/dizhanbin/work/17/my17/17data/").append(arg)
+#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/17out/").append(arg)
 
 
 #define model_field_title_name "字段名"
@@ -227,6 +229,7 @@ namespace my17 {
 
           public:
 
+              QString result;
               QVector<MElement*> elements;//控件
               ~R(){
 
@@ -538,7 +541,7 @@ namespace my17 {
 
 
 
-           const QString& getPropertyValue(const QString& args,const QString& value)
+          const QString& getPropertyValue(const QString& args,const QString& value)
            {
 
 
@@ -572,7 +575,8 @@ namespace my17 {
                    return value;
                }
 
-                return args+" not define";
+                R::getInstance()->result = "not set";
+                return R::getInstance()->result;
            }
 
 
