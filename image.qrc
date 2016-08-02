@@ -24,5 +24,6 @@
         <file>image/recycle.png</file>
         <file>image/readobj.png</file>
         <file>image/setobj.png</file>
+        <file>image/sqlobj.png</file>
     </qresource>
 </RCC>

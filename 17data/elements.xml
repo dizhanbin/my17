@@ -135,5 +135,17 @@
 				
 	</element>	
 	
+	<element id="018" name="从数据库查询" iconpath=":/image/sqlobj.png"  descript="从数据库查询" c_android="com.my17.flows.imp.SqlObj"	 c_ios="">
+             
+					
+				<property name="class" title="查询数据类" type="1"  args="$model" value="" />
+				<property name="condition" title="查询条件" type="0"  args="" value="" />	
+				<property name="value" title="查询结果" type="0"  args="" value="" />	
+				<property name="descript" title="描述" type="0" args="" value="从数据库查询" />
+				
+	</element>	
+	
+	
+	
 	
 </elements>
