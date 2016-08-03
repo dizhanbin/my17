@@ -623,7 +623,7 @@
             </condition>
         </Line>
     </item>
-    <item name="保存数据到sqlite" type="1" alia="savetodb">
+    <item name="保存技能数据到sqlite" type="1" alia="savetodb">
         <view type="IconView">
             <id>20160728153016057</id>
             <x>65</x>
@@ -950,6 +950,148 @@
             <h>40</h>
             <from>20160729102956428</from>
             <to>20160729093102641</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="获取英雄数据从sqlite" type="1" alia="heros_sqlite">
+        <view type="IconView">
+            <id>20160803152749870</id>
+            <x>61</x>
+            <y>203</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160803135920668"/>
+                <property name="params" title="参数" type="0" args="" value="$type"/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160803152805718</id>
+            <x>193</x>
+            <y>199</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>019</elementid>
+            <data>
+                <property name="data" title="字符串" type="0" args="" value="strength,agility,intelligence"/>
+                <property name="regex" title="分隔字符" type="0" args="" value=","/>
+                <property name="value" title="保存到" type="0" args="" value="$typestrs"/>
+                <property name="descript" title="描述" type="0" args="" value="字符分隔成数组"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803152811637</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803152749870</from>
+            <to>20160803152805718</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160803153347797</id>
+            <x>330</x>
+            <y>202</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>020</elementid>
+            <data>
+                <property name="data" title="数组" type="0" args="" value="$typestrs"/>
+                <property name="index" title="索引" type="0" args="" value="$type"/>
+                <property name="value" title="保存到" type="0" args="" value="$herotype"/>
+                <property name="descript" title="描述" type="0" args="" value="数组取值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803153351220</id>
+            <x>193</x>
+            <y>199</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803152805718</from>
+            <to>20160803153347797</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160803153509386</id>
+            <x>472</x>
+            <y>202</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>012</elementid>
+            <data>
+                <property name="condition" title="条件" type="0" args="" value="$where=where type='$herotype'"/>
+                <property name="descript" title="描述" type="0" args="" value="字符处理"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803153513338</id>
+            <x>330</x>
+            <y>202</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803153347797</from>
+            <to>20160803153509386</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160803153624289</id>
+            <x>205</x>
+            <y>317</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>018</elementid>
+            <data>
+                <property name="class" title="查询数据类" type="1" args="$model" value="20160707171719478"/>
+                <property name="condition" title="查询条件" type="0" args="" value="$where"/>
+                <property name="value" title="查询结果" type="0" args="" value="$list"/>
+                <property name="descript" title="描述" type="0" args="" value="从数据库查询"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803153626993</id>
+            <x>472</x>
+            <y>202</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803153509386</from>
+            <to>20160803153624289</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160803153714663</id>
+            <x>386</x>
+            <y>412</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160803140006660"/>
+                <property name="params" title="参数" type="0" args="" value="$list"/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803153727943</id>
+            <x>273</x>
+            <y>330</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803153624289</from>
+            <to>20160803153714663</to>
             <condition>
                 <property name="value" title="条件" type="0" args="" value=""/>
             </condition>

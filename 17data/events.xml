@@ -108,4 +108,16 @@
         <type>1</type>
         <descript>转化数据失败</descript>
     </event>
+    <event>
+        <id>20160803135920668</id>
+        <name>REQ_HERO_SQLITE</name>
+        <type>2</type>
+        <descript>获取英雄数据从数据库</descript>
+    </event>
+    <event>
+        <id>20160803140006660</id>
+        <name>REP_HERO_SQLITE</name>
+        <type>1</type>
+        <descript>返回数据</descript>
+    </event>
 </events>

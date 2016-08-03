@@ -25,5 +25,7 @@
         <file>image/readobj.png</file>
         <file>image/setobj.png</file>
         <file>image/sqlobj.png</file>
+        <file>image/strsplite.png</file>
+        <file>image/arrayobj.png</file>
     </qresource>
 </RCC>
