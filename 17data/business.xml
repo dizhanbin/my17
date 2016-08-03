@@ -1011,8 +1011,8 @@
         </view>
         <Line type="LineView">
             <id>20160803153351220</id>
-            <x>193</x>
-            <y>199</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803152805718</from>
@@ -1035,8 +1035,8 @@
         </view>
         <Line type="LineView">
             <id>20160803153513338</id>
-            <x>330</x>
-            <y>202</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803153347797</from>
@@ -1061,8 +1061,8 @@
         </view>
         <Line type="LineView">
             <id>20160803153626993</id>
-            <x>472</x>
-            <y>202</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803153509386</from>
@@ -1086,12 +1086,153 @@
         </view>
         <Line type="LineView">
             <id>20160803153727943</id>
-            <x>273</x>
-            <y>330</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803153624289</from>
             <to>20160803153714663</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="保存英雄数据到数据库" type="1" alia="herotodb">
+        <view type="IconView">
+            <id>20160803160949267</id>
+            <x>69</x>
+            <y>209</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160803161011052"/>
+                <property name="params" title="参数" type="0" args="" value=""/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160803161206655</id>
+            <x>213</x>
+            <y>212</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>012</elementid>
+            <data>
+                <property name="condition" title="条件" type="0" args="" value="$json_path=assets://hero2.json"/>
+                <property name="descript" title="描述" type="0" args="" value="字符处理"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803161214463</id>
+            <x>69</x>
+            <y>209</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803160949267</from>
+            <to>20160803161206655</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160803161235999</id>
+            <x>353</x>
+            <y>212</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>010</elementid>
+            <data>
+                <property name="filepath" title="路径" type="0" args="" value="$json_path"/>
+                <property name="out" title="变量名" type="0" args="" value="$herostr"/>
+                <property name="descript" title="描述" type="0" args="" value="读取文件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160803161242623</id>
+            <x>495</x>
+            <y>212</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>003</elementid>
+            <data>
+                <property name="key" title="json路径" type="0" args="" value=""/>
+                <property name="class" title="类型" type="1" args="$model" value="20160707171719478"/>
+                <property name="in" title="json字符" type="0" args="" value="$herostr"/>
+                <property name="out" title="解析结果保存至" type="0" args="" value="$json_result"/>
+                <property name="descript" title="描述" type="0" args="" value="json解析"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160803161250742</id>
+            <x>270</x>
+            <y>324</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>016</elementid>
+            <data>
+                <property name="data" title="数据" type="0" args="" value="$json_result"/>
+                <property name="result" title="保存结果" type="0" args="" value="$result"/>
+                <property name="descript" title="描述" type="0" args="" value="保存到数据库"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803161253158</id>
+            <x>213</x>
+            <y>212</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803161206655</from>
+            <to>20160803161235999</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160803161254414</id>
+            <x>353</x>
+            <y>212</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803161235999</from>
+            <to>20160803161242623</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160803161255438</id>
+            <x>495</x>
+            <y>212</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803161242623</from>
+            <to>20160803161250742</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160803161407420</id>
+            <x>372</x>
+            <y>428</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160803161106410"/>
+                <property name="params" title="参数" type="0" args="" value="$result"/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160803161414996</id>
+            <x>270</x>
+            <y>324</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803161250742</from>
+            <to>20160803161407420</to>
             <condition>
                 <property name="value" title="条件" type="0" args="" value=""/>
             </condition>

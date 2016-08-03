@@ -120,4 +120,16 @@
         <type>1</type>
         <descript>返回数据</descript>
     </event>
+    <event>
+        <id>20160803161011052</id>
+        <name>REQ_CONVERT_HERO_DB</name>
+        <type>1</type>
+        <descript>json保存到数据库</descript>
+    </event>
+    <event>
+        <id>20160803161106410</id>
+        <name>REP_CONVERT_HERO_DB</name>
+        <type>1</type>
+        <descript>json保存到数据库返回</descript>
+    </event>
 </events>
