@@ -1024,27 +1024,15 @@
         <view type="IconView">
             <id>20160803153509386</id>
             <x>472</x>
-            <y>202</y>
+            <y>201</y>
             <w>40</w>
             <h>40</h>
             <elementid>012</elementid>
             <data>
-                <property name="condition" title="条件" type="0" args="" value="$where=where type='$herotype'"/>
+                <property name="condition" title="条件" type="0" args="" value="$where=where {$typestr}"/>
                 <property name="descript" title="描述" type="0" args="" value="字符处理"/>
             </data>
         </view>
-        <Line type="LineView">
-            <id>20160803153513338</id>
-            <x>30</x>
-            <y>30</y>
-            <w>40</w>
-            <h>40</h>
-            <from>20160803153347797</from>
-            <to>20160803153509386</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
-        </Line>
         <view type="IconView">
             <id>20160803153624289</id>
             <x>205</x>
@@ -1096,6 +1084,42 @@
                 <property name="value" title="条件" type="0" args="" value=""/>
             </condition>
         </Line>
+        <view type="IconView">
+            <id>20160804164804821</id>
+            <x>424</x>
+            <y>113</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>021</elementid>
+            <data>
+                <property name="condition" title="赋值语句" type="0" args="" value="$typestr=type='{$herotype}'"/>
+                <property name="descript" title="描述" type="0" args="" value="字符赋值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160804164810221</id>
+            <x>330</x>
+            <y>202</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160803153347797</from>
+            <to>20160804164804821</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160804164905475</id>
+            <x>424</x>
+            <y>113</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160804164804821</from>
+            <to>20160803153509386</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
     </item>
     <item name="保存英雄数据到数据库" type="1" alia="herotodb">
         <view type="IconView">
@@ -1125,8 +1149,8 @@
         </view>
         <Line type="LineView">
             <id>20160803161214463</id>
-            <x>69</x>
-            <y>209</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803160949267</from>
@@ -1178,8 +1202,8 @@
         </view>
         <Line type="LineView">
             <id>20160803161253158</id>
-            <x>213</x>
-            <y>212</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803161206655</from>
@@ -1190,8 +1214,8 @@
         </Line>
         <Line type="LineView">
             <id>20160803161254414</id>
-            <x>353</x>
-            <y>212</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803161235999</from>
@@ -1202,8 +1226,8 @@
         </Line>
         <Line type="LineView">
             <id>20160803161255438</id>
-            <x>495</x>
-            <y>212</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803161242623</from>
@@ -1227,8 +1251,8 @@
         </view>
         <Line type="LineView">
             <id>20160803161414996</id>
-            <x>270</x>
-            <y>324</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803161250742</from>
