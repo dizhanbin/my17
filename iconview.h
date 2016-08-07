@@ -23,7 +23,7 @@ class IconView :public View
 
     virtual const QString & getTopDescript();//注释
 
-    virtual const QString & getCodeTag();
+    virtual  QString  getCodeTag();
 
     virtual const QString & getElementid(){ return m_element_id; };
 

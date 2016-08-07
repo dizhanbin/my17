@@ -85,12 +85,11 @@ public:
      virtual const QString & getDescript();
      virtual const QString & getTopDescript();//注释
 
-     virtual const QString & getXmlTag();
-     virtual const QString & getCodeTag();
+     virtual  QString getXmlTag();
+     virtual  QString getCodeTag();
 
 
-     virtual const QString & getElementid(){ return "000"; };
-
+     virtual  const QString&  getElementid(){ return "000"; };
 
 
 };

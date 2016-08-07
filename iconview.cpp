@@ -64,7 +64,7 @@ void  IconView::paint(QPaintEvent * event,QWidget * widget)
     }
 }
 
- const QString & IconView::getCodeTag()
+  QString  IconView::getCodeTag()
 {
 
     return "item";

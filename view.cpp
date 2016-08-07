@@ -290,13 +290,13 @@ void View::setRoot(bool is)
        return "";
    }
 
-   const QString & View::getXmlTag()
+    QString  View::getXmlTag()
    {
 
        return "view";
    }
 
-    const QString & View::getCodeTag()
+     QString  View::getCodeTag()
    {
        return "view";
 

@@ -386,7 +386,7 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
  }
 
 
-const QString &  LineView::getCodeTag()
+ QString   LineView::getCodeTag()
  {
 
      return "Line";
@@ -482,7 +482,7 @@ const QString &  LineView::getCodeTag()
 
   }
 
-   const QString & LineView::getXmlTag(){
+    QString LineView::getXmlTag(){
 
        return "Line";
    }

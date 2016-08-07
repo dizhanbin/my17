@@ -52,13 +52,11 @@ public:
 
      virtual void line(View *from,View * to);
 
-    virtual const QString & getXmlTag();
+    virtual  QString  getXmlTag();
 
     void setDefProperty();
     virtual const QString &  getDescript();
-
-
-    virtual const QString & getCodeTag();
+    virtual  QString  getCodeTag();
 
 };
 
