@@ -132,4 +132,34 @@
         <type>1</type>
         <descript>json保存到数据库返回</descript>
     </event>
+    <event>
+        <id>20160808145254939</id>
+        <name>REQ_DATA_INIT</name>
+        <type>1</type>
+        <descript>数据初始化</descript>
+    </event>
+    <event>
+        <id>20160808170127015</id>
+        <name>REP_DATA_INIT_SUCCESS</name>
+        <type>1</type>
+        <descript>数据初始化</descript>
+    </event>
+    <event>
+        <id>20160808170153766</id>
+        <name>REP_DATA_INIT_FAIL</name>
+        <type>1</type>
+        <descript>数据初始化</descript>
+    </event>
+    <event>
+        <id>20160809112953172</id>
+        <name>REQ_HERO_DETAIL</name>
+        <type>1</type>
+        <descript>get hero detail</descript>
+    </event>
+    <event>
+        <id>20160809113019741</id>
+        <name>REP_HERO_DETAIL_SUCCESS</name>
+        <type>1</type>
+        <descript> get hero detail skills</descript>
+    </event>
 </events>

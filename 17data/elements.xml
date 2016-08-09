@@ -169,7 +169,31 @@
 				<property name="descript" title="描述" type="0" args="" value="字符赋值" />
 				
 	</element>	
+	<element id="022" name="文件是否存在" iconpath=":/image/string.png"  descript="文件是否存在 " c_android="com.my17.flows.imp.FileExist"	 c_ios="">
+             
+				<property name="path" title="路径" type="0"  args="" value="" />		
+				<property name="isexist" title="是否存在结果" type="0"  args="" value="isexist" />		
+				
+				<property name="descript" title="描述" type="0" args="" value="文件是否存在" />
+				
+	</element>	
 	
 	
+	<element id="023" name="拷贝文件" iconpath=":/image/string.png"  descript="拷贝文件 " c_android="com.my17.flows.imp.FileCopy"	 c_ios="">
+             
+				<property name="frompath" title="拷贝路径" type="0"  args="" value="" />		
+				<property name="topath" title="目的路径" type="0"  args="" value="" />		
+				<property name="result" title="是否成功" type="0"  args="" value="$copyresult" />		
+				<property name="descript" title="描述" type="0" args="" value="拷贝文件" />
+				
+	</element>		
+	
+	
+		<element id="024" name="数据库初始化" iconpath=":/image/string.png"  descript="数据库初始化 " c_android="com.my17.flows.imp.SQLOpen"	 c_ios="">
+             
+				<property name="dbpath" title="路径" type="0"  args="" value="" />		
+				<property name="descript" title="描述" type="0" args="" value="数据库初始化" />
+				
+	</element>		
 	
 </elements>

@@ -1098,8 +1098,8 @@
         </view>
         <Line type="LineView">
             <id>20160804164810221</id>
-            <x>330</x>
-            <y>202</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160803153347797</from>
@@ -1110,8 +1110,8 @@
         </Line>
         <Line type="LineView">
             <id>20160804164905475</id>
-            <x>424</x>
-            <y>113</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160804164804821</from>
@@ -1257,6 +1257,297 @@
             <h>40</h>
             <from>20160803161250742</from>
             <to>20160803161407420</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="数据初始化" type="1" alia="initdata">
+        <view type="IconView">
+            <id>20160808145236979</id>
+            <x>59</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160808145254939"/>
+                <property name="params" title="参数" type="0" args="" value=""/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160808161935152</id>
+            <x>63</x>
+            <y>107</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>009</elementid>
+            <data>
+                <property name="sdcard_path" title="存储卡路径" type="0" args="" value="$sdpath"/>
+                <property name="private_path" title="应用私有路径" type="0" args="" value=""/>
+                <property name="descript" title="描述" type="0" args="" value="文件存储路径"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160808161949192</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808145236979</from>
+            <to>20160808161935152</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160808162016591</id>
+            <x>208</x>
+            <y>99</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>012</elementid>
+            <data>
+                <property name="condition" title="条件" type="0" args="" value="$path={$sdpath}/17.db"/>
+                <property name="descript" title="描述" type="0" args="" value="字符处理"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160808162019895</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808161935152</from>
+            <to>20160808162016591</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160808162101958</id>
+            <x>78</x>
+            <y>285</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>022</elementid>
+            <data>
+                <property name="path" title="路径" type="0" args="" value="$path"/>
+                <property name="isexist" title="是否存在结果" type="0" args="" value="$isexist"/>
+                <property name="descript" title="描述" type="0" args="" value="文件是否存在"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160808162105133</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808162016591</from>
+            <to>20160808162101958</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160808162327922</id>
+            <x>483</x>
+            <y>191</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>023</elementid>
+            <data>
+                <property name="frompath" title="拷贝路径" type="0" args="" value="assets://17.db"/>
+                <property name="topath" title="目的路径" type="0" args="" value="$path"/>
+                <property name="result" title="是否成功" type="0" args="" value="$copyresult"/>
+                <property name="descript" title="描述" type="0" args="" value="拷贝文件"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160808162330761</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808162101958</from>
+            <to>20160808162327922</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value="$isexist==0"/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160808170335346</id>
+            <x>514</x>
+            <y>475</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160808170127015"/>
+                <property name="params" title="参数" type="0" args="" value=""/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160808170401129</id>
+            <x>669</x>
+            <y>199</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160808170153766"/>
+                <property name="params" title="参数" type="0" args="" value=""/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160808170407481</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808162327922</from>
+            <to>20160808170401129</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value="$copyresult==0"/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160809095845385</id>
+            <x>315</x>
+            <y>388</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>024</elementid>
+            <data>
+                <property name="dbpath" title="路径" type="0" args="" value="$path"/>
+                <property name="descript" title="描述" type="0" args="" value="数据库初始化"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160809095848007</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808162101958</from>
+            <to>20160809095845385</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value="$isexist==1"/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160809095919302</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160808162327922</from>
+            <to>20160809095845385</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value="$copyresult==1"/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160809100001886</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160809095845385</from>
+            <to>20160808170335346</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="英雄详情" type="1" alia="herodetail">
+        <view type="IconView">
+            <id>20160809112640601</id>
+            <x>71</x>
+            <y>60</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160809112953172"/>
+                <property name="params" title="参数" type="0" args="" value="$heroname"/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160809112714808</id>
+            <x>304</x>
+            <y>259</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>018</elementid>
+            <data>
+                <property name="class" title="查询数据类" type="1" args="$model" value="20160729095148247"/>
+                <property name="condition" title="查询条件" type="0" args="" value="$where"/>
+                <property name="value" title="查询结果" type="0" args="" value="$skills"/>
+                <property name="descript" title="描述" type="0" args="" value="从数据库查询"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160809112743791</id>
+            <x>185</x>
+            <y>155</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>021</elementid>
+            <data>
+                <property name="condition" title="赋值语句" type="0" args="" value="$where=where name='{$heroname}'"/>
+                <property name="descript" title="描述" type="0" args="" value="字符赋值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160809112834374</id>
+            <x>43</x>
+            <y>222</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160809112640601</from>
+            <to>20160809112743791</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160809112843509</id>
+            <x>202</x>
+            <y>260</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160809112743791</from>
+            <to>20160809112714808</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160809112913573</id>
+            <x>437</x>
+            <y>361</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160809113019741"/>
+                <property name="params" title="参数" type="0" args="" value="$skills"/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160809113118161</id>
+            <x>410</x>
+            <y>259</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160809112714808</from>
+            <to>20160809112913573</to>
             <condition>
                 <property name="value" title="条件" type="0" args="" value=""/>
             </condition>
