@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <forms>
     <form id="20160628133349638">
-        <x>238</x>
-        <y>82</y>
+        <x>231</x>
+        <y>110</y>
         <w>60</w>
         <h>80</h>
         <data>
@@ -13,8 +13,8 @@
         </data>
     </form>
     <form id="20160628133357206">
-        <x>423</x>
-        <y>82</y>
+        <x>138</x>
+        <y>47</y>
         <w>60</w>
         <h>80</h>
         <data>
@@ -25,8 +25,8 @@
         </data>
     </form>
     <form id="20160725150917846">
-        <x>75</x>
-        <y>81</y>
+        <x>319</x>
+        <y>185</y>
         <w>60</w>
         <h>80</h>
         <data>
@@ -37,8 +37,8 @@
         </data>
     </form>
     <form id="20160728143808942">
-        <x>74</x>
-        <y>285</y>
+        <x>459</x>
+        <y>194</y>
         <w>60</w>
         <h>80</h>
         <data>
@@ -49,8 +49,8 @@
         </data>
     </form>
     <form id="20160729155514329">
-        <x>238</x>
-        <y>260</y>
+        <x>28</x>
+        <y>48</y>
         <w>60</w>
         <h>80</h>
         <data>
@@ -58,6 +58,18 @@
             <property name="android" title="androd类" type="0" args="" value="FormFlash"/>
             <property name="ios" title="ios类" type="0" args="" value=""/>
             <property name="descript" title="描述" type="0" args="" value="启动页面"/>
+        </data>
+    </form>
+    <form id="20160811144051383">
+        <x>601</x>
+        <y>190</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160811144059680"/>
+            <property name="android" title="androd类" type="0" args="" value="FormTraining"/>
+            <property name="ios" title="ios类" type="0" args="" value=""/>
+            <property name="descript" title="描述" type="0" args="" value="练习页面"/>
         </data>
     </form>
     <Line id="003">
@@ -84,6 +96,34 @@
     <Line id="20160728143909717">
         <from>20160725150917846</from>
         <to>20160728143808942</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value=""/>
+        </condition>
+    </Line>
+    <Line id="20160811144018480">
+        <from>20160729155514329</from>
+        <to>20160725150917846</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value=""/>
+        </condition>
+    </Line>
+    <Line id="20160811144019704">
+        <from>20160729155514329</from>
+        <to>20160628133349638</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value=""/>
+        </condition>
+    </Line>
+    <Line id="20160811144020577">
+        <from>20160729155514329</from>
+        <to>20160628133357206</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value=""/>
+        </condition>
+    </Line>
+    <Line id="20160811144216093">
+        <from>20160728143808942</from>
+        <to>20160811144051383</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>

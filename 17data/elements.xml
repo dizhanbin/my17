@@ -51,10 +51,10 @@
 				<property name="descript" title="描述" type="0" args="" value="发送事件" />
 	</element>
 
-	<element id="007" name="语音朗读" iconpath=":/image/icon_speek.png"  descript="根据文字朗读" c_android="com.my17.flows.imp.EventStart"	 c_ios="">
-				<property name="event" title="事件" type="1"  args="$event" value="" />
-				<property name="params" title="参数" type="0"  args="" value="" />
-				<property name="descript" title="描述" type="0" args="" value="发送事件" />
+	<element id="007" name="语音朗读" iconpath=":/image/icon_speek.png"  descript="根据文字朗读" c_android="com.my17.flows.imp.SpeekPoint"	 c_ios="">
+				<property name="value" title="朗读内容" type="0"  args="" value="" />
+				
+				<property name="descript" title="描述" type="0" args="" value="语音朗读" />
 	</element>
 	
 	<element id="008" name="对象到JSON" iconpath=":/image/json_tostring.png"  descript="对象转化为json" c_android="com.my17.flows.imp.JSONOut"	 c_ios="">
@@ -193,6 +193,25 @@
              
 				<property name="dbpath" title="路径" type="0"  args="" value="" />		
 				<property name="descript" title="描述" type="0" args="" value="数据库初始化" />
+				
+	</element>		
+	
+
+		<element id="025" name="启动定时器" iconpath=":/image/string.png"  descript="启动定时器 指定间隔触发 " c_android="com.my17.flows.imp.TimerPoint"	 c_ios="">
+             
+				<property name="interval" title="间隔（秒）" type="0"  args="" value="" />		
+				
+				
+				
+				<property name="descript" title="描述" type="0" args="" value="启动定时器" />
+				
+	</element>		
+	
+			<element id="026" name="顺序执行" iconpath=":/image/string.png"  descript="顺序执行所有分支节点 " c_android="com.my17.flows.imp.StepExec"	 c_ios="">
+             
+				
+				
+				<property name="descript" title="描述" type="0" args="" value="顺序执行" />
 				
 	</element>		
 	

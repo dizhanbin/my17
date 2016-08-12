@@ -1505,8 +1505,8 @@
         </view>
         <Line type="LineView">
             <id>20160809112834374</id>
-            <x>43</x>
-            <y>222</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160809112640601</from>
@@ -1517,8 +1517,8 @@
         </Line>
         <Line type="LineView">
             <id>20160809112843509</id>
-            <x>202</x>
-            <y>260</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160809112743791</from>
@@ -1542,12 +1542,478 @@
         </view>
         <Line type="LineView">
             <id>20160809113118161</id>
-            <x>410</x>
-            <y>259</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160809112714808</from>
             <to>20160809112913573</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="开始练习" type="1" alia="training_start">
+        <view type="IconView">
+            <id>20160811155943392</id>
+            <x>36</x>
+            <y>64</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160811155523967"/>
+                <property name="params" title="参数" type="0" args="" value="$hero"/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160811160834257</id>
+            <x>194</x>
+            <y>37</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>015</elementid>
+            <data>
+                <property name="data" title="数据" type="0" args="" value="$hero"/>
+                <property name="field" title="字段" type="0" args="" value="name"/>
+                <property name="out" title="保存到" type="0" args="" value="$name"/>
+                <property name="descript" title="描述" type="0" args="" value="读取字段值"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160811160916552</id>
+            <x>314</x>
+            <y>38</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>021</elementid>
+            <data>
+                <property name="condition" title="赋值语句" type="0" args="" value="$where=where name='{$name}'"/>
+                <property name="descript" title="描述" type="0" args="" value="字符赋值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811160944096</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811160834257</from>
+            <to>20160811160916552</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811161002951</id>
+            <x>432</x>
+            <y>39</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>018</elementid>
+            <data>
+                <property name="class" title="查询数据类" type="1" args="$model" value="20160811160237084"/>
+                <property name="condition" title="查询条件" type="0" args="" value="$where"/>
+                <property name="value" title="查询结果" type="0" args="" value="$training"/>
+                <property name="descript" title="描述" type="0" args="" value="从数据库查询"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811161033070</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811160916552</from>
+            <to>20160811161002951</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811161220995</id>
+            <x>573</x>
+            <y>44</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>020</elementid>
+            <data>
+                <property name="data" title="数组" type="0" args="" value="$training"/>
+                <property name="index" title="索引" type="0" args="" value="0"/>
+                <property name="value" title="保存到" type="0" args="" value="$training"/>
+                <property name="descript" title="描述" type="0" args="" value="数组取值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811161251098</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811161002951</from>
+            <to>20160811161220995</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811161623565</id>
+            <x>287</x>
+            <y>103</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>015</elementid>
+            <data>
+                <property name="data" title="数据" type="0" args="" value="$training"/>
+                <property name="field" title="字段" type="0" args="" value="base"/>
+                <property name="out" title="保存到" type="0" args="" value="$base"/>
+                <property name="descript" title="描述" type="0" args="" value="读取字段值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811161639748</id>
+            <x>30</x>
+            <y>30</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811161220995</from>
+            <to>20160811161623565</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811163437991</id>
+            <x>466</x>
+            <y>181</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>007</elementid>
+            <data>
+                <property name="value" title="朗读内容" type="0" args="" value="$base"/>
+                <property name="descript" title="描述" type="0" args="" value="语音朗读"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160811163858360</id>
+            <x>288</x>
+            <y>179</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>026</elementid>
+            <data>
+                <property name="descript" title="描述" type="0" args="" value="顺序执行"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811163900776</id>
+            <x>560</x>
+            <y>123</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811161623565</from>
+            <to>20160811163858360</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160811163904200</id>
+            <x>449</x>
+            <y>260</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811163858360</from>
+            <to>20160811163437991</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811163953647</id>
+            <x>401</x>
+            <y>313</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>015</elementid>
+            <data>
+                <property name="data" title="数据" type="0" args="" value="$training"/>
+                <property name="field" title="字段" type="0" args="" value="lyts"/>
+                <property name="out" title="保存到" type="0" args="" value="$lyts"/>
+                <property name="descript" title="描述" type="0" args="" value="读取字段值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811164038949</id>
+            <x>286</x>
+            <y>139</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811163858360</from>
+            <to>20160811163953647</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811164052357</id>
+            <x>298</x>
+            <y>435</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>015</elementid>
+            <data>
+                <property name="data" title="数据" type="0" args="" value="$training"/>
+                <property name="field" title="字段" type="0" args="" value="sfts"/>
+                <property name="out" title="保存到" type="0" args="" value="$sfts"/>
+                <property name="descript" title="描述" type="0" args="" value="读取字段值"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811164115036</id>
+            <x>286</x>
+            <y>139</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811163858360</from>
+            <to>20160811164052357</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811165848927</id>
+            <x>571</x>
+            <y>314</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160811165906207"/>
+                <property name="params" title="参数" type="0" args="" value="$lyts"/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160811165853079</id>
+            <x>553</x>
+            <y>432</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>005</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160811170015926"/>
+                <property name="params" title="参数" type="0" args="" value="$sfts"/>
+                <property name="descript" title="描述" type="0" args="" value="发送事件"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811170045372</id>
+            <x>434</x>
+            <y>181</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811163953647</from>
+            <to>20160811165848927</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160811170046882</id>
+            <x>436</x>
+            <y>280</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811164052357</from>
+            <to>20160811165853079</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811170716042</id>
+            <x>124</x>
+            <y>89</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>012</elementid>
+            <data>
+                <property name="condition" title="条件" type="0" args="" value="#stop_speek=0"/>
+                <property name="descript" title="描述" type="0" args="" value="字符处理"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811170719970</id>
+            <x>36</x>
+            <y>64</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811155943392</from>
+            <to>20160811170716042</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160811170721017</id>
+            <x>124</x>
+            <y>89</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170716042</from>
+            <to>20160811160834257</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="拉野提示" type="1" alia="laye_speek">
+        <view type="IconView">
+            <id>20160811170154842</id>
+            <x>68</x>
+            <y>195</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160811165906207"/>
+                <property name="params" title="参数" type="0" args="" value="$interval"/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160811170227994</id>
+            <x>212</x>
+            <y>196</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>025</elementid>
+            <data>
+                <property name="interval" title="间隔（秒）" type="0" args="" value="$interval"/>
+                <property name="descript" title="描述" type="0" args="" value="启动定时器"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811170239601</id>
+            <x>68</x>
+            <y>195</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170154842</from>
+            <to>20160811170227994</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811170254185</id>
+            <x>414</x>
+            <y>108</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>007</elementid>
+            <data>
+                <property name="value" title="朗读内容" type="0" args="" value="准备拉野"/>
+                <property name="descript" title="描述" type="0" args="" value="语音朗读"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811170313832</id>
+            <x>212</x>
+            <y>196</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170227994</from>
+            <to>20160811170254185</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value="#stop_speek==0"/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160811170359527</id>
+            <x>449</x>
+            <y>194</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170254185</from>
+            <to>20160811170227994</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+    </item>
+    <item name="唰符提示" type="1" alia="shuafu_speek">
+        <view type="IconView">
+            <id>20160811170510085</id>
+            <x>37</x>
+            <y>263</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>001</elementid>
+            <data>
+                <property name="event" title="事件" type="1" args="$event" value="20160811170015926"/>
+                <property name="params" title="参数" type="0" args="" value="$interval"/>
+                <property name="descript" title="描述" type="0" args="" value="事件"/>
+            </data>
+        </view>
+        <view type="IconView">
+            <id>20160811170527589</id>
+            <x>173</x>
+            <y>266</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>025</elementid>
+            <data>
+                <property name="interval" title="间隔（秒）" type="0" args="" value=""/>
+                <property name="descript" title="描述" type="0" args="" value="启动定时器"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811170530532</id>
+            <x>37</x>
+            <y>263</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170510085</from>
+            <to>20160811170527589</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value=""/>
+            </condition>
+        </Line>
+        <view type="IconView">
+            <id>20160811170536420</id>
+            <x>373</x>
+            <y>167</y>
+            <w>40</w>
+            <h>40</h>
+            <elementid>007</elementid>
+            <data>
+                <property name="value" title="朗读内容" type="0" args="" value="2分钟符即将刷新"/>
+                <property name="descript" title="描述" type="0" args="" value="语音朗读"/>
+            </data>
+        </view>
+        <Line type="LineView">
+            <id>20160811170539020</id>
+            <x>173</x>
+            <y>266</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170527589</from>
+            <to>20160811170536420</to>
+            <condition>
+                <property name="value" title="条件" type="0" args="" value="#stop_speek==0"/>
+            </condition>
+        </Line>
+        <Line type="LineView">
+            <id>20160811170555284</id>
+            <x>441</x>
+            <y>362</y>
+            <w>40</w>
+            <h>40</h>
+            <from>20160811170536420</from>
+            <to>20160811170527589</to>
             <condition>
                 <property name="value" title="条件" type="0" args="" value=""/>
             </condition>

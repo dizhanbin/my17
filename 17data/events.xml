@@ -162,4 +162,28 @@
         <type>1</type>
         <descript> get hero detail skills</descript>
     </event>
+    <event>
+        <id>20160811144059680</id>
+        <name>FORM_TRAINING</name>
+        <type>1</type>
+        <descript>练习页面</descript>
+    </event>
+    <event>
+        <id>20160811155523967</id>
+        <name>REQ_TRAINING_BEGIN</name>
+        <type>1</type>
+        <descript>练习开始</descript>
+    </event>
+    <event>
+        <id>20160811165906207</id>
+        <name>REQ_LY_TIMER_SPECK</name>
+        <type>1</type>
+        <descript>拉野定时提示</descript>
+    </event>
+    <event>
+        <id>20160811170015926</id>
+        <name>REQ_SF_TIMER_SPECK</name>
+        <type>1</type>
+        <descript>唰符定时提示</descript>
+    </event>
 </events>

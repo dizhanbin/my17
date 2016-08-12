@@ -155,4 +155,36 @@
             <descript>唯一标示 英文名</descript>
         </field>
     </model>
+    <model name="MTraining" id="20160811160237084">
+        <field>
+            <name>keyid</name>
+            <type>0</type>
+            <value></value>
+            <descript>数据id</descript>
+        </field>
+        <field>
+            <name>name</name>
+            <type>0</type>
+            <value></value>
+            <descript>关联字段</descript>
+        </field>
+        <field>
+            <name>base</name>
+            <type>0</type>
+            <value></value>
+            <descript>基本描述</descript>
+        </field>
+        <field>
+            <name>lyts</name>
+            <type>1</type>
+            <value></value>
+            <descript>拉野提示</descript>
+        </field>
+        <field>
+            <name>sfts</name>
+            <type>1</type>
+            <value></value>
+            <descript>唰符提示</descript>
+        </field>
+    </model>
 </models>
