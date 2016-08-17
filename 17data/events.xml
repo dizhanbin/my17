@@ -186,4 +186,16 @@
         <type>1</type>
         <descript>唰符定时提示</descript>
     </event>
+    <event>
+        <id>20160816172513194</id>
+        <name>REQ_SPEEK_STOP</name>
+        <type>1</type>
+        <descript>停止 语音提示</descript>
+    </event>
+    <event>
+        <id>20160817151947519</id>
+        <name>REQ_CONVERT_ONE</name>
+        <type>1</type>
+        <descript>英雄技能</descript>
+    </event>
 </events>

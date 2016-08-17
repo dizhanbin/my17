@@ -215,4 +215,34 @@
 				
 	</element>		
 	
+	
+	<element id="027" name="拷贝目录" iconpath=":/image/string.png"  descript="拷贝目录 " c_android="com.my17.flows.imp.FileCopyDir"	 c_ios="">
+             
+				<property name="frompath" title="拷贝路径" type="0"  args="" value="" />		
+				<property name="topath" title="目的路径" type="0"  args="" value="" />		
+				<property name="result" title="是否成功" type="0"  args="" value="$copyresult" />		
+				<property name="descript" title="描述" type="0" args="" value="拷贝目录" />
+				
+	</element>		
+		
+	<element id="028" name="对象赋值" iconpath=":/image/string.png"  descript="对象通过 json 进行赋值 " c_android="com.my17.flows.imp.ObjJson"	 c_ios="">
+             
+				<property name="classz" title="对象类型" type="1"  args="$model" value="" />		
+				<property name="json" title="json字符串" type="0"  args="" value="" />		
+				<property name="objjson" title="存储变量" type="0"  args="" value="$objjson" />		
+				
+				<property name="descript" title="描述" type="0" args="" value="对象赋值" />
+				
+	</element>		
+	
+		<element id="029" name="集合长度" iconpath=":/image/string.png"  descript="获取数组，集合长度 " c_android="com.my17.flows.imp.ArrayLength"	 c_ios="">
+             
+				<property name="param" title="数据" type="0"  args="" value="" />		
+				<property name="length" title="存储变量" type="0"  args="" value="$length" />				
+				<property name="descript" title="描述" type="0" args="" value="集合长度" />
+				
+	</element>		
+		
+	
+	
 </elements>

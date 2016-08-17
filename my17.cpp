@@ -1071,6 +1071,8 @@ int  D::getModelIndexById(const QString &id)
 
      QString strs = "/* create my 17 */\n";
 
+     strs.append("import com.my17.client.forms.*;\n\n");
+
      strs.append("public class FormFactory{\n");
      strs.append("  public static Class getForm(Event event){\n");
      strs.append("      switch(event){\n");

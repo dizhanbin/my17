@@ -154,6 +154,12 @@
             <value></value>
             <descript>唯一标示 英文名</descript>
         </field>
+        <field>
+            <name>jnxg</name>
+            <type>0</type>
+            <value></value>
+            <descript>jnxg</descript>
+        </field>
     </model>
     <model name="MTraining" id="20160811160237084">
         <field>
