@@ -13,8 +13,16 @@
 #include "mproperty.h"
 class View;
 
-#define DATA_DIR(arg) QString("/Users/dzb/qt/my17/17data/").append(arg)
-#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/17out/").append(arg)
+//#define DATA_DIR(arg) QString("/Users/dzb/qt/my17/17data/").append(arg)
+//#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/17out/").append(arg)
+
+//#define DATA_DIR(arg) QString("/Users/dzb/qt/northking/data/").append(arg)
+//#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/northking/out/").append(arg)
+
+
+#define DATA_DIR(arg) QString("./data/").append(arg)
+#define DATA_OUT_DIR( arg ) QString("./out/").append(arg)
+
 
 //#define DATA_DIR(arg) QString("/Users/dizhanbin/work/17/my17/17data/").append(arg)
 //#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/17out/").append(arg)

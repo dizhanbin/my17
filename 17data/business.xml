@@ -1886,7 +1886,7 @@
             <elementid>028</elementid>
             <data>
                 <property name="classz" title="对象类型" type="1" args="$model" value="20160811160237084"/>
-                <property name="json" title="json字符串" type="0" args="" value="{&quot;keyid&quot;:&quot;001&quot;,&quot;name&quot;:&quot;common&quot;,&quot;base&quot;:&quot;马上开始喽&quot;,&quot;lyts&quot;:5,&quot;sfts&quot;:10}"/>
+                <property name="json" title="json字符串" type="0" args="" value="{&quot;keyid&quot;:&quot;001&quot;,&quot;name&quot;:&quot;common&quot;,&quot;base&quot;:&quot;马上开始喽&quot;,&quot;lyts&quot;:45,&quot;sfts&quot;:105}"/>
                 <property name="objjson" title="存储变量" type="0" args="" value="$training"/>
                 <property name="descript" title="描述" type="0" args="" value="对象赋值"/>
             </data>
