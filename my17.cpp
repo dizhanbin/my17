@@ -963,6 +963,8 @@ int  D::getModelIndexById(const QString &id)
  {
 
 
+     if( true )
+     {
      QString strs = "/* create my 17 */\n";
      strs.append("public enum Event{\n\n");
 
@@ -985,12 +987,51 @@ int  D::getModelIndexById(const QString &id)
      strs.append("\n}\n");
 
 
-     QFile file(DATA_OUT_DIR("Event.java"));
+     QFile file(DATA_OUT_DIR("java/Event.java"));
      if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
           return false;
      QTextStream out(&file);
      out<<strs;
 
+     }
+     if( true )
+     {
+
+
+         QString strs = "/* create my 17 */\n";
+
+
+        strs.append("#ifndef event_h\n");
+        strs.append("#define event_h\n");
+         strs.append("typedef enum{\n\n");
+
+         for(int i=0;i<events.count();i++)
+         {
+
+             MEventDelegate * event = events.at(i);
+
+             strs.append("  ").append(event->event_name);
+             if( events.count()-1 == i)
+               strs.append("//");
+             else
+               strs.append(",//");
+             strs.append(event->event_descript).append("\n");
+
+
+         }
+
+
+         strs.append("} Event;\n#endif /* event_h */");
+
+
+         QFile file(DATA_OUT_DIR("ios/event.h"));
+         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+              return false;
+         QTextStream out(&file);
+         out<<strs;
+
+
+     }
 
      return true;
  }
@@ -1019,7 +1060,7 @@ int  D::getModelIndexById(const QString &id)
      strs.append("\n}\n");
 
 
-     QFile file(DATA_OUT_DIR("Urls.java"));
+     QFile file(DATA_OUT_DIR("java/Urls.java"));
      if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
           return false;
      QTextStream out(&file);
@@ -1052,7 +1093,7 @@ int  D::getModelIndexById(const QString &id)
      strs.append("\n}\n");
 
      QString filename = DATA_OUT_DIR("");
-     filename.append( formp->p_value).append(".java");
+     filename.append("java/").append( formp->p_value).append(".java");
 
      QFile file(filename);
 
@@ -1069,6 +1110,8 @@ int  D::getModelIndexById(const QString &id)
  {
 
 
+
+     {//andoird
      QString strs = "/* create my 17 */\n";
 
      strs.append("import com.my17.client.forms.*;\n\n");
@@ -1105,7 +1148,7 @@ int  D::getModelIndexById(const QString &id)
 
 
      QString filename = DATA_OUT_DIR("");
-     filename.append("FormFactory.java");
+     filename.append("java/FormFactory.java");
 
      QFile file(filename);
 
@@ -1113,6 +1156,86 @@ int  D::getModelIndexById(const QString &id)
           return false;
      QTextStream out(&file);
      out<<strs;
+
+
+
+     }
+     {
+
+         QString strs = "/* create my 17 */\n";
+
+         strs.append("#import <Foundation/Foundation.h>\n\n");
+
+         strs.append("@interface FormFactory : NSObject\n");
+         strs.append("+(NSString*) getForm:(Event) event;\n");
+
+
+         strs.append("@end;\n");
+
+         QString filename = DATA_OUT_DIR("");
+         filename.append("ios/FormFactory.h");
+
+         QFile file(filename);
+
+         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+              return false;
+         QTextStream out(&file);
+         out<<strs;
+
+
+
+
+     }
+
+
+     {//.m
+
+         QString strs = "/* create my 17 */\n";
+
+         strs.append("#import \"FormFactory.h\"\n\n");
+
+         strs.append("@implementation FormFactory\n\n");
+         strs.append("+(NSString*) getForm:(Event) event{\n");
+
+         strs.append("      switch(event){\n");
+
+         for(int i=0;i<forms.count();i++)
+         {
+
+             MForm * form = forms.at(i);
+
+
+             const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
+             const QString & str_android = RP->getPropertyByName(form->properties,"android")->p_value;
+
+             MEventDelegate * me =  DP->getEventById( str_event );
+
+
+             strs.append("          case ").append(me->event_name).append(": return \"")
+                     .append(  str_android  ).append("\";\n");
+
+             d_create_form_code(form);
+
+         }
+
+         strs.append("     return NULL;\n");
+         strs.append("   }\n");
+
+         strs.append("}\n\n@end;\n");
+         QString filename = DATA_OUT_DIR("");
+         filename.append("ios/FormFactory.m");
+
+         QFile file(filename);
+
+         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+              return false;
+         QTextStream out(&file);
+         out<<strs;
+
+
+
+
+     }
 
 
      return true;
@@ -1151,7 +1274,12 @@ int  D::getModelIndexById(const QString &id)
  bool  createModel( MModelDelegate * md)
  {
 
-     QString path = DATA_OUT_DIR("");
+
+   if(true)  {
+
+
+     //android
+     QString path = DATA_OUT_DIR("java/");
      path.append(md->name).append(".java");
 
 
@@ -1182,9 +1310,109 @@ int  D::getModelIndexById(const QString &id)
 
          QTextStream out(&file);
          out<<strs;
-         return true;
+
 
      }
+     else
+         return false;
+    }
+
+    if(true) {
+
+         //ios
+         QString path = DATA_OUT_DIR("ios/");
+         path.append(md->name).append(".h");
+
+
+
+         QString strs = "/* create my 17 */\n";
+         strs.append("#import <Foundation/Foundation.h>\n\n ");
+
+         strs.append("@interface ").append(md->name).append(" : NSObject\n\n");
+
+
+         for(int i=0;i<md->fields.count();i++)
+         {
+             MModelFieldDelegate * field = md->fields.at(i);
+
+
+
+             strs.append("@property  ").
+                     append( RP->model_field_type_index_ios(field->field_type) ).
+                     append(" ").
+                     append(field->field_name).
+                     append(";//").append(field->field_descript).append("\n");
+
+
+         }
+
+
+         strs.append("\n@end\n");
+
+         QFile file(path);
+         if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+         {
+
+
+             QTextStream out(&file);
+             out<<strs;
+
+
+         }
+         else
+             return false;
+
+
+
+
+
+
+
+
+     }
+
+
+    if( true )//.m
+    {
+
+        QString path = DATA_OUT_DIR("ios/");
+        path.append(md->name).append(".m");
+
+
+
+        QString strs = "/* create my 17 */\n";
+        strs.append("#import \"").append(md->name).append(".h\"\n\n ");
+
+        strs.append("@implementation  ").append(md->name).append(" \n\n");
+
+
+        strs.append("\n@end\n");
+
+        QFile file(path);
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+
+
+            QTextStream out(&file);
+            out<<strs;
+            return true;
+
+        }
+
+
+
+
+    }
+
+    return false;
+
+
+
+
+
+
+
+
 
 
 
@@ -1269,7 +1497,7 @@ int  D::getModelIndexById(const QString &id)
 
 
 
-     createFile(DATA_OUT_DIR("FlowBoxs.java"),event_xmls);
+     createFile(DATA_OUT_DIR("java/FlowBoxs.java"),event_xmls);
 
 
      return true;
@@ -1321,12 +1549,17 @@ int  D::getModelIndexById(const QString &id)
         return false;
     }
      **/
-     QString dirstr = DATA_OUT_DIR("");
+     QString dirstr_android = DATA_OUT_DIR("java");
+     QDir dir_android(dirstr_android);
+     if( !dir_android.exists() )
+        dir_android.mkpath(dirstr_android);
+
+     QString dirstr_ios = DATA_OUT_DIR("ios");
+     QDir dir_ios(dirstr_ios);
+     if( !dir_ios.exists() )
+        dir_ios.mkpath(dirstr_ios);
 
 
-     QDir dir(dirstr);
-     if( !dir.exists() )
-        dir.mkpath(dirstr);
 
 
      QString strs;

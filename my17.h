@@ -16,12 +16,12 @@ class View;
 //#define DATA_DIR(arg) QString("/Users/dzb/qt/my17/17data/").append(arg)
 //#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/17out/").append(arg)
 
-//#define DATA_DIR(arg) QString("/Users/dzb/qt/northking/data/").append(arg)
-//#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/northking/out/").append(arg)
+#define DATA_DIR(arg) QString("/Users/dzb/qt/northking/data/").append(arg)
+#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/northking/out/").append(arg)
 
 
-#define DATA_DIR(arg) QString("./data/").append(arg)
-#define DATA_OUT_DIR( arg ) QString("./out/").append(arg)
+//#define DATA_DIR(arg) QString("./data/").append(arg)
+//#define DATA_OUT_DIR( arg ) QString("./out/").append(arg)
 
 
 //#define DATA_DIR(arg) QString("/Users/dizhanbin/work/17/my17/17data/").append(arg)
@@ -294,6 +294,24 @@ namespace my17 {
                     case 2: return model_field_type_float;
                   }
                 return "index out range";
+            }
+
+            inline const QString model_field_type_index_ios(int i){
+
+                switch(i)
+                {
+
+                    case 0: return "(copy,nonatomic) NSString * ";
+                    case 1: return "int ";
+                    case 2: return "float ";
+
+                }
+
+
+
+                return "index out range";
+
+
             }
 
 
