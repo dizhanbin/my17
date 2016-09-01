@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements>
 
-	<element id="001" name="事件" iconpath=":/image/001.png" descript="指定事件处理，业务从这里开始" c_android="com.my17.flows.imp.EventStart"	 c_ios="" >
+	<element id="001" name="事件" iconpath=":/image/001.png" descript="指定事件处理，业务从这里开始" c_android="com.my17.flows.imp.EventStart"	 c_ios="EventStart" >
 				<property name="event" title="事件" type="1"  args="$event" value="" />
 				<property name="params" title="参数" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="事件" />
 				
 	</element>
-	<element id="002" name="网络请求" iconpath=":/image/002.png"  descript="指定网络请求" c_android="com.my17.flows.imp.Http"	 c_ios="">
+	<element id="002" name="网络请求" iconpath=":/image/002.png"  descript="指定网络请求" c_android="com.my17.flows.imp.Http"	 c_ios="Http">
 				  <property name="url" title="请求地址" type="1" args="$url" value=""/>
                 <property name="out" title="输出字符保存至" type="0" args="" value="$http_result"/>
                 <property name="status" title="状态码" type="0" args="" value=""/>
-                <property name="method" title="请求方式" type="0" args="" value="post" />	
-                 <property name="method" title="请求方式" type="0" args="" value="post" />	
+                <property name="method" title="请求方式" type="0" args="" value="post" />	           	
                  <property name="params" title="参数" type="0" args="" value=""/>
+                 <property name="descript" title="描述" type="0" args="" value="Http请求"/>
 	</element>
 
-	<element id="003"  name="json解析" iconpath=":/image/json_parse.png"  descript="json解析为对象或数组" c_android="com.my17.flows.imp.JSONParse"	 c_ios="">
+	<element id="003"  name="json解析" iconpath=":/image/json_parse.png"  descript="json解析为对象或数组" c_android="com.my17.flows.imp.JSONParse"	 c_ios="JSONParse">
 
        
             <property name="key" title="json路径" type="0" args=""  value=""/>
@@ -28,7 +28,7 @@
 
     </element>
 	
-		<element id="004"  name="对象组装Map" iconpath=":/image/004.png"  descript="对象组装为map	\n 按对象组装选择为true	指定字段将不起作用" c_android="com.my17.flows.imp.EventStart"	 c_ios="">
+		<element id="004"  name="对象组装Map" iconpath=":/image/004.png"  descript="对象组装为map	\n 按对象组装选择为true	指定字段将不起作用" c_android="com.my17.flows.imp.EventStart"	 c_ios="EventStart">
 
        
    				<property name="reflect" title="按对象组装" type="1" args="$boolean" value="false"/>
@@ -38,58 +38,58 @@
 
     </element>
     
-	<element id="005" name="发送事件" iconpath=":/image/005.png"  descript="发送指定事件到页面处理" c_android="com.my17.flows.imp.EventSend"	 c_ios="">
+	<element id="005" name="发送事件" iconpath=":/image/005.png"  descript="发送指定事件到页面处理" c_android="com.my17.flows.imp.EventSend"	 c_ios="EventSend">
 				<property name="event" title="事件" type="1"  args="$event" value="" />
 				<property name="params" title="参数" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="发送事件" />
 	</element>
 
 
-	<element id="006" name="语音解析" iconpath=":/image/icon_listen.png"  descript="语音解析" c_android="com.my17.flows.imp.EventStart"	 c_ios="">
+	<element id="006" name="语音解析" iconpath=":/image/icon_listen.png"  descript="语音解析" c_android="com.my17.flows.imp.SpeekParse"	 c_ios="SpeekParse">
 				<property name="event" title="事件" type="1"  args="$event" value="" />
 				<property name="params" title="参数" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="发送事件" />
 	</element>
 
-	<element id="007" name="语音朗读" iconpath=":/image/icon_speek.png"  descript="根据文字朗读" c_android="com.my17.flows.imp.SpeekPoint"	 c_ios="">
+	<element id="007" name="语音朗读" iconpath=":/image/icon_speek.png"  descript="根据文字朗读" c_android="com.my17.flows.imp.SpeekPoint"	 c_ios="SpeekPoint">
 				<property name="value" title="朗读内容" type="0"  args="" value="" />
 				
 				<property name="descript" title="描述" type="0" args="" value="语音朗读" />
 	</element>
 	
-	<element id="008" name="对象到JSON" iconpath=":/image/json_tostring.png"  descript="对象转化为json" c_android="com.my17.flows.imp.JSONOut"	 c_ios="">
+	<element id="008" name="对象到JSON" iconpath=":/image/json_tostring.png"  descript="对象转化为json" c_android="com.my17.flows.imp.JSONOut"	 c_ios="JSONOut">
 				<property name="in" title="转化对象" type="0"  args="" value="" />
 				<property name="out" title="输出字符到" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="对象转化为json" />
 	
 		</element>
 		
-	<element id="009" name="文件存储路径" iconpath=":/image/store.png"  descript="获取存储路径" c_android="com.my17.flows.imp.StorePath"	 c_ios="">
+	<element id="009" name="文件存储路径" iconpath=":/image/store.png"  descript="获取存储路径" c_android="com.my17.flows.imp.StorePath"	 c_ios="StorePath">
 				<property name="sdcard_path" title="存储卡路径" type="0"  args="" value="" />
 				<property name="private_path" title="应用私有路径" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="文件存储路径" />
 		</element>
 		
 
-	<element id="010" name="读取文件" iconpath=":/image/read.png"  descript="读取文件字符" c_android="com.my17.flows.imp.FileIn"	 c_ios="">
+	<element id="010" name="读取文件" iconpath=":/image/read.png"  descript="读取文件字符" c_android="com.my17.flows.imp.FileIn"	 c_ios="FileIn">
 				<property name="filepath" title="路径" type="0"  args="" value="" />
 				<property name="out" title="变量名" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="读取文件" />
 	</element>
 		
 		
-		<element id="011" name="保存文件" iconpath=":/image/write.png"  descript="保存数据到文件，目前是字符" c_android="com.my17.flows.imp.FileOut"	 c_ios="">
+		<element id="011" name="保存文件" iconpath=":/image/write.png"  descript="保存数据到文件，目前是字符" c_android="com.my17.flows.imp.FileOut"	 c_ios="FileOut">
 				<property name="in" title="变量名" type="0"  args="" value="" />
 				<property name="filepath" title="路径" type="0"  args="" value="" />
 				<property name="descript" title="描述" type="0" args="" value="保存文件" />
 	</element>	
 		
-	<element id="012" name="字符处理" iconpath=":/image/string.png"  descript="字符处理\n 字符连接 变量以{}相隔 $json_path = {$field}.xml" c_android="com.my17.flows.imp.StringUtil"	 c_ios="">
+	<element id="012" name="字符处理" iconpath=":/image/string.png"  descript="字符处理\n 字符连接 变量以{}相隔 $json_path = {$field}.xml" c_android="com.my17.flows.imp.StringUtil"	 c_ios="StringUtil">
 				<property name="condition" title="条件" type="0"  args="" value="" />			
 				<property name="descript" title="描述" type="0" args="" value="字符处理" />
 	</element>	
 		
-	<element id="013" name="对象拷贝" iconpath=":/image/copy.png"  descript="对象拷贝、可以是对象或数组。\n对行字段:\n a=b,c=d " c_android="com.my17.flows.imp.ObjectCopy"	 c_ios="">
+	<element id="013" name="对象拷贝" iconpath=":/image/copy.png"  descript="对象拷贝、可以是对象或数组。\n对行字段:\n a=b,c=d " c_android="com.my17.flows.imp.ObjectCopy"	 c_ios="ObjectCopy">
              
 				<property name="from" title="拷贝数据" type="0"  args="" value="" />		
 				<property name="to" title="目的数据" type="0"  args="" value="" />		
@@ -98,7 +98,7 @@
 				<property name="descript" title="描述" type="0" args="" value="对象拷贝" />
 	</element>		
 
-<element id="014" name="遍历执行" iconpath=":/image/recycle.png"  descript="遍历集合执行 \n、判断是否结束 放到 结束标志字段" c_android="com.my17.flows.imp.RecycleDo"	 c_ios="">
+<element id="014" name="遍历执行" iconpath=":/image/recycle.png"  descript="遍历集合执行 \n、判断是否结束 放到 结束标志字段" c_android="com.my17.flows.imp.RecycleDo"	 c_ios="RecycleDo">
              
 				<property name="data" title="数据集合" type="0"  args="" value="" />		
 				<property name="out"  title="输出参数" type="0"  args="" value="" />
@@ -108,7 +108,7 @@
 				
 	</element>		
 	
-	<element id="015" name="读取字段值" iconpath=":/image/readobj.png"  descript="读取字段属性值" c_android="com.my17.flows.imp.ReadObj"	 c_ios="">
+	<element id="015" name="读取字段值" iconpath=":/image/readobj.png"  descript="读取字段属性值" c_android="com.my17.flows.imp.ReadObj"	 c_ios="ReadObj">
              
 				<property name="data" title="数据" type="0"  args="" value="" />		
 				<property name="field"  title="字段" type="0"  args="" value="" />
@@ -118,7 +118,7 @@
 				
 	</element>		
 	
-	<element id="016" name="保存到数据库" iconpath=":/image/icon_save.png"  descript="保存对象到数据库 保存结果成功？1:0" c_android="com.my17.flows.imp.DBSave"	 c_ios="">
+	<element id="016" name="保存到数据库" iconpath=":/image/icon_save.png"  descript="保存对象到数据库 保存结果成功？1:0" c_android="com.my17.flows.imp.DBSave"	 c_ios="DBSave">
              
 				<property name="data" title="数据" type="0"  args="" value="" />		
 				<property name="result" title="保存结果" type="0"  args="" value="" />		
@@ -126,7 +126,7 @@
 				
 	</element>		
 	
-		<element id="017" name="设置对象属性值" iconpath=":/image/setobj.png"  descript="设置对象属性值" c_android="com.my17.flows.imp.SetObj"	 c_ios="">
+		<element id="017" name="设置对象属性值" iconpath=":/image/setobj.png"  descript="设置对象属性值" c_android="com.my17.flows.imp.SetObj"	 c_ios="SetObj">
              
 				<property name="data" title="数据" type="0"  args="" value="" />		
 				<property name="field" title="字段" type="0"  args="" value="" />	
@@ -135,7 +135,7 @@
 				
 	</element>	
 	
-	<element id="018" name="从数据库查询" iconpath=":/image/sqlobj.png"  descript="从数据库查询" c_android="com.my17.flows.imp.SqlObj"	 c_ios="">
+	<element id="018" name="从数据库查询" iconpath=":/image/sqlobj.png"  descript="从数据库查询" c_android="com.my17.flows.imp.SqlObj"	 c_ios="SqlObj">
              				
 				<property name="class" title="查询数据类" type="1"  args="$model" value="" />
 				<property name="condition" title="查询条件" type="0"  args="" value="" />	
@@ -144,7 +144,7 @@
 				
 	</element>	
 	
-	<element id="019" name="字符分隔成数组" iconpath=":/image/strsplite.png"  descript="字符分隔成数组" c_android="com.my17.flows.imp.StrSplite"	 c_ios="">
+	<element id="019" name="字符分隔成数组" iconpath=":/image/strsplite.png"  descript="字符分隔成数组" c_android="com.my17.flows.imp.StrSplite"	 c_ios="StrSplite">
              
 				<property name="data" title="字符串" type="0"  args="" value="" />		
 				<property name="regex" title="分隔字符" type="0"  args="" value="" />	
@@ -153,7 +153,7 @@
 				
 	</element>	
 	
-	<element id="020" name="数组取值" iconpath=":/image/arrayobj.png"  descript="数组取值" c_android="com.my17.flows.imp.ArrayObj"	 c_ios="">
+	<element id="020" name="数组取值" iconpath=":/image/arrayobj.png"  descript="数组取值" c_android="com.my17.flows.imp.ArrayObj"	 c_ios="ArrayObj">
              
 				<property name="data" title="数组" type="0"  args="" value="" />		
 				<property name="index" title="索引" type="0"  args="" value="" />	
@@ -162,14 +162,14 @@
 				
 	</element>	
 	
-		<element id="021" name="字符赋值" iconpath=":/image/string.png"  descript="字符赋值 $var='$type' .... $var='1' " c_android="com.my17.flows.imp.StrSet"	 c_ios="">
+		<element id="021" name="字符赋值" iconpath=":/image/101.png"  descript="字符赋值 $var='$type' .... $var='1' " c_android="com.my17.flows.imp.StrSet"	 c_ios="StrSet">
              
 				<property name="condition" title="赋值语句" type="0"  args="" value="" />		
 				
 				<property name="descript" title="描述" type="0" args="" value="字符赋值" />
 				
 	</element>	
-	<element id="022" name="文件是否存在" iconpath=":/image/string.png"  descript="文件是否存在 " c_android="com.my17.flows.imp.FileExist"	 c_ios="">
+	<element id="022" name="文件是否存在" iconpath=":/image/113.png"  descript="文件是否存在 " c_android="com.my17.flows.imp.FileExist"	 c_ios="FileExist">
              
 				<property name="path" title="路径" type="0"  args="" value="" />		
 				<property name="isexist" title="是否存在结果" type="0"  args="" value="isexist" />		
@@ -179,7 +179,7 @@
 	</element>	
 	
 	
-	<element id="023" name="拷贝文件" iconpath=":/image/string.png"  descript="拷贝文件 " c_android="com.my17.flows.imp.FileCopy"	 c_ios="">
+	<element id="023" name="拷贝文件" iconpath=":/image/112.png"  descript="拷贝文件 " c_android="com.my17.flows.imp.FileCopy"	 c_ios="FileCopy">
              
 				<property name="frompath" title="拷贝路径" type="0"  args="" value="" />		
 				<property name="topath" title="目的路径" type="0"  args="" value="" />		
@@ -189,7 +189,7 @@
 	</element>		
 	
 	
-		<element id="024" name="数据库初始化" iconpath=":/image/string.png"  descript="数据库初始化 " c_android="com.my17.flows.imp.SQLOpen"	 c_ios="">
+		<element id="024" name="数据库初始化" iconpath=":/image/111.png"  descript="数据库初始化 " c_android="com.my17.flows.imp.SQLOpen"	 c_ios="SQLOpen">
              
 				<property name="dbpath" title="路径" type="0"  args="" value="" />		
 				<property name="descript" title="描述" type="0" args="" value="数据库初始化" />
@@ -197,7 +197,7 @@
 	</element>		
 	
 
-		<element id="025" name="启动定时器" iconpath=":/image/string.png"  descript="启动定时器 指定间隔触发 " c_android="com.my17.flows.imp.TimerPoint"	 c_ios="">
+		<element id="025" name="启动定时器" iconpath=":/image/110.png"  descript="启动定时器 指定间隔触发 " c_android="com.my17.flows.imp.TimerPoint"	 c_ios="TimerPoint">
              
 				<property name="interval" title="间隔（秒）" type="0"  args="" value="" />		
 				
@@ -207,7 +207,7 @@
 				
 	</element>		
 	
-			<element id="026" name="顺序执行" iconpath=":/image/string.png"  descript="顺序执行所有分支节点 " c_android="com.my17.flows.imp.StepExec"	 c_ios="">
+			<element id="026" name="顺序执行" iconpath=":/image/109.png"  descript="顺序执行所有分支节点 " c_android="com.my17.flows.imp.StepExec"	 c_ios="StepExec">
              
 				
 				
@@ -216,7 +216,7 @@
 	</element>		
 	
 	
-	<element id="027" name="拷贝目录" iconpath=":/image/string.png"  descript="拷贝目录 " c_android="com.my17.flows.imp.FileCopyDir"	 c_ios="">
+	<element id="027" name="拷贝目录" iconpath=":/image/105.png"  descript="拷贝目录 " c_android="com.my17.flows.imp.FileCopyDir"	 c_ios="FileCopyDir">
              
 				<property name="frompath" title="拷贝路径" type="0"  args="" value="" />		
 				<property name="topath" title="目的路径" type="0"  args="" value="" />		
@@ -225,7 +225,7 @@
 				
 	</element>		
 		
-	<element id="028" name="对象赋值" iconpath=":/image/string.png"  descript="对象通过 json 进行赋值 " c_android="com.my17.flows.imp.ObjJson"	 c_ios="">
+	<element id="028" name="对象赋值" iconpath=":/image/105.png"  descript="对象通过 json 进行赋值 " c_android="com.my17.flows.imp.ObjJson"	 c_ios="ObjJson">
              
 				<property name="classz" title="对象类型" type="1"  args="$model" value="" />		
 				<property name="json" title="json字符串" type="0"  args="" value="" />		
@@ -235,13 +235,33 @@
 				
 	</element>		
 	
-		<element id="029" name="集合长度" iconpath=":/image/string.png"  descript="获取数组，集合长度 " c_android="com.my17.flows.imp.ArrayLength"	 c_ios="">
+	<element id="029" name="集合长度" iconpath=":/image/106.png"  descript="获取数组，集合长度 " c_android="com.my17.flows.imp.ArrayLength"	 c_ios="ArrayLength">
              
 				<property name="param" title="数据" type="0"  args="" value="" />		
 				<property name="length" title="存储变量" type="0"  args="" value="$length" />				
 				<property name="descript" title="描述" type="0" args="" value="集合长度" />
 				
 	</element>		
+	
+	<element id="030" name="读取本地数据" iconpath=":/image/107.png"  descript="读取本地数据 iOS ： userdefault android:preference " c_android="com.my17.flows.imp.UserData"	 c_ios="UserData">
+             
+				<property name="key" title="key" type="0"  args="" value="" />		
+				<property name="value" title="存储变量" type="0"  args="" value="" />				
+				<property name="def" title="默认值" type="0"  args="" value="" />								
+				
+				<property name="descript" title="描述" type="0" args="" value="读取本地数据" />
+				
+	
+		</element>		
+		
+	<element id="031" name="保存本地数据" iconpath=":/image/108.png"  descript="保存本地数据 iOS ： userdefault android:preference " c_android="com.my17.flows.imp.UserSaveData"	 c_ios="UserSaveData">
+             
+				<property name="key" title="key" type="0"  args="" value="" />		
+				<property name="value" title="数据" type="0"  args="" value="" />				
+				<property name="descript" title="描述" type="0" args="" value="保存本地数据" />
+				
+	
+		</element>	
 		
 	
 	

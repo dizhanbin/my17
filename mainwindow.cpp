@@ -189,6 +189,7 @@ void MainWindow::init_left_1_items()
 
         QStandardItem* item = new QStandardItem(    e->name  );
         item->setIcon( QIcon(QPixmap(   e->iconpath  )) );
+        item->setToolTip( e->descript );
         model->insertRow(i,item);
 
     }

@@ -27,5 +27,19 @@
         <file>image/sqlobj.png</file>
         <file>image/strsplite.png</file>
         <file>image/arrayobj.png</file>
+        <file>image/100.png</file>
+        <file>image/101.png</file>
+        <file>image/102.png</file>
+        <file>image/103.png</file>
+        <file>image/104.png</file>
+        <file>image/105.png</file>
+        <file>image/106.png</file>
+        <file>image/107.png</file>
+        <file>image/108.png</file>
+        <file>image/109.png</file>
+        <file>image/110.png</file>
+        <file>image/111.png</file>
+        <file>image/112.png</file>
+        <file>image/113.png</file>
     </qresource>
 </RCC>

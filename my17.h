@@ -598,7 +598,7 @@ namespace my17 {
                {
                    MUrlDelegate * mud = getUrlById(value);
                    if( mud )
-                       return mud->url_name;
+                       return mud->url_address;
 
                }
                else if( args == "$boolean" )
