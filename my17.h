@@ -38,6 +38,8 @@ class View;
 #define model_field_type_string "String"
 #define model_field_type_int "int"
 #define model_field_type_float "float"
+#define model_field_type_array "List"
+#define model_field_type_object "Object"
 
 
 #define  T_SYS  1//系统事件
@@ -292,6 +294,8 @@ namespace my17 {
                     case 0: return model_field_type_string;
                     case 1: return model_field_type_int;
                     case 2: return model_field_type_float;
+                    case 3: return model_field_type_array;
+                    case 4: return model_field_type_object;
                   }
                 return "index out range";
             }
@@ -304,6 +308,8 @@ namespace my17 {
                     case 0: return "(copy,nonatomic) NSString * ";
                     case 1: return "int ";
                     case 2: return "float ";
+                    case 3: return "(retain,nonatomic) NSArray * ";
+                    case 4: return "(retain,nonatomic) NSObject * ";
 
                 }
 

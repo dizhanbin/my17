@@ -109,6 +109,8 @@ QWidget *MModelFieldDelegate::createEditor(QWidget *parent,
             comBox->addItem( RP->model_field_type_index(0) );
             comBox->addItem( RP->model_field_type_index(1) );
             comBox->addItem( RP->model_field_type_index(2) );
+            comBox->addItem( RP->model_field_type_index(3) );
+            comBox->addItem( RP->model_field_type_index(4) );
 
             //comBox->setCurrentIndex( field_type );
 

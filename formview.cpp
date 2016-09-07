@@ -48,8 +48,11 @@ void FormView::paint(QPainter & painter,const QPalette & pal)
     }
 
     const QString &title = getDescript();
+    QFontMetricsF fontMetrics(painter.font());
+    int text_w =  (int)fontMetrics.width(title);
 
-    painter.drawText(drawrect.x()+5,drawrect.y(), title );
+
+    painter.drawText(drawrect.x()+(drawrect.width() - text_w)/2,drawrect.y(), title );
 
 }
 

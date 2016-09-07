@@ -1461,6 +1461,8 @@ int  D::getModelIndexById(const QString &id)
 
 
      QString strs = "/* create my 17 */\n";
+
+     strs.append("import java.util.List;\n\n");
      strs.append("public class ").append(md->name).append("{\n\n");
 
 
@@ -1468,8 +1470,23 @@ int  D::getModelIndexById(const QString &id)
      {
          MModelFieldDelegate * field = md->fields.at(i);
 
+
+
+         QString fieldstr;
+
+         if( field->field_type == 4 )
+             fieldstr.append(field->field_value);
+         else if( field->field_type ==  3 )
+             fieldstr.append("List<").append(field->field_value).append("> ");
+         else
+             fieldstr.append( RP->model_field_type_index(field->field_type) );
+
+
+
+
+
          strs.append("  public ").
-                 append( RP->model_field_type_index(field->field_type) ).
+                 append( fieldstr ).
                  append(" ").
                  append(field->field_name).
                  append(";//").append(field->field_descript).append("\n");
@@ -1494,6 +1511,13 @@ int  D::getModelIndexById(const QString &id)
          return false;
     }
 
+
+
+   QString strs_arrays;
+
+
+
+
     if(true) {
 
          //ios
@@ -1502,8 +1526,11 @@ int  D::getModelIndexById(const QString &id)
 
 
 
-         QString strs = "/* create my 17 */\n";
-         strs.append("#import <Foundation/Foundation.h>\n\n ");
+         QString strs_include = "/* create my 17 */\n";
+         strs_include.append("#import <Foundation/Foundation.h>\n\n ");
+
+         QString strs = "";
+
 
          strs.append("@interface ").append(md->name).append(" : NSObject\n\n");
 
@@ -1515,10 +1542,25 @@ int  D::getModelIndexById(const QString &id)
 
 
              strs.append("@property  ").
-                     append( RP->model_field_type_index_ios(field->field_type) ).
+                     append( field->field_type  != 4 ? RP->model_field_type_index_ios(field->field_type) : "(retain,nonatomic) "+field->field_value +" * ").
                      append(" ").
                      append(field->field_name).
                      append(";//").append(field->field_descript).append("\n");
+
+             if( field->field_type ==  4 )
+             {
+
+                strs_include.append("#import \"").append(field->field_value).append(".h\"\n");
+
+             }
+             else if( field->field_type ==  3 )
+             {
+
+
+                 strs_arrays.append("                    @\"").append(field->field_name).append("\" : @\"").append(field->field_value ).append("\",\n");
+
+             }
+
 
 
          }
@@ -1532,7 +1574,7 @@ int  D::getModelIndexById(const QString &id)
 
 
              QTextStream out(&file);
-             out<<strs;
+             out<<strs_include<<strs;
 
 
          }
@@ -1561,6 +1603,20 @@ int  D::getModelIndexById(const QString &id)
         strs.append("#import \"").append(md->name).append(".h\"\n\n ");
 
         strs.append("@implementation  ").append(md->name).append(" \n\n");
+
+
+        strs.append("+ (NSDictionary *)objectClassInArray\n");
+        strs.append("{\n");
+
+
+        strs.append("    return @{\n");
+
+        strs.append( strs_arrays );
+        //strs.append("                    @\"objInfo\" : @\"OAItoProjectInfoModel\",\n");
+        strs.append("             };\n");
+
+        strs.append("}\n");
+
 
 
         strs.append("\n@end\n");

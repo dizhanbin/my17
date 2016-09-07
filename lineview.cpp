@@ -155,7 +155,8 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
             path.append(QRect(px0,py0,px1-px0,py1-py0) );
 
 
-
+            t_x = px0/2+px1/2;
+            t_y = py0/2+py1/2;
 
         }
         else
@@ -173,10 +174,12 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
             path.clear();
             path.append( QRect(px0,py0,px1-px0,py1-py0) );
 
+            t_x = px0/2+px1/2;
+            t_y = py0/2+py1/2;
+
         }
 
-        t_x = x0/2+x1/2;
-        t_y = y0/2+y1/2;
+
 
     }
     else if( x0+ele_w/2 > x1+ele_w  )//left 从上到左下
@@ -194,8 +197,8 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
            path.clear();
            path.append(QRect(px0,py0,px1-px0,py1-py0) );
 
-           t_x = x0/2+x1/2;
-           t_y = y0/2+y1/2;
+           t_x = px0/2+px1/2;
+           t_y = py0/2+py1/2;
 
 
        }
