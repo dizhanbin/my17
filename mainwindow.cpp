@@ -424,21 +424,23 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
             while( ui->right_bottom->rowCount()>0 )
                 ui->right_bottom->removeRow(0);
-            View * view = (View*)arg;
-            MPropertyDelegate * mpd = new MPropertyDelegate();
-            mpd->properties = & view->getProperties();
-
-            for(int i=0;i<mpd->properties->count();i++)
-                ui->right_bottom->insertRow(0);
-            ui->right_bottom->setItemDelegate(mpd);
 
 
-            QString  text = "提示：\n ";
-            text.append(view->getTopDescript().toStdString().c_str());
+            if( arg )
+            {
+                View * view = (View*)arg;
+                MPropertyDelegate * mpd = new MPropertyDelegate();
+                mpd->properties = & view->getProperties();
+
+                for(int i=0;i<mpd->properties->count();i++)
+                    ui->right_bottom->insertRow(0);
+                ui->right_bottom->setItemDelegate(mpd);
 
 
-
-            ui->right_top->setText(text);
+                QString  text = "提示：\n ";
+                text.append(view->getTopDescript().toStdString().c_str());
+                ui->right_top->setText(text);
+            }
 
         }
             return my17::todo_done_only;

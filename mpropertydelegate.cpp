@@ -16,20 +16,18 @@ MPropertyDelegate::MPropertyDelegate(QObject *parent):
  void MPropertyDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
  {
 
-
+     if(properties && properties->count() <= index.row()  )
+         return;
 
      if( index.column() == 0 )
       {
          QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
-
-
-         if( properties->count() > index.row() )
-            painter->drawText(option.rect,properties->at(index.row())->p_title, o);
-
-
+         painter->drawText(option.rect,properties->at(index.row())->p_title, o);
      }
      else
      {
+
+
 
          MProperty * mp = properties->at(index.row());
          QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);

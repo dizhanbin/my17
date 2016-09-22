@@ -78,6 +78,9 @@ void DocBusinessEditor::setData(void *d)
 
 
 
+          MC->sendMessage( event_req_business_item_selected,NULL);
+
+
 
         }
             return my17::todo_done;

@@ -588,6 +588,8 @@ namespace my17 {
                    MModelDelegate * mmd = getModelById(value);
                    if( mmd )
                        return mmd->name;
+                   else
+                       return "";
 
                }
                else if( args ==  "$event" )

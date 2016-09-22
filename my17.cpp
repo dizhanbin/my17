@@ -966,6 +966,8 @@ int  D::getModelIndexById(const QString &id)
      if( true )
      {
      QString strs = "/* create my 17 */\n";
+
+     strs.append("package com.northking.bpo.common;\n");
      strs.append("public enum Event{\n\n");
 
      for(int i=0;i<events.count();i++)
@@ -1163,8 +1165,9 @@ int  D::getModelIndexById(const QString &id)
      if( true )//andoird
      {
 
-         QString strs = "/* create my 17 */\n";
+         QString strs = "package com.northking.bpo.forms;\n /* create my 17 */\n ";
 
+         strs.append("import com.northking.bpo.Form;\n\n");
 
          MProperty * formp = RP->getPropertyByName(form->properties,"android");
 
@@ -1284,7 +1287,10 @@ int  D::getModelIndexById(const QString &id)
      {//andoird
      QString strs = "/* create my 17 */\n";
 
-     strs.append("import com.my17.client.forms.*;\n\n");
+
+     strs.append("package com.northking.bpo.common;\n");
+
+     strs.append("import com.northking.bpo.forms.*;\n\n");
 
      strs.append("public class FormFactory{\n");
      strs.append("  public static Class getForm(Event event){\n");
@@ -1462,6 +1468,7 @@ int  D::getModelIndexById(const QString &id)
 
      QString strs = "/* create my 17 */\n";
 
+     strs.append("package com.northking.bpo.model;\n");
      strs.append("import java.util.List;\n\n");
      strs.append("public class ").append(md->name).append("{\n\n");
 
@@ -1687,6 +1694,7 @@ if( true )
 {
 
      QString event_xmls;
+     event_xmls.append("package com.northking.bpo.common;\n");
      event_xmls.append("public class FlowBoxs{\n");
      event_xmls.append("    public static String getBox(Event event){\n");
      event_xmls.append("        switch(event){\n");

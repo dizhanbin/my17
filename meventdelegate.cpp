@@ -6,7 +6,7 @@
 #include "messagecenter.h"
 
 
-MEventDelegate::MEventDelegate(QObject * parent):QStyledItemDelegate(parent),event_type(1)
+MEventDelegate::MEventDelegate(QObject * parent):QStyledItemDelegate(parent),event_type(1),event_name(""),event_id(""),event_descript("")
 {
 
 
