@@ -2,7 +2,7 @@
 
 
 
-ViewGroup::ViewGroup(){
+ViewGroup::ViewGroup():max_width(0),max_height(0){
 
 m_focus_view = NULL;
 m_current_line = NULL;
@@ -123,11 +123,21 @@ void ViewGroup::setFocus(View * child)
     return NULL;
 
 }
+
+int viewgroup_max(int a,int b)
+{
+    return a>b?a:b;
+}
+
 void ViewGroup::addView(View *view)
 {
 
    // view->setParent( this );
     m_children.push_back(view);
+
+
+    this->max_width =viewgroup_max(this->max_width,view->getRect()->right());
+    this->max_height =viewgroup_max(this->max_height,view->getRect()->bottom());
 
 
 }

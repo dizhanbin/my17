@@ -174,6 +174,12 @@ void ViewDoc::mouseMoveEvent(QMouseEvent *event)
             if( focus && !focus->isLine() )
             {
                 focus->setPos(event->pos().x()-focus->off_width,event->pos().y()-focus->off_height);
+
+                if( focus->getRect()->right() > this->rect().width()  )
+                    setGeometry( 0,0,focus->getRect()->right(),rect().height() );
+
+                if( focus->getRect()->bottom() > rect().height() )
+                    setGeometry( 0,0,rect().width(),focus->getRect()->bottom() );
                 repaint();
             }
         }

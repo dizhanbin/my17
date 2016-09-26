@@ -394,12 +394,13 @@ void D::loadBusiness()
                  NLog::i("view type:%s",type.toStdString().c_str());
 
                  View * view = createView(type );
-                 med->viewgroup->addView(view);
+
                 if( !  view->load(reader) )
                 {
                     NLog::i("read type:%s error",type.toStdString().c_str());
                     return ;
                 }
+                med->viewgroup->addView(view);
 
               }
               else if( name == "Line" )

@@ -14,10 +14,12 @@ DocBusinessEditor::DocBusinessEditor(QWidget *parent) :
     mViewDoc = new ViewDoc(ui->mScroll);
 
 
-
+    ui->mScroll->setWidget(mViewDoc);
 
     mViewDoc->setGeometry(QRect(0, 0, 800, 900));
 
+  //  ui->mScroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    ui->mScroll->setWidgetResizable(false);
 
 
 }
@@ -39,6 +41,15 @@ void DocBusinessEditor::setData(void *d)
 
 
     mViewDoc->setRootView( mbd->viewgroup );
+
+
+    int w = mViewDoc->rect().width() > mbd->viewgroup->max_width ?  mViewDoc->rect().width() : mbd->viewgroup->max_width;
+    int h = mViewDoc->rect().height()> mbd->viewgroup->max_height? mViewDoc->rect().height() : mbd->viewgroup->max_height;
+
+
+    mViewDoc->setGeometry(0,0,w,h);
+
+
 
 }
 
@@ -100,4 +111,9 @@ void DocBusinessEditor::setData(void *d)
 
     mViewDoc->setGeometry(0,0,size().width(),size().height());
     mViewDoc->repaint();
+   // ui->mScroll->setGeometry(0,0,size().width()-100,size().height()-100);
+
+
+
+
  }

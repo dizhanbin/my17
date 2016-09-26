@@ -14,6 +14,8 @@ public:
     View * m_focus_view;
     View * m_current_line;
 
+    int max_width,max_height;
+
 public:
 
     ViewGroup();
