@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-    <data key="#name" value="my17" descript="17 demo"/>
-    <data key="#package" value="com.my17" descript="包名"/>
+    <data key="#name" value="bpo" descript="bpo"/>
+    <data key="#package" value="com.northking.bpo" descript="包名"/>
     <data key="#size_height_button" value="30" descript="按钮默认高度"/>
     <data key="#size_width_button" value="120" descript="按钮默认宽度"/>
 </project>

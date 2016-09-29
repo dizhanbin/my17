@@ -1,129 +1,198 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <forms>
-    <form id="20160628133349638">
-        <x>231</x>
-        <y>110</y>
+    <form id="20160819152037512">
+        <x>321</x>
+        <y>102</y>
         <w>60</w>
         <h>80</h>
         <data>
-            <property name="event" title="事件" type="1" args="$event" value="20160725171245865"/>
-            <property name="android" title="androd类" type="0" args="" value="FormHot"/>
-            <property name="ios" title="ios类" type="0" args="" value=""/>
-            <property name="descript" title="描述" type="0" args="" value="热门排行"/>
+            <property name="event" title="事件" type="1" args="$event" value="20160819144749344"/>
+            <property name="android" title="androd类" type="0" args="" value="FormMain"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormMain"/>
+            <property name="descript" title="描述" type="0" args="" value="首页"/>
         </data>
     </form>
-    <form id="20160628133357206">
-        <x>138</x>
-        <y>47</y>
+    <form id="20160819152113615">
+        <x>510</x>
+        <y>36</y>
         <w>60</w>
         <h>80</h>
         <data>
-            <property name="event" title="事件" type="1" args="$event" value="20160711160808712"/>
-            <property name="android" title="androd类" type="0" args="" value="FormMe"/>
-            <property name="ios" title="ios类" type="0" args="" value=""/>
-            <property name="descript" title="描述" type="0" args="" value="我的"/>
+            <property name="event" title="事件" type="1" args="$event" value="20160819144733521"/>
+            <property name="android" title="androd类" type="0" args="" value="FormLogin"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormLogin"/>
+            <property name="descript" title="描述" type="0" args="" value="登录页"/>
         </data>
     </form>
-    <form id="20160725150917846">
-        <x>319</x>
-        <y>185</y>
+    <form id="20160826153909314">
+        <x>120</x>
+        <y>21</y>
         <w>60</w>
         <h>80</h>
         <data>
-            <property name="event" title="事件" type="1" args="$event" value="20160711144638668"/>
-            <property name="android" title="androd类" type="0" args="" value="FormHeros"/>
-            <property name="ios" title="ios类" type="0" args="" value=""/>
-            <property name="descript" title="描述" type="0" args="" value="列表"/>
-        </data>
-    </form>
-    <form id="20160728143808942">
-        <x>459</x>
-        <y>194</y>
-        <w>60</w>
-        <h>80</h>
-        <data>
-            <property name="event" title="事件" type="1" args="$event" value="20160711160818512"/>
-            <property name="android" title="androd类" type="0" args="" value="FormDetail"/>
-            <property name="ios" title="ios类" type="0" args="" value=""/>
-            <property name="descript" title="描述" type="0" args="" value="详细信息"/>
-        </data>
-    </form>
-    <form id="20160729155514329">
-        <x>28</x>
-        <y>48</y>
-        <w>60</w>
-        <h>80</h>
-        <data>
-            <property name="event" title="事件" type="1" args="$event" value="20160711144652699"/>
+            <property name="event" title="事件" type="1" args="$event" value="20160826153841357"/>
             <property name="android" title="androd类" type="0" args="" value="FormFlash"/>
-            <property name="ios" title="ios类" type="0" args="" value=""/>
-            <property name="descript" title="描述" type="0" args="" value="启动页面"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormFlash"/>
+            <property name="descript" title="描述" type="0" args="" value="启动页"/>
         </data>
     </form>
-    <form id="20160811144051383">
-        <x>601</x>
-        <y>190</y>
+    <form id="20160830105701148">
+        <x>63</x>
+        <y>147</y>
         <w>60</w>
         <h>80</h>
         <data>
-            <property name="event" title="事件" type="1" args="$event" value="20160811144059680"/>
-            <property name="android" title="androd类" type="0" args="" value="FormTraining"/>
-            <property name="ios" title="ios类" type="0" args="" value=""/>
-            <property name="descript" title="描述" type="0" args="" value="练习页面"/>
+            <property name="event" title="事件" type="1" args="$event" value="20160830105936680"/>
+            <property name="android" title="androd类" type="0" args="" value="FormReportList"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormReportList"/>
+            <property name="descript" title="描述" type="0" args="" value="上报列表"/>
         </data>
     </form>
-    <Line id="003">
-        <from>001</from>
-        <to>002</to>
+    <form id="20160830170024879">
+        <x>190</x>
+        <y>349</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160830170036678"/>
+            <property name="android" title="androd类" type="0" args="" value="FormReportDetail"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormReportDetail"/>
+            <property name="descript" title="描述" type="0" args="" value="上报数据详情"/>
+        </data>
+    </form>
+    <form id="20160830170231772">
+        <x>195</x>
+        <y>208</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160830170303506"/>
+            <property name="android" title="androd类" type="0" args="" value="FormReportAdd"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormReportAdd"/>
+            <property name="descript" title="描述" type="0" args="" value="上报数据添加页面"/>
+        </data>
+    </form>
+    <form id="20160830170833601">
+        <x>555</x>
+        <y>148</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160830170753360"/>
+            <property name="android" title="androd类" type="0" args="" value="FormSetting"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormSetting"/>
+            <property name="descript" title="描述" type="0" args="" value="设置页面"/>
+        </data>
+    </form>
+    <form id="20160902140022081">
+        <x>318</x>
+        <y>207</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160902140637744"/>
+            <property name="android" title="androd类" type="0" args="" value="FormReportAdd2"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormReportAdd2"/>
+            <property name="descript" title="描述" type="0" args="" value="上报添加第二个页面"/>
+        </data>
+    </form>
+    <form id="20160902140744901">
+        <x>443</x>
+        <y>207</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160902140726854"/>
+            <property name="android" title="androd类" type="0" args="" value="FormReportAdd3"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormReportAdd3"/>
+            <property name="descript" title="描述" type="0" args="" value="上报添加第三个页面"/>
+        </data>
+    </form>
+    <form id="20160908135340666">
+        <x>562</x>
+        <y>275</y>
+        <w>60</w>
+        <h>80</h>
+        <data>
+            <property name="event" title="事件" type="1" args="$event" value="20160908135406884"/>
+            <property name="android" title="androd类" type="0" args="" value="FormUpload"/>
+            <property name="ios" title="ios类" type="0" args="" value="FormUpload"/>
+            <property name="descript" title="描述" type="0" args="" value="附件上传页面"/>
+        </data>
+    </form>
+    <Line id="20160830111949407">
+        <from>20160819152037512</from>
+        <to>20160830105701148</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>
     </Line>
-    <Line id="20160628133354086">
-        <from>001</from>
-        <to>20160628133349638</to>
+    <Line id="20160830112001150">
+        <from>20160826153909314</from>
+        <to>20160819152037512</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value="已登录过自动登录"/>
+        </condition>
+    </Line>
+    <Line id="20160830112027837">
+        <from>20160826153909314</from>
+        <to>20160819152113615</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value="未登录"/>
+        </condition>
+    </Line>
+    <Line id="20160830112036685">
+        <from>20160819152113615</from>
+        <to>20160819152037512</to>
+        <condition>
+            <property name="value" title="条件" type="0" args="" value="登录成功"/>
+        </condition>
+    </Line>
+    <Line id="20160830170156796">
+        <from>20160830105701148</from>
+        <to>20160830170024879</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>
     </Line>
-    <Line id="20160628133400221">
-        <from>001</from>
-        <to>20160628133357206</to>
+    <Line id="20160830170451399">
+        <from>20160830105701148</from>
+        <to>20160830170231772</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>
     </Line>
-    <Line id="20160728143909717">
-        <from>20160725150917846</from>
-        <to>20160728143808942</to>
+    <Line id="20160830170913032">
+        <from>20160819152037512</from>
+        <to>20160830170833601</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>
     </Line>
-    <Line id="20160811144018480">
-        <from>20160729155514329</from>
-        <to>20160725150917846</to>
+    <Line id="20160902140717029">
+        <from>20160830170231772</from>
+        <to>20160902140022081</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>
     </Line>
-    <Line id="20160811144019704">
-        <from>20160729155514329</from>
-        <to>20160628133349638</to>
+    <Line id="20160902140748261">
+        <from>20160902140022081</from>
+        <to>20160902140744901</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>
     </Line>
-    <Line id="20160811144020577">
-        <from>20160729155514329</from>
-        <to>20160628133357206</to>
+    <Line id="20160907095353293">
+        <from>20160830170024879</from>
+        <to>20160830170231772</to>
         <condition>
-            <property name="value" title="条件" type="0" args="" value=""/>
+            <property name="value" title="条件" type="0" args="" value="草稿修改"/>
         </condition>
     </Line>
-    <Line id="20160811144216093">
-        <from>20160728143808942</from>
-        <to>20160811144051383</to>
+    <Line id="20160908135347196">
+        <from>20160902140744901</from>
+        <to>20160908135340666</to>
         <condition>
             <property name="value" title="条件" type="0" args="" value=""/>
         </condition>

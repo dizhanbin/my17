@@ -1,73 +1,290 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <models>
-    <model name="MUser" id="20151210151339632">
+    <model name="MAccount" id="20160819144257232">
         <field>
-            <name>usrid</name>
+            <name>loginName</name>
             <type>0</type>
             <value></value>
-            <descript>user id</descript>
+            <descript>登录名</descript>
         </field>
         <field>
-            <name>age</name>
-            <type>1</type>
-            <value>0</value>
-            <descript>user age</descript>
+            <name>userName</name>
+            <type>0</type>
+            <value></value>
+            <descript>用户名</descript>
+        </field>
+        <field>
+            <name>userId</name>
+            <type>0</type>
+            <value></value>
+            <descript>userId</descript>
+        </field>
+        <field>
+            <name>menuCode</name>
+            <type>0</type>
+            <value></value>
+            <descript>菜单权限</descript>
+        </field>
+        <field>
+            <name>currentVersion</name>
+            <type>0</type>
+            <value></value>
+            <descript>当前app版本</descript>
+        </field>
+        <field>
+            <name>updateType</name>
+            <type>0</type>
+            <value></value>
+            <descript>app更新选项</descript>
+        </field>
+        <field>
+            <name>downloadLink</name>
+            <type>0</type>
+            <value></value>
+            <descript>app下载地址</descript>
+        </field>
+        <field>
+            <name>roleCode</name>
+            <type>0</type>
+            <value></value>
+            <descript>角色的ID (中心经理是2000 区域主管是2002)</descript>
         </field>
     </model>
-    <model name="MLogInInfo" id="20151210151339666">
+    <model name="MLoginInfo" id="20160819150351917">
         <field>
-            <name>success_flag</name>
-            <type>1</type>
-            <value>0</value>
-            <descript>1 success 0 fail</descript>
-        </field>
-        <field>
-            <name>update_flag</name>
-            <type>1</type>
-            <value>0</value>
-            <descript>1 need update</descript>
-        </field>
-        <field>
-            <name>update_url</name>
+            <name>username</name>
             <type>0</type>
-            <value> </value>
-            <descript>update url</descript>
+            <value></value>
+            <descript>username</descript>
+        </field>
+        <field>
+            <name>password</name>
+            <type>0</type>
+            <value></value>
+            <descript>password</descript>
+        </field>
+        <field>
+            <name>apptype</name>
+            <type>0</type>
+            <value></value>
+            <descript>ios android</descript>
         </field>
     </model>
-    <model name="Model" id="20160628150216252"/>
-    <model name="MHeroD" id="20160707170929086">
+    <model name="MReport" id="20160829095016595">
         <field>
-            <name>name</name>
+            <name>UUID</name>
             <type>0</type>
             <value></value>
-            <descript>名称</descript>
+            <descript>UUID</descript>
         </field>
         <field>
-            <name>prop</name>
+            <name>CENTER_CODE</name>
             <type>0</type>
             <value></value>
-            <descript>特长</descript>
+            <descript>CENTER_CODE</descript>
         </field>
         <field>
-            <name>kw</name>
+            <name>CENTER_NAME</name>
             <type>0</type>
             <value></value>
-            <descript>常用名</descript>
+            <descript>CENTER_NAME</descript>
         </field>
         <field>
-            <name>name_l</name>
+            <name>CONTRACT_ID</name>
             <type>0</type>
             <value></value>
-            <descript>中文名</descript>
+            <descript>CONTRACT_ID</descript>
         </field>
         <field>
-            <name>img</name>
+            <name>CONTRACT_NAME</name>
             <type>0</type>
             <value></value>
-            <descript>图片</descript>
+            <descript>CONTRACT_NAME</descript>
+        </field>
+        <field>
+            <name>CUSTOMER_NAME</name>
+            <type>0</type>
+            <value></value>
+            <descript>CUSTOMER_NAME</descript>
+        </field>
+        <field>
+            <name>PAY_TYPE</name>
+            <type>0</type>
+            <value></value>
+            <descript>PAY_TYPE</descript>
+        </field>
+        <field>
+            <name>DATA_DATE</name>
+            <type>0</type>
+            <value></value>
+            <descript>DATA_DATE</descript>
+        </field>
+        <field>
+            <name>TOTAL_AMOUNT</name>
+            <type>0</type>
+            <value></value>
+            <descript>TOTAL_AMOUNT</descript>
+        </field>
+        <field>
+            <name>MISTAKE_AMOUNT</name>
+            <type>0</type>
+            <value></value>
+            <descript>MISTAKE_AMOUNT</descript>
+        </field>
+        <field>
+            <name>REWARDS_AMOUNT</name>
+            <type>0</type>
+            <value></value>
+            <descript>REWARDS_AMOUNT</descript>
+        </field>
+        <field>
+            <name>AMOUNT</name>
+            <type>0</type>
+            <value></value>
+            <descript>AMOUNT</descript>
+        </field>
+        <field>
+            <name>TAXES</name>
+            <type>0</type>
+            <value></value>
+            <descript>TAXES</descript>
+        </field>
+        <field>
+            <name>RETAXES</name>
+            <type>0</type>
+            <value></value>
+            <descript>RETAXES</descript>
+        </field>
+        <field>
+            <name>STATUS</name>
+            <type>0</type>
+            <value></value>
+            <descript>STATUS</descript>
+        </field>
+        <field>
+            <name>TYPE</name>
+            <type>0</type>
+            <value></value>
+            <descript>TYPE</descript>
+        </field>
+        <field>
+            <name>CREATE_DATE</name>
+            <type>0</type>
+            <value></value>
+            <descript>CREATE_DATE</descript>
+        </field>
+        <field>
+            <name>AMOUNT_TYPE</name>
+            <type>0</type>
+            <value></value>
+            <descript>AMOUNT_TYPE</descript>
+        </field>
+        <field>
+            <name>INVOICE_ID</name>
+            <type>0</type>
+            <value></value>
+            <descript>INVOICE_ID</descript>
+        </field>
+        <field>
+            <name>AMOUNT_TYPE_NAME</name>
+            <type>0</type>
+            <value></value>
+            <descript>AMOUNT_TYPE_NAME</descript>
+        </field>
+        <field>
+            <name>INVO_TYPE_NAME</name>
+            <type>0</type>
+            <value></value>
+            <descript>INVO_TYPE_NAME</descript>
+        </field>
+        <field>
+            <name>STATUS_NAME</name>
+            <type>0</type>
+            <value></value>
+            <descript>STATUS_NAME</descript>
+        </field>
+        <field>
+            <name>AFFIRM_SEAL</name>
+            <type>0</type>
+            <value></value>
+            <descript>AFFIRM_SEAL</descript>
+        </field>
+        <field>
+            <name>AFFIRM_SEAL_NAME</name>
+            <type>0</type>
+            <value></value>
+            <descript>AFFIRM_SEAL_NAME</descript>
+        </field>
+        <field>
+            <name>BILLING_DATE</name>
+            <type>0</type>
+            <value></value>
+            <descript>BILLING_DATE</descript>
+        </field>
+        <field>
+            <name>FILING_DATE</name>
+            <type>0</type>
+            <value></value>
+            <descript>FILING_DATE</descript>
+        </field>
+        <field>
+            <name>PROVINCE_NAME_ND</name>
+            <type>0</type>
+            <value></value>
+            <descript>PROVINCE_NAME_ND</descript>
+        </field>
+        <field>
+            <name>AREA_NAME</name>
+            <type>0</type>
+            <value></value>
+            <descript>AREA_NAME</descript>
+        </field>
+        <field>
+            <name>OTHER_AMOUNT</name>
+            <type>0</type>
+            <value></value>
+            <descript>OTHER_AMOUNT</descript>
         </field>
     </model>
-    <model name="MHero" id="20160707171719478">
+    <model name="MReportParam" id="20160829103846640">
+        <field>
+            <name>userId</name>
+            <type>0</type>
+            <value></value>
+            <descript>userId</descript>
+        </field>
+        <field>
+            <name>roleCode</name>
+            <type>0</type>
+            <value></value>
+            <descript>roleCode</descript>
+        </field>
+        <field>
+            <name>page</name>
+            <type>0</type>
+            <value>page</value>
+            <descript>page</descript>
+        </field>
+        <field>
+            <name>rows</name>
+            <type>0</type>
+            <value></value>
+            <descript>rows</descript>
+        </field>
+    </model>
+    <model name="MAppIcon" id="20160829104934185">
+        <field>
+            <name>tag</name>
+            <type>1</type>
+            <value></value>
+            <descript>tag</descript>
+        </field>
+        <field>
+            <name>test</name>
+            <type>0</type>
+            <value></value>
+            <descript>test</descript>
+        </field>
         <field>
             <name>name</name>
             <type>0</type>
@@ -75,122 +292,374 @@
             <descript>name</descript>
         </field>
         <field>
-            <name>name_c</name>
+            <name>icon</name>
             <type>0</type>
             <value></value>
-            <descript>中文明</descript>
-        </field>
-        <field>
-            <name>alia</name>
-            <type>0</type>
-            <value></value>
-            <descript>常用名</descript>
-        </field>
-        <field>
-            <name>img</name>
-            <type>0</type>
-            <value></value>
-            <descript>图片</descript>
-        </field>
-        <field>
-            <name>type</name>
-            <type>0</type>
-            <value></value>
-            <descript>类型</descript>
+            <descript>icon</descript>
         </field>
     </model>
-    <model name="MSkill" id="20160729095148247">
+    <model name="MPayment" id="20160831111811885">
         <field>
-            <name>keyid</name>
+            <name>centerCode</name>
             <type>0</type>
             <value></value>
-            <descript>数据id</descript>
+            <descript>centerCode</descript>
         </field>
         <field>
-            <name>zwm</name>
+            <name>centerName</name>
             <type>0</type>
             <value></value>
-            <descript>名称</descript>
+            <descript>centerName</descript>
         </field>
         <field>
-            <name>id</name>
+            <name>productName</name>
             <type>0</type>
             <value></value>
-            <descript>skill id</descript>
+            <descript>productName</descript>
         </field>
         <field>
-            <name>jnmc</name>
+            <name>contractId</name>
             <type>0</type>
             <value></value>
-            <descript>技能名</descript>
+            <descript>contractId</descript>
         </field>
         <field>
-            <name>jntb</name>
+            <name>contractName</name>
             <type>0</type>
             <value></value>
-            <descript>图片</descript>
+            <descript>contractName</descript>
         </field>
         <field>
-            <name>jnms</name>
+            <name>payType</name>
             <type>0</type>
             <value></value>
-            <descript>技能描述</descript>
+            <descript>payType</descript>
         </field>
         <field>
-            <name>mfxh</name>
+            <name>amountType</name>
             <type>0</type>
             <value></value>
-            <descript>魔法消耗</descript>
+            <descript>amountType</descript>
         </field>
         <field>
-            <name>djjd</name>
+            <name>affirmSeal</name>
             <type>0</type>
             <value></value>
-            <descript>待定</descript>
+            <descript>affirmSeal</descript>
         </field>
         <field>
-            <name>name</name>
+            <name>dataDate</name>
             <type>0</type>
             <value></value>
-            <descript>唯一标示 英文名</descript>
+            <descript>dataDate</descript>
         </field>
         <field>
-            <name>jnxg</name>
+            <name>totalAmount</name>
             <type>0</type>
             <value></value>
-            <descript>jnxg</descript>
+            <descript>totalAmount</descript>
+        </field>
+        <field>
+            <name>mistakeAmount</name>
+            <type>0</type>
+            <value></value>
+            <descript>mistakeAmount</descript>
+        </field>
+        <field>
+            <name>rewardsAmount</name>
+            <type>0</type>
+            <value></value>
+            <descript>rewardsAmount</descript>
+        </field>
+        <field>
+            <name>otherAmount</name>
+            <type>0</type>
+            <value></value>
+            <descript>otherAmount</descript>
+        </field>
+        <field>
+            <name>amount</name>
+            <type>0</type>
+            <value></value>
+            <descript>amount</descript>
+        </field>
+        <field>
+            <name>des</name>
+            <type>0</type>
+            <value></value>
+            <descript>des</descript>
         </field>
     </model>
-    <model name="MTraining" id="20160811160237084">
+    <model name="MItemPrice" id="20160831112106415">
         <field>
-            <name>keyid</name>
+            <name>itemName</name>
             <type>0</type>
             <value></value>
-            <descript>数据id</descript>
+            <descript>itemName</descript>
         </field>
         <field>
-            <name>name</name>
+            <name>confirmNum</name>
             <type>0</type>
             <value></value>
-            <descript>关联字段</descript>
+            <descript>confirmNum</descript>
         </field>
         <field>
-            <name>base</name>
+            <name>price</name>
             <type>0</type>
             <value></value>
-            <descript>基本描述</descript>
+            <descript>price</descript>
         </field>
         <field>
-            <name>lyts</name>
+            <name>amount</name>
+            <type>0</type>
+            <value></value>
+            <descript>amount</descript>
+        </field>
+        <field>
+            <name>itemId</name>
+            <type>0</type>
+            <value></value>
+            <descript>itemId</descript>
+        </field>
+    </model>
+    <model name="MPaymentComments" id="20160831112225206">
+        <field>
+            <name>userName</name>
+            <type>0</type>
+            <value></value>
+            <descript>userName</descript>
+        </field>
+        <field>
+            <name>createDate</name>
+            <type>0</type>
+            <value></value>
+            <descript>createDate</descript>
+        </field>
+        <field>
+            <name>contentName</name>
+            <type>0</type>
+            <value></value>
+            <descript>contentName</descript>
+        </field>
+        <field>
+            <name>content</name>
+            <type>0</type>
+            <value></value>
+            <descript>content</descript>
+        </field>
+    </model>
+    <model name="MCenterInfo" id="20160901164955195">
+        <field>
+            <name>centerCode</name>
+            <type>0</type>
+            <value></value>
+            <descript>centerCode</descript>
+        </field>
+        <field>
+            <name>centerName</name>
+            <type>0</type>
+            <value></value>
+            <descript>centerName</descript>
+        </field>
+    </model>
+    <model name="MProductInfo" id="20160901170051434">
+        <field>
+            <name>centerCode</name>
+            <type>0</type>
+            <value></value>
+            <descript>centerCode</descript>
+        </field>
+        <field>
+            <name>productId</name>
+            <type>0</type>
+            <value></value>
+            <descript>productId</descript>
+        </field>
+        <field>
+            <name>productName</name>
+            <type>0</type>
+            <value></value>
+            <descript>productName</descript>
+        </field>
+    </model>
+    <model name="MContract" id="20160901172709293">
+        <field>
+            <name>contractId</name>
+            <type>0</type>
+            <value></value>
+            <descript>contractId</descript>
+        </field>
+        <field>
+            <name>payTypeId</name>
+            <type>0</type>
+            <value></value>
+            <descript>payTypeId</descript>
+        </field>
+        <field>
+            <name>payType</name>
+            <type>0</type>
+            <value></value>
+            <descript>payType</descript>
+        </field>
+    </model>
+    <model name="MAmountType" id="20160901172937625">
+        <field>
+            <name>amountTypeName</name>
+            <type>0</type>
+            <value></value>
+            <descript>amountTypeName</descript>
+        </field>
+    </model>
+    <model name="MAffirm" id="20160902090326914">
+        <field>
+            <name>affirmSealCode</name>
+            <type>0</type>
+            <value></value>
+            <descript>affirmSealCode</descript>
+        </field>
+        <field>
+            <name>affirmSealName</name>
+            <type>0</type>
+            <value></value>
+            <descript>affirmSealName</descript>
+        </field>
+    </model>
+    <model name="MContractNumType" id="20160902091719223">
+        <field>
+            <name>contractId</name>
+            <type>0</type>
+            <value></value>
+            <descript>contractId</descript>
+        </field>
+        <field>
+            <name>payTypeId</name>
+            <type>0</type>
+            <value></value>
+            <descript>payTypeId</descript>
+        </field>
+        <field>
+            <name>payType</name>
+            <type>0</type>
+            <value></value>
+            <descript>payType</descript>
+        </field>
+    </model>
+    <model name="MContractInfo" id="20160902145611548">
+        <field>
+            <name>contractId</name>
+            <type>0</type>
+            <value></value>
+            <descript>合同编号</descript>
+        </field>
+        <field>
+            <name>amountTypeName</name>
+            <type>0</type>
+            <value></value>
+            <descript>收入类型</descript>
+        </field>
+        <field>
+            <name>amountType</name>
+            <type>0</type>
+            <value></value>
+            <descript>收入类型编号</descript>
+        </field>
+        <field>
+            <name>amount</name>
+            <type>0</type>
+            <value></value>
+            <descript>金额</descript>
+        </field>
+        <field>
+            <name>status</name>
+            <type>0</type>
+            <value></value>
+            <descript>审批状态</descript>
+        </field>
+        <field>
+            <name>contractName</name>
+            <type>0</type>
+            <value></value>
+            <descript>合同名称</descript>
+        </field>
+    </model>
+    <model name="MProduct" id="20160905144503364">
+        <field>
+            <name>contractNumAndType</name>
+            <type>4</type>
+            <value>MContractNumType</value>
+            <descript>contractNumAndType</descript>
+        </field>
+        <field>
+            <name>amountType</name>
+            <type>3</type>
+            <value>MAmountType</value>
+            <descript>amountType</descript>
+        </field>
+        <field>
+            <name>item</name>
+            <type>3</type>
+            <value>MItemPrice</value>
+            <descript>item</descript>
+        </field>
+    </model>
+    <model name="MFileInfo" id="20160912094213664">
+        <field>
+            <name>filepath</name>
+            <type>0</type>
+            <value></value>
+            <descript>文件路径</descript>
+        </field>
+        <field>
+            <name>filename</name>
+            <type>0</type>
+            <value></value>
+            <descript>文件名</descript>
+        </field>
+        <field>
+            <name>filetype</name>
+            <type>0</type>
+            <value></value>
+            <descript>文件类型</descript>
+        </field>
+    </model>
+    <model name="MUploadFile" id="20160913160837266">
+        <field>
+            <name>uploadfileId</name>
+            <type>0</type>
+            <value></value>
+            <descript>uploadfileId</descript>
+        </field>
+        <field>
+            <name>uploadfileName</name>
+            <type>0</type>
+            <value></value>
+            <descript>uploadfileName</descript>
+        </field>
+        <field>
+            <name>uploadfilePath</name>
+            <type>0</type>
+            <value></value>
+            <descript>uploadfilePath</descript>
+        </field>
+    </model>
+    <model name="MDialogInfo" id="20160919143020576">
+        <field>
+            <name>dialog_title</name>
+            <type>0</type>
+            <value></value>
+            <descript>标题</descript>
+        </field>
+        <field>
+            <name>dialog_btn_ok</name>
             <type>1</type>
             <value></value>
-            <descript>拉野提示</descript>
+            <descript>ok事件</descript>
         </field>
         <field>
-            <name>sfts</name>
+            <name>dialog_btn_cancel</name>
             <type>1</type>
             <value></value>
-            <descript>唰符提示</descript>
+            <descript>取消</descript>
         </field>
     </model>
 </models>

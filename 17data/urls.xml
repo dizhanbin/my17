@@ -1,15 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urls>
     <url>
-        <id>199292999990</id>
-        <name>url_login</name>
-        <address>/login.do</address>
-        <descript>login url</descript>
+        <id>20160819145659313</id>
+        <name>login</name>
+        <address>mobile!loginMobile.action</address>
+        <descript>登录</descript>
     </url>
     <url>
-        <id>20151210170817045</id>
-        <name>url_getpic</name>
-        <address>/getpic.do</address>
-        <descript>获取图片</descript>
+        <id>20160819145841110</id>
+        <name>report_list</name>
+        <address>mobile!confirmationJsonMobile.action</address>
+        <descript>bpo列表</descript>
+    </url>
+    <url>
+        <id>20160831111222382</id>
+        <name>report_detail</name>
+        <address>mobile!confirmationDetailJsonMobile.action</address>
+        <descript>获取详情</descript>
+    </url>
+    <url>
+        <id>20160901164804087</id>
+        <name>report_month</name>
+        <address>mobile!monthClickMobile.action</address>
+        <descript>点击月份地址</descript>
+    </url>
+    <url>
+        <id>20160901165648872</id>
+        <name>centerClick</name>
+        <address>mobile!centerNameClickMobile.action</address>
+        <descript>中心详细数据</descript>
+    </url>
+    <url>
+        <id>20160901172358883</id>
+        <name>contract_info</name>
+        <address>mobile!contractNameClickMobile.action</address>
+        <descript>合同信息</descript>
+    </url>
+    <url>
+        <id>20160902090146876</id>
+        <name>affirm_types</name>
+        <address>mobile!amountTypeClickMobile.action</address>
+        <descript>确认收入类型</descript>
+    </url>
+    <url>
+        <id>20160906111102124</id>
+        <name>report_add</name>
+        <address>mobile!confirmationAddMobile.action</address>
+        <descript>新增</descript>
+    </url>
+    <url>
+        <id>20160907112830915</id>
+        <name>report_edit</name>
+        <address>mobile!confirmationUpdateMobile.action</address>
+        <descript>修改</descript>
+    </url>
+    <url>
+        <id>20160908153112819</id>
+        <name>upload</name>
+        <address>mobile!uploadFileMobile.action</address>
+        <descript>上传地址</descript>
+    </url>
+    <url>
+        <id>20160913141816756</id>
+        <name>delete</name>
+        <address>mobile!deleteFileMobile.action</address>
+        <descript>删除附件</descript>
+    </url>
+    <url>
+        <id>20160913141850948</id>
+        <name>commit</name>
+        <address>mobile!confirmationSubmitMobile.action</address>
+        <descript>提交</descript>
+    </url>
+    <url>
+        <id>20160914100526711</id>
+        <name>commit_sure</name>
+        <address>mobile!checkPaymentAccessoryMobile.action</address>
+        <descript>提交前确认</descript>
     </url>
 </urls>

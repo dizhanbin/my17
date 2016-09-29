@@ -182,6 +182,13 @@ void MainWindow::init_left_1_items()
 
     const QVector<MElement*> &vecs = my17::R::getInstance()->elements;
 
+
+
+ QStandardItem* s0 = new QStandardItem(  "item0" );
+ s0->setTextAlignment(Qt::AlignLeft);
+
+ s0->setBackground(QBrush(QColor(0xee,0xee,0x99)));
+
     for(int i=0;i<vecs.size();i++)
     {
 
@@ -193,12 +200,15 @@ void MainWindow::init_left_1_items()
         model->insertRow(i,item);
 
     }
-
+  model->insertRow(0,s0);
 
 
     ui->left_1->setModel(model);
     ui->left_1->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(ui->left_1,SIGNAL(doubleClicked(const QModelIndex)),SLOT(slot_left_1_item_double_click(const QModelIndex &)) );
+
+
+
 
 }
 

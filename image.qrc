@@ -45,5 +45,6 @@
         <file>image/115.png</file>
         <file>image/116.png</file>
         <file>image/117.png</file>
+        <file>image/grayback.png</file>
     </qresource>
 </RCC>
