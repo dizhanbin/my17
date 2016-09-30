@@ -968,7 +968,11 @@ int  D::getModelIndexById(const QString &id)
      {
      QString strs = "/* create my 17 */\n";
 
-     strs.append("package com.northking.bpo.common;\n");
+
+     MData * data = DP->getProjectInfo("#package");
+
+     strs.append("package ").append(data->value).append(".common;\n");
+
      strs.append("public enum Event{\n\n");
 
      for(int i=0;i<events.count();i++)
@@ -1166,9 +1170,15 @@ int  D::getModelIndexById(const QString &id)
      if( true )//andoird
      {
 
-         QString strs = "package com.northking.bpo.forms;\n /* create my 17 */\n ";
+         MData * data = DP->getProjectInfo("#package");
 
-         strs.append("import com.northking.bpo.Form;\n\n");
+
+         QString strs = "/* create my 17 */\n ";
+
+         strs.append("package ").append(data->value).append(".forms;\n");
+
+         strs.append("import ").append(data->value).append(".Form;\n\n");
+
 
          MProperty * formp = RP->getPropertyByName(form->properties,"android");
 
@@ -1289,9 +1299,13 @@ int  D::getModelIndexById(const QString &id)
      QString strs = "/* create my 17 */\n";
 
 
-     strs.append("package com.northking.bpo.common;\n");
+     MData * data = DP->getProjectInfo("#package");
 
-     strs.append("import com.northking.bpo.forms.*;\n\n");
+     strs.append("package ").append(data->value).append(".common;\n");
+
+     strs.append("import ").append(data->value).append(".forms.*;\n");
+
+
 
      strs.append("public class FormFactory{\n");
      strs.append("  public static Class getForm(Event event){\n");
@@ -1469,7 +1483,11 @@ int  D::getModelIndexById(const QString &id)
 
      QString strs = "/* create my 17 */\n";
 
-     strs.append("package com.northking.bpo.model;\n");
+     MData * data = DP->getProjectInfo("#package");
+
+     strs.append("package ").append(data->value).append(".model;\n");
+
+
      strs.append("import java.util.List;\n\n");
      strs.append("public class ").append(md->name).append("{\n\n");
 
@@ -1695,7 +1713,11 @@ if( true )
 {
 
      QString event_xmls;
-     event_xmls.append("package com.northking.bpo.common;\n");
+
+     MData * data = DP->getProjectInfo("#package");
+
+     event_xmls.append("package ").append(data->value).append(".common;\n");
+
      event_xmls.append("public class FlowBoxs{\n");
      event_xmls.append("    public static String getBox(Event event){\n");
      event_xmls.append("        switch(event){\n");
@@ -1854,6 +1876,20 @@ if( true )
      return false;
 
  }
+
+ MData * D::getProjectInfo(const QString& key)
+ {
+
+
+     for(MData * data : this->projectinfos)
+     {
+         if( data->key.compare( key ) == 0 )
+             return data;
+     }
+     return NULL;
+
+ }
+
 
  const QString  D::createCodes()
  {

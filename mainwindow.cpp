@@ -184,10 +184,12 @@ void MainWindow::init_left_1_items()
 
 
 
- QStandardItem* s0 = new QStandardItem(  "item0" );
- s0->setTextAlignment(Qt::AlignLeft);
+ //QStandardItem* s0 = new QStandardItem(  "item0" );
+ //s0->setTextAlignment(Qt::AlignLeft);
 
- s0->setBackground(QBrush(QColor(0xee,0xee,0x99)));
+ //s0->setBackground(QBrush(QColor(0xee,0xee,0x99)));
+ //model->insertRow(0,s0);
+
 
     for(int i=0;i<vecs.size();i++)
     {
@@ -200,7 +202,7 @@ void MainWindow::init_left_1_items()
         model->insertRow(i,item);
 
     }
-  model->insertRow(0,s0);
+
 
 
     ui->left_1->setModel(model);

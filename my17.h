@@ -576,6 +576,7 @@ namespace my17 {
 
           const QString createCodes();
 
+          MData * getProjectInfo(const QString& key);
 
 
           const QString& getPropertyValue(const QString& args,const QString& value)
