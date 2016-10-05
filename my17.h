@@ -16,16 +16,16 @@ class View;
 //#define DATA_DIR(arg) QString("/Users/dzb/qt/my17/17data/").append(arg)
 //#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/17out/").append(arg)
 
-#define DATA_DIR(arg) QString("/Users/dzb/qt/northking/data/").append(arg)
-#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/northking/out/").append(arg)
+//#define DATA_DIR(arg) QString("/Users/dzb/qt/northking/data/").append(arg)
+//#define DATA_OUT_DIR( arg ) QString("/Users/dzb/qt/northking/out/").append(arg)
 
 
 //#define DATA_DIR(arg) QString("./data/").append(arg)
 //#define DATA_OUT_DIR( arg ) QString("./out/").append(arg)
 
 
-//#define DATA_DIR(arg) QString("/Users/dizhanbin/work/17/my17/17data/").append(arg)
-//#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/17out/").append(arg)
+#define DATA_DIR(arg) QString("/Users/dizhanbin/work/17/my17/17data/").append(arg)
+#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/17out/").append(arg)
 
 
 
@@ -40,6 +40,8 @@ class View;
 #define model_field_type_float "float"
 #define model_field_type_array "List"
 #define model_field_type_object "Object"
+
+#define model_data_none "none"
 
 
 #define  T_SYS  1//系统事件
@@ -590,7 +592,10 @@ namespace my17 {
                    if( mmd )
                        return mmd->name;
                    else
-                       return "";
+                   {
+                       R::getInstance()->result = "";
+                       return R::getInstance()->result;
+                   }
 
                }
                else if( args ==  "$event" )

@@ -140,6 +140,10 @@ void View::setRoot(bool is)
        {
 
            MProperty * p = properties.at(i);
+
+
+           NLog::i("code: property :%s",p->p_name.toStdString().c_str());
+
            writer.writeStartElement("property");
            writer.writeAttribute("name",p->p_name);
            writer.writeAttribute("title",p->p_title);
