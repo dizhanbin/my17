@@ -1,6 +1,6 @@
 #include "lineview.h"
 
-LineView::LineView():from(NULL),to(NULL){
+LineView::LineView():from(NULL),to(NULL),none(""){
 
 
 }
@@ -403,7 +403,17 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
      writer.writeTextElement("from", from->viewid );
      writer.writeTextElement("to", to->viewid );
 
-     writer.writeTextElement("condition", properties.at(0)->p_value );
+
+
+
+
+     MProperty * mpc = getProperty("condition");
+     if( mpc )
+        writer.writeTextElement("condition", mpc->p_value );
+
+     MProperty * mp = getProperty("isint");
+     if( mp )
+        writer.writeTextElement("isint", mp->p_value );
 
 
  }
@@ -423,7 +433,9 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
     writer.writeTextElement("to", to->viewid );
 
 
-    saveData(writer,"condition");
+    saveData(writer,"linedata");
+    //saveData(writer,"isint");
+
  }
 
 
@@ -457,8 +469,23 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
                  fromid = reader.readElementText();
              else if( name == "to" )
                  toid = reader.readElementText();
-             else if( name == "condition" )
+             else if( name == "linedata" )
+             {
                  loadData(reader);
+                 MProperty * mpisint = getProperty("isint");
+                 if( !mpisint )
+                 {
+                     MProperty * mp_int = new MProperty();
+                     mp_int->p_name = "isint";
+                     mp_int->p_title = "数字";
+                     mp_int->p_type = 1;
+                     mp_int->p_args = "$boolean";
+                     this->properties.append(mp_int);
+                 }
+             }
+            // else if( name == "isint" )
+            //     isint = reader.readElementText();
+
          }
          else if( reader.isEndElement() )
          {
@@ -497,14 +524,25 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
         mp->p_name = "value";
         mp->p_title = "条件";
         mp->p_type = 0;
+      this->properties.append(mp);
 
-        this->properties.append(mp);
+        MProperty * mp_int = new MProperty();
+        mp_int->p_name = "isint";
+        mp_int->p_title = "数字";
+        mp_int->p_type = 1;
+        mp_int->p_args = "$boolean";
+        this->properties.append(mp_int);
+
 
     }
    const  QString &  LineView::getDescript()
     {
 
+        MProperty * mp = getProperty("condition");
 
-        return getProperties().at(0)->p_value;
+        if( mp )
+            return mp->p_value;
+        else
+            return none;
 
     }

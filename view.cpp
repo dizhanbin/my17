@@ -223,7 +223,7 @@ void View::setRoot(bool is)
             else if( reader.isEndElement() )
             {
 
-                if( name == "data" || name == "condition" )
+                if( name == "data" || name == "condition" || name == "linedata")
 
                     return true;
 

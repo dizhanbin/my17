@@ -10,7 +10,7 @@ private:
     View * from;
     View * to;
 
-
+    QString  none;
 
 
     QPoint cursor;
@@ -21,6 +21,7 @@ public:
 
     QString fromid;
     QString toid;
+
 
 
     LineView();

@@ -36,9 +36,10 @@
             <h>40</h>
             <from>20160819144907157</from>
             <to>20160819145337030</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819145436085</id>
@@ -62,9 +63,10 @@
             <h>40</h>
             <from>20160819145337030</from>
             <to>20160819145436085</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$islogin==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$islogin==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819145500379</id>
@@ -87,9 +89,10 @@
             <h>40</h>
             <from>20160819145337030</from>
             <to>20160819145500379</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$islogin&lt;&gt;1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$islogin&lt;&gt;1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value="false"/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819145552586</id>
@@ -113,9 +116,10 @@
             <h>40</h>
             <from>20160819145436085</from>
             <to>20160819145552586</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819145650768</id>
@@ -141,9 +145,10 @@
             <h>40</h>
             <from>20160819145552586</from>
             <to>20160819145650768</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819150108529</id>
@@ -181,9 +186,10 @@
             <h>40</h>
             <from>20160819145650768</from>
             <to>20160819150115097</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160819150255534</id>
@@ -193,9 +199,10 @@
             <h>40</h>
             <from>20160819145650768</from>
             <to>20160819150108529</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819150758734</id>
@@ -218,9 +225,10 @@
             <h>40</h>
             <from>20160819150108529</from>
             <to>20160819150758734</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920111543553</id>
@@ -243,9 +251,10 @@
             <h>40</h>
             <from>20160819150758734</from>
             <to>20160920111543553</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="登录请求" type="1" alia="login">
@@ -300,9 +309,10 @@
             <h>40</h>
             <from>20160819151039641</from>
             <to>20160819151348244</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819151431291</id>
@@ -326,9 +336,10 @@
             <h>40</h>
             <from>20160819151348244</from>
             <to>20160819151431291</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819151457754</id>
@@ -352,9 +363,10 @@
             <h>40</h>
             <from>20160819151431291</from>
             <to>20160819151457754</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819151621856</id>
@@ -405,9 +417,10 @@
             <h>40</h>
             <from>20160819151652791</from>
             <to>20160819151759621</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819151902099</id>
@@ -430,9 +443,10 @@
             <h>40</h>
             <from>20160819151759621</from>
             <to>20160819151902099</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160819151919691</id>
@@ -470,9 +484,10 @@
             <h>40</h>
             <from>20160826165647960</from>
             <to>20160819151652791</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$loginflag==true"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$loginflag==true"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160826165815398</id>
@@ -495,9 +510,10 @@
             <h>40</h>
             <from>20160826165647960</from>
             <to>20160826165815398</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$loginflag==false"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$loginflag==false"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160906085920767</id>
@@ -520,9 +536,10 @@
             <h>40</h>
             <from>20160819151902099</from>
             <to>20160906085920767</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160906085932815</id>
@@ -532,9 +549,10 @@
             <h>40</h>
             <from>20160906085920767</from>
             <to>20160819151919691</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913163634480</id>
@@ -556,9 +574,10 @@
             <h>40</h>
             <from>20160819151621856</from>
             <to>20160913163634480</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913164732253</id>
@@ -580,9 +599,10 @@
             <h>40</h>
             <from>20160826165815398</from>
             <to>20160913164732253</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920110639440</id>
@@ -605,9 +625,10 @@
             <h>40</h>
             <from>20160819151919691</from>
             <to>20160920110639440</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922151206634</id>
@@ -637,63 +658,68 @@
         </view>
         <Line type="LineView">
             <id>20160922151239946</id>
-            <x>490</x>
-            <y>55</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160819151457754</from>
             <to>20160922151206634</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922151242009</id>
-            <x>419</x>
-            <y>178</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922151206634</from>
             <to>20160819151148879</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922151254314</id>
-            <x>306</x>
-            <y>177</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160819151148879</from>
             <to>20160922151209754</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922151255353</id>
-            <x>292</x>
-            <y>254</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922151209754</from>
             <to>20160819151621856</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922151256505</id>
-            <x>292</x>
-            <y>254</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922151209754</from>
             <to>20160826165647960</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="获取bpo列表" type="1" alia="report_list">
@@ -747,9 +773,10 @@
             <h>40</h>
             <from>20160829093115868</from>
             <to>20160829093154650</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160829095642214</id>
@@ -774,9 +801,10 @@
             <h>40</h>
             <from>20160829093115868</from>
             <to>20160829095642214</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160829095743629</id>
@@ -813,9 +841,10 @@
             <h>40</h>
             <from>20160829092207611</from>
             <to>20160829100034695</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160920091344806</id>
@@ -825,9 +854,10 @@
             <h>40</h>
             <from>20160829100034695</from>
             <to>20160829093115868</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920091702823</id>
@@ -862,9 +892,10 @@
             <h>40</h>
             <from>20160829095642214</from>
             <to>20160920091754471</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$page==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$page==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160920091835150</id>
@@ -874,9 +905,10 @@
             <h>40</h>
             <from>20160829095642214</from>
             <to>20160920091702823</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160920091855356</id>
@@ -886,9 +918,10 @@
             <h>40</h>
             <from>20160920091754471</from>
             <to>20160920091702823</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160920091911165</id>
@@ -898,9 +931,10 @@
             <h>40</h>
             <from>20160920091702823</from>
             <to>20160829095743629</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="保存上报数据" type="1" alia="report_save">
@@ -967,9 +1001,10 @@
             <h>40</h>
             <from>20160905153738141</from>
             <to>20160906111220922</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160906162111033</id>
@@ -994,9 +1029,10 @@
             <h>40</h>
             <from>20160905153738141</from>
             <to>20160906162111033</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160906162313514</id>
@@ -1006,9 +1042,10 @@
             <h>40</h>
             <from>20160906162111033</from>
             <to>20160906111220922</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$json_result&lt;&gt;true"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$json_result&lt;&gt;true"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160907112733598</id>
@@ -1047,9 +1084,10 @@
             <h>40</h>
             <from>20160907112733598</from>
             <to>20160907112925609</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160907113034559</id>
@@ -1059,9 +1097,10 @@
             <h>40</h>
             <from>20160907112925609</from>
             <to>20160906162111033</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160907113036999</id>
@@ -1071,9 +1110,10 @@
             <h>40</h>
             <from>20160907112925609</from>
             <to>20160906111220922</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160907172402715</id>
@@ -1098,9 +1138,10 @@
             <h>40</h>
             <from>20160906162111033</from>
             <to>20160907172402715</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$json_result==true"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$json_result==true"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160907172511721</id>
@@ -1110,9 +1151,10 @@
             <h>40</h>
             <from>20160907172402715</from>
             <to>20160905153902900</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171841714</id>
@@ -1134,9 +1176,10 @@
             <h>40</h>
             <from>20160906111220922</from>
             <to>20160913171841714</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922153403291</id>
@@ -1180,27 +1223,29 @@
         </view>
         <Line type="LineView">
             <id>20160922153633463</id>
-            <x>45</x>
-            <y>171</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153403291</from>
             <to>20160922153630999</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="#edit_flag==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="#edit_flag==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922153721239</id>
-            <x>53</x>
-            <y>244</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153630999</from>
             <to>20160905153738141</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$length==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$length==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922153912434</id>
@@ -1229,39 +1274,42 @@
         </view>
         <Line type="LineView">
             <id>20160922153958067</id>
-            <x>39</x>
-            <y>214</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153630999</from>
             <to>20160922153955603</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$length==2"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$length==2"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922154050698</id>
-            <x>127</x>
-            <y>220</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153955603</from>
             <to>20160922153912434</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922154238384</id>
-            <x>40</x>
-            <y>189</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153630999</from>
             <to>20160922153559120</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922154303626</id>
@@ -1279,27 +1327,29 @@
         </view>
         <Line type="LineView">
             <id>20160922154408839</id>
-            <x>141</x>
-            <y>239</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153559120</from>
             <to>20160922154303626</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922154454102</id>
-            <x>202</x>
-            <y>285</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922154303626</from>
             <to>20160922153955603</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$amountTypeName==有甲方确认"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$amountTypeName==有甲方确认"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922154620514</id>
@@ -1315,51 +1365,55 @@
         </view>
         <Line type="LineView">
             <id>20160922154655123</id>
-            <x>202</x>
-            <y>279</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922154303626</from>
             <to>20160922154620514</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$amoutType==$amountTypeName"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$amoutType==$amountTypeName"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922154743618</id>
-            <x>374</x>
-            <y>274</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922154620514</from>
             <to>20160922153912434</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922155200309</id>
-            <x>263</x>
-            <y>274</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922154303626</from>
             <to>20160905153738141</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922155643272</id>
-            <x>38</x>
-            <y>28</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160831084837323</from>
             <to>20160922153403291</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922155750359</id>
@@ -1376,15 +1430,16 @@
         </view>
         <Line type="LineView">
             <id>20160922155801822</id>
-            <x>80</x>
+            <x>30</x>
             <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922153403291</from>
             <to>20160922155750359</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="#edit_flag==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="#edit_flag==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922160647956</id>
@@ -1402,15 +1457,16 @@
         </view>
         <Line type="LineView">
             <id>20160922160707644</id>
-            <x>202</x>
-            <y>28</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922155750359</from>
             <to>20160922160647956</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922160959377</id>
@@ -1438,39 +1494,42 @@
         </view>
         <Line type="LineView">
             <id>20160922161156086</id>
-            <x>301</x>
-            <y>29</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922160647956</from>
             <to>20160922161145384</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$length==2"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$length==2"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922161225406</id>
-            <x>455</x>
-            <y>32</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922161145384</from>
             <to>20160922160959377</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$amoutType&lt;&gt;$payType"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$amoutType&lt;&gt;$payType"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922161349980</id>
-            <x>419</x>
-            <y>31</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922161145384</from>
             <to>20160907112733598</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160922161441107</id>
@@ -1486,63 +1545,68 @@
         </view>
         <Line type="LineView">
             <id>20160922161456075</id>
-            <x>269</x>
+            <x>30</x>
             <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922160647956</from>
             <to>20160922161441107</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$payType==有甲方确认"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$payType==有甲方确认"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922161733096</id>
-            <x>590</x>
-            <y>113</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922160959377</from>
             <to>20160922153912434</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922161958789</id>
-            <x>475</x>
-            <y>83</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922161441107</from>
             <to>20160907112733598</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$amoutType==$payType"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$amoutType==$payType"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922162009365</id>
-            <x>638</x>
-            <y>93</y>
+            <x>30</x>
+            <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922161441107</from>
             <to>20160922160959377</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160922162037988</id>
-            <x>269</x>
+            <x>30</x>
             <y>30</y>
             <w>40</w>
             <h>40</h>
             <from>20160922160647956</from>
             <to>20160907112733598</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="获取详细信息" type="1" alia="report_detail">
@@ -1583,9 +1647,10 @@
             <h>40</h>
             <from>20160831111116720</from>
             <to>20160831111214974</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831111402730</id>
@@ -1608,9 +1673,10 @@
             <h>40</h>
             <from>20160831111214974</from>
             <to>20160831111402730</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831112405538</id>
@@ -1635,9 +1701,10 @@
             <h>40</h>
             <from>20160831111214974</from>
             <to>20160831112405538</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831112529151</id>
@@ -1675,9 +1742,10 @@
             <h>40</h>
             <from>20160831112405538</from>
             <to>20160831140043441</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160831140116224</id>
@@ -1687,9 +1755,10 @@
             <h>40</h>
             <from>20160831140043441</from>
             <to>20160831112529151</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831140143432</id>
@@ -1712,9 +1781,10 @@
             <h>40</h>
             <from>20160831112529151</from>
             <to>20160831140143432</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831140301293</id>
@@ -1739,9 +1809,10 @@
             <h>40</h>
             <from>20160831140143432</from>
             <to>20160831140301293</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831140345964</id>
@@ -1764,9 +1835,10 @@
             <h>40</h>
             <from>20160831140301293</from>
             <to>20160831140345964</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160831140402932</id>
@@ -1804,9 +1876,10 @@
             <h>40</h>
             <from>20160831140345964</from>
             <to>20160913161001611</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913161328406</id>
@@ -1829,9 +1902,10 @@
             <h>40</h>
             <from>20160913161001611</from>
             <to>20160913161328406</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913161338341</id>
@@ -1841,9 +1915,10 @@
             <h>40</h>
             <from>20160913161328406</from>
             <to>20160831140402932</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171818259</id>
@@ -1865,9 +1940,10 @@
             <h>40</h>
             <from>20160831111402730</from>
             <to>20160913171818259</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="请求中心信息" type="1" alia="month_centerinfo">
@@ -1921,9 +1997,10 @@
             <h>40</h>
             <from>20160901165326254</from>
             <to>20160901165400357</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160901165410693</id>
@@ -1948,9 +2025,10 @@
             <h>40</h>
             <from>20160901165326254</from>
             <to>20160901165410693</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160901165506851</id>
@@ -1987,9 +2065,10 @@
             <h>40</h>
             <from>20160901165138081</from>
             <to>20160902105004469</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160902105029299</id>
@@ -1999,9 +2078,10 @@
             <h>40</h>
             <from>20160902105004469</from>
             <to>20160901165326254</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160906113819935</id>
@@ -2024,9 +2104,10 @@
             <h>40</h>
             <from>20160906113819935</from>
             <to>20160901165506851</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171802547</id>
@@ -2048,9 +2129,10 @@
             <h>40</h>
             <from>20160901165400357</from>
             <to>20160913171802547</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160919144529651</id>
@@ -2060,9 +2142,10 @@
             <h>40</h>
             <from>20160901165410693</from>
             <to>20160906113819935</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="获取产品信息" type="1" alia="product_info">
@@ -2117,9 +2200,10 @@
             <h>40</h>
             <from>20160901170816269</from>
             <to>20160901171015234</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160901171129791</id>
@@ -2143,9 +2227,10 @@
             <h>40</h>
             <from>20160901171015234</from>
             <to>20160901171129791</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160901171453266</id>
@@ -2168,9 +2253,10 @@
             <h>40</h>
             <from>20160901170952850</from>
             <to>20160901171453266</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160901171546563</id>
@@ -2195,9 +2281,10 @@
             <h>40</h>
             <from>20160901170952850</from>
             <to>20160901171546563</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160901171739669</id>
@@ -2250,9 +2337,10 @@
             <h>40</h>
             <from>20160902170934533</from>
             <to>20160901171739669</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160906134308030</id>
@@ -2275,9 +2363,10 @@
             <h>40</h>
             <from>20160901171129791</from>
             <to>20160906134308030</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160906134316721</id>
@@ -2287,9 +2376,10 @@
             <h>40</h>
             <from>20160906134308030</from>
             <to>20160901170952850</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160906134954293</id>
@@ -2326,9 +2416,10 @@
             <h>40</h>
             <from>20160901171546563</from>
             <to>20160906135048819</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160906135056899</id>
@@ -2338,9 +2429,10 @@
             <h>40</h>
             <from>20160906135048819</from>
             <to>20160906134954293</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160906135409125</id>
@@ -2350,9 +2442,10 @@
             <h>40</h>
             <from>20160906134954293</from>
             <to>20160902150030461</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160906140005795</id>
@@ -2362,9 +2455,10 @@
             <h>40</h>
             <from>20160902150030461</from>
             <to>20160902170934533</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171742267</id>
@@ -2386,9 +2480,10 @@
             <h>40</h>
             <from>20160901171453266</from>
             <to>20160913171742267</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="获取合同信息" type="1" alia="contract_info">
@@ -2442,9 +2537,10 @@
             <h>40</h>
             <from>20160902091446518</from>
             <to>20160902091545388</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902091618403</id>
@@ -2497,9 +2593,10 @@
             <h>40</h>
             <from>20160902091618403</from>
             <to>20160902091902146</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160902091910878</id>
@@ -2509,9 +2606,10 @@
             <h>40</h>
             <from>20160902091902146</from>
             <to>20160902091828912</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902091915358</id>
@@ -2534,9 +2632,10 @@
             <h>40</h>
             <from>20160902091828912</from>
             <to>20160902091915358</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902091924758</id>
@@ -2561,9 +2660,10 @@
             <h>40</h>
             <from>20160902091915358</from>
             <to>20160902091924758</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902091932093</id>
@@ -2586,9 +2686,10 @@
             <h>40</h>
             <from>20160902091924758</from>
             <to>20160902091932093</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160905094430779</id>
@@ -2611,9 +2712,10 @@
             <h>40</h>
             <from>20160902091446518</from>
             <to>20160905094430779</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160905094502994</id>
@@ -2623,9 +2725,10 @@
             <h>40</h>
             <from>20160905094430779</from>
             <to>20160902091618403</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171714709</id>
@@ -2647,9 +2750,10 @@
             <h>40</h>
             <from>20160902091545388</from>
             <to>20160913171714709</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160919155501340</id>
@@ -2672,9 +2776,10 @@
             <h>40</h>
             <from>20160902091418839</from>
             <to>20160919155501340</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160919155506916</id>
@@ -2684,9 +2789,10 @@
             <h>40</h>
             <from>20160919155501340</from>
             <to>20160902091446518</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="获取确认类型" type="1" alia="affirm_types">
@@ -2727,9 +2833,10 @@
             <h>40</h>
             <from>20160902090702347</from>
             <to>20160902090729362</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902090802529</id>
@@ -2752,9 +2859,10 @@
             <h>40</h>
             <from>20160902090729362</from>
             <to>20160902090802529</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902090816585</id>
@@ -2779,9 +2887,10 @@
             <h>40</h>
             <from>20160902090729362</from>
             <to>20160902090816585</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160902090914039</id>
@@ -2804,9 +2913,10 @@
             <h>40</h>
             <from>20160902090816585</from>
             <to>20160902090914039</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171651717</id>
@@ -2828,9 +2938,10 @@
             <h>40</h>
             <from>20160902090802529</from>
             <to>20160913171651717</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="退出登录" type="1" alia="quit_login">
@@ -2868,9 +2979,10 @@
             <h>40</h>
             <from>20160906085947894</from>
             <to>20160906090058515</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160906090554843</id>
@@ -2893,9 +3005,10 @@
             <h>40</h>
             <from>20160906090058515</from>
             <to>20160906090554843</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="修改上报数据" type="1" alia="report_edit">
@@ -2945,9 +3058,10 @@
             <h>40</h>
             <from>20160907092633104</from>
             <to>20160907110319669</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160907110322229</id>
@@ -2957,9 +3071,10 @@
             <h>40</h>
             <from>20160907110319669</from>
             <to>20160907092702663</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="添加上报数据" type="1" alia="report_add">
@@ -3009,9 +3124,10 @@
             <h>40</h>
             <from>20160907110042002</from>
             <to>20160907110145424</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160921110035709</id>
@@ -3033,9 +3149,10 @@
             <h>40</h>
             <from>20160907110145424</from>
             <to>20160921110035709</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160921110048612</id>
@@ -3045,9 +3162,10 @@
             <h>40</h>
             <from>20160921110035709</from>
             <to>20160907110054953</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="上传附件" type="1" alia="upload">
@@ -3158,9 +3276,10 @@
             <h>40</h>
             <from>20160908152448798</from>
             <to>20160913111253945</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913111333112</id>
@@ -3170,9 +3289,10 @@
             <h>40</h>
             <from>20160913111253945</from>
             <to>20160913111256729</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913111333872</id>
@@ -3182,9 +3302,10 @@
             <h>40</h>
             <from>20160913111256729</from>
             <to>20160912100935121</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913112151777</id>
@@ -3209,9 +3330,10 @@
             <h>40</h>
             <from>20160913112151777</from>
             <to>20160908153851006</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913144205453</id>
@@ -3236,9 +3358,10 @@
             <h>40</h>
             <from>20160913112151777</from>
             <to>20160913144205453</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$json_result==true"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$json_result==true"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913154548091</id>
@@ -3261,9 +3384,10 @@
             <h>40</h>
             <from>20160912100935121</from>
             <to>20160913154548091</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913154603355</id>
@@ -3273,9 +3397,10 @@
             <h>40</h>
             <from>20160913154548091</from>
             <to>20160908153049028</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913154606395</id>
@@ -3298,9 +3423,10 @@
             <h>40</h>
             <from>20160908153049028</from>
             <to>20160913154606395</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913154805383</id>
@@ -3310,9 +3436,10 @@
             <h>40</h>
             <from>20160913154606395</from>
             <to>20160908153851006</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913155557698</id>
@@ -3322,9 +3449,10 @@
             <h>40</h>
             <from>20160913154606395</from>
             <to>20160913112151777</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913155638258</id>
@@ -3346,9 +3474,10 @@
             <h>40</h>
             <from>20160913144205453</from>
             <to>20160913155638258</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913155718153</id>
@@ -3370,9 +3499,10 @@
             <h>40</h>
             <from>20160908153851006</from>
             <to>20160913155718153</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160918163200562</id>
@@ -3397,9 +3527,10 @@
             <h>40</h>
             <from>20160913155638258</from>
             <to>20160918163200562</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160918163755115</id>
@@ -3423,9 +3554,10 @@
             <h>40</h>
             <from>20160918163200562</from>
             <to>20160918163755115</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160918164053971</id>
@@ -3448,9 +3580,10 @@
             <h>40</h>
             <from>20160918163755115</from>
             <to>20160918164053971</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160918164130194</id>
@@ -3460,9 +3593,10 @@
             <h>40</h>
             <from>20160918164053971</from>
             <to>20160908153846102</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="删除附件" type="1" alia="delete">
@@ -3516,9 +3650,10 @@
             <h>40</h>
             <from>20160913143439473</from>
             <to>20160913143532013</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913143558223</id>
@@ -3543,9 +3678,10 @@
             <h>40</h>
             <from>20160913143439473</from>
             <to>20160913143558223</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913143623391</id>
@@ -3568,9 +3704,10 @@
             <h>40</h>
             <from>20160913143558223</from>
             <to>20160913143532013</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171457976</id>
@@ -3592,9 +3729,10 @@
             <h>40</h>
             <from>20160913143532013</from>
             <to>20160913171457976</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160918160631459</id>
@@ -3618,9 +3756,10 @@
             <h>40</h>
             <from>20160913141402075</from>
             <to>20160918160631459</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160918160652091</id>
@@ -3630,9 +3769,10 @@
             <h>40</h>
             <from>20160918160631459</from>
             <to>20160913143439473</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160918164238353</id>
@@ -3655,9 +3795,10 @@
             <h>40</h>
             <from>20160913143558223</from>
             <to>20160918164238353</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$json_result==true"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$json_result==true"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160918164302055</id>
@@ -3667,9 +3808,10 @@
             <h>40</h>
             <from>20160918164238353</from>
             <to>20160913143623391</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="提交" type="1" alia="commit">
@@ -3710,9 +3852,10 @@
             <h>40</h>
             <from>20160913143747892</from>
             <to>20160913143816059</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913143846227</id>
@@ -3735,9 +3878,10 @@
             <h>40</h>
             <from>20160913143816059</from>
             <to>20160913143846227</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913143909922</id>
@@ -3762,9 +3906,10 @@
             <h>40</h>
             <from>20160913143816059</from>
             <to>20160913143909922</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913144039104</id>
@@ -3787,9 +3932,10 @@
             <h>40</h>
             <from>20160913143909922</from>
             <to>20160913144039104</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$json_result==true"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$json_result==true"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160913144050087</id>
@@ -3799,9 +3945,10 @@
             <h>40</h>
             <from>20160913143909922</from>
             <to>20160913143846227</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160913171550679</id>
@@ -3823,9 +3970,10 @@
             <h>40</h>
             <from>20160913143846227</from>
             <to>20160913171550679</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="提交前确认" type="1" alia="commit_sure">
@@ -3891,9 +4039,10 @@
             <h>40</h>
             <from>20160914100505447</from>
             <to>20160914101448494</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160914101452398</id>
@@ -3903,9 +4052,10 @@
             <h>40</h>
             <from>20160914101448494</from>
             <to>20160914100652068</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160914103541146</id>
@@ -3928,9 +4078,10 @@
             <h>40</h>
             <from>20160914100652068</from>
             <to>20160914103541146</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160914103732176</id>
@@ -3940,9 +4091,10 @@
             <h>40</h>
             <from>20160914103541146</from>
             <to>20160914100730982</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$status==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$status==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160914103822998</id>
@@ -3967,9 +4119,10 @@
             <h>40</h>
             <from>20160914103541146</from>
             <to>20160914103822998</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160914104757910</id>
@@ -3993,9 +4146,10 @@
             <h>40</h>
             <from>20160914103822998</from>
             <to>20160914104757910</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$message==0"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$message==0"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160914104916468</id>
@@ -4019,9 +4173,10 @@
             <h>40</h>
             <from>20160914103822998</from>
             <to>20160914104916468</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$message==1"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$message==1"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160914105029698</id>
@@ -4043,9 +4198,10 @@
             <h>40</h>
             <from>20160914103822998</from>
             <to>20160914105029698</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$message==accessoryNo"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$message==accessoryNo"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160914105144736</id>
@@ -4067,9 +4223,10 @@
             <h>40</h>
             <from>20160914103822998</from>
             <to>20160914105144736</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="else"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="else"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="上拉刷新" type="1" alia="report_list_new">
@@ -4123,9 +4280,10 @@
             <h>40</h>
             <from>20160920090524020</from>
             <to>20160920090637626</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920091005982</id>
@@ -4149,9 +4307,10 @@
             <h>40</h>
             <from>20160920090637626</from>
             <to>20160920091005982</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160920091120041</id>
@@ -4161,9 +4320,10 @@
             <h>40</h>
             <from>20160920091005982</from>
             <to>20160920090615698</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920091206497</id>
@@ -4186,9 +4346,10 @@
             <h>40</h>
             <from>20160920090615698</from>
             <to>20160920091206497</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="下拉刷新" type="1" alia="report_list_next">
@@ -4227,9 +4388,10 @@
             <h>40</h>
             <from>20160920091958795</from>
             <to>20160920092034202</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920092206152</id>
@@ -4266,9 +4428,10 @@
             <h>40</h>
             <from>20160920092206152</from>
             <to>20160920092229607</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920102639739</id>
@@ -4290,9 +4453,10 @@
             <h>40</h>
             <from>20160920092034202</from>
             <to>20160920102639739</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <Line type="LineView">
             <id>20160920102656194</id>
@@ -4302,9 +4466,10 @@
             <h>40</h>
             <from>20160920102639739</from>
             <to>20160920092206152</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="检查更新" type="1" alia="check_version">
@@ -4343,9 +4508,10 @@
             <h>40</h>
             <from>20160920110027395</from>
             <to>20160920110106330</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920110309214</id>
@@ -4369,9 +4535,10 @@
             <h>40</h>
             <from>20160920110106330</from>
             <to>20160920110309214</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value="$version&lt;&gt;2"/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value="$version&lt;&gt;2"/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
     <item name="更新版本" type="1" alia="update_version">
@@ -4410,9 +4577,10 @@
             <h>40</h>
             <from>20160920115005813</from>
             <to>20160920115026987</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
         <view type="IconView">
             <id>20160920115055531</id>
@@ -4434,9 +4602,10 @@
             <h>40</h>
             <from>20160920115026987</from>
             <to>20160920115055531</to>
-            <condition>
-                <property name="value" title="条件" type="0" args="" value=""/>
-            </condition>
+            <linedata>
+                <property name="condition" title="条件" type="0" args="" value=""/>
+                <property name="isint" title="数字" type="1" args="$boolean" value=""/>
+            </linedata>
         </Line>
     </item>
 </business>
