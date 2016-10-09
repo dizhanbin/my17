@@ -521,7 +521,7 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
     {
         MProperty * mp = new MProperty();
 
-        mp->p_name = "value";
+        mp->p_name = "condition";
         mp->p_title = "条件";
         mp->p_type = 0;
       this->properties.append(mp);

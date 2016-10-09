@@ -24,8 +24,8 @@ class View;
 //#define DATA_OUT_DIR( arg ) QString("./out/").append(arg)
 
 
-#define DATA_DIR(arg) QString("/Users/dizhanbin/work/17/my17/17data/").append(arg)
-#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/17out/").append(arg)
+#define DATA_DIR(arg) QString("/Users/dizhanbin/work/qt/17data/").append(arg)
+#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/qt/17out/").append(arg)
 
 
 
