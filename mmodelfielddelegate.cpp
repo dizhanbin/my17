@@ -106,11 +106,14 @@ QWidget *MModelFieldDelegate::createEditor(QWidget *parent,
         {
             QComboBox *comBox = new QComboBox(parent);
 
-            comBox->addItem( RP->model_field_type_index(0) );
-            comBox->addItem( RP->model_field_type_index(1) );
-            comBox->addItem( RP->model_field_type_index(2) );
-            comBox->addItem( RP->model_field_type_index(3) );
-            comBox->addItem( RP->model_field_type_index(4) );
+
+            for(int i=0;i<model_type_count;i++)
+            {
+
+                comBox->addItem( RP->model_field_type_index(i) );
+
+            }
+
 
             //comBox->setCurrentIndex( field_type );
 

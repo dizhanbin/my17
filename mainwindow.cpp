@@ -434,6 +434,8 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
         case my17::event_req_business_item_selected:
         {
 
+            NLog::i("event_req_business_item_selected item");
+
             while( ui->right_bottom->rowCount()>0 )
                 ui->right_bottom->removeRow(0);
 
@@ -449,10 +451,12 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
                 ui->right_bottom->setItemDelegate(mpd);
 
 
-                QString  text = "提示：\n ";
-                text.append(view->getTopDescript().toStdString().c_str());
-                ui->right_top->setText(text);
+                //QString  text = "提示：\n ";
+                //text.append(view->getTopDescript().toStdString().c_str());
+                //ui->right_top->setText(text);
             }
+
+             NLog::i("event_req_business_item_selected end");
 
         }
             return my17::todo_done_only;

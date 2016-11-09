@@ -24,8 +24,12 @@ class View;
 //#define DATA_OUT_DIR( arg ) QString("./out/").append(arg)
 
 
-#define DATA_DIR(arg) QString("/Users/dizhanbin/work/qt/17data/").append(arg)
-#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/qt/17out/").append(arg)
+//#define DATA_DIR(arg) QString("/Users/dizhanbin/work/qt/17data/").append(arg)
+//#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/qt/17out/").append(arg)
+
+#define DATA_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../17data/").append(arg)
+#define DATA_OUT_DIR( arg ) QString(QCoreApplication::applicationDirPath()).append("/../../../17out/").append(arg)
+
 
 
 
@@ -40,6 +44,12 @@ class View;
 #define model_field_type_float "float"
 #define model_field_type_array "List"
 #define model_field_type_object "Object"
+#define model_field_type_long "long"
+#define model_field_type_double "double"
+
+#define model_type_count 7
+
+
 
 #define model_data_none "none"
 
@@ -187,7 +197,7 @@ namespace my17 {
             event_req_model_selected,
             event_req_const_selected,
 
-            event_req_model_data_changed,//10
+            event_req_model_data_changed,//11
 
             event_req_model_field_selected,
             event_req_model_field_changed,//index
@@ -298,6 +308,8 @@ namespace my17 {
                     case 2: return model_field_type_float;
                     case 3: return model_field_type_array;
                     case 4: return model_field_type_object;
+                    case 5: return model_field_type_long;
+                    case 6:  return model_field_type_double;
                   }
                 return "index out range";
             }
@@ -438,6 +450,7 @@ namespace my17 {
                    delete urls.takeFirst();
                 while( !forms.isEmpty() )
                     delete forms.takeFirst();
+                cleanGolableString();
 
 
             }
@@ -455,6 +468,10 @@ namespace my17 {
             QVector<MLine *> formlines;
 
             QVector<MData *> projectinfos;
+
+            //QVector<MData *> global_strings;
+
+            QMap<QString,MData*> qlobal_strings;
 
 
             MBusinessDelegate * newBusiness()
@@ -573,6 +590,8 @@ namespace my17 {
            bool createModels();
            bool createProjectInfos();
 
+           bool createStrings();
+
            bool createFile(const QString & path,const QString & strs);
 
 
@@ -581,6 +600,29 @@ namespace my17 {
           MData * getProjectInfo(const QString& key);
 
 
+          void cleanGolableString(){
+
+
+              qlobal_strings.clear();
+
+
+
+          }
+          void addGolableString(const QString& key,const QString& desc){
+
+
+              if( !qlobal_strings.contains(key) )
+              {
+                  MData * mdata = new MData();
+                  mdata->key = key;
+                  mdata->descript = desc;
+
+                  qlobal_strings.insert(key,mdata);
+              }
+
+
+
+          }
           const QString& getPropertyValue(const QString& args,const QString& value)
            {
 

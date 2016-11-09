@@ -22,6 +22,7 @@ R* R::getInstance()
 void R::loadElements()
 {
 
+
     QFile file( DATA_DIR ( "elements.xml"));
     if(file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
@@ -1323,7 +1324,7 @@ int  D::getModelIndexById(const QString &id)
 
          MEventDelegate * me =  DP->getEventById( str_event );
 
-
+         if( me && me->event_name.length() > 0 )
          strs.append("          case ").append(me->event_name).append(": return ")
                  .append(  str_android  ).append(".class;\n");
 
@@ -1404,6 +1405,7 @@ int  D::getModelIndexById(const QString &id)
              MEventDelegate * me =  DP->getEventById( str_event );
 
 
+             if( me && me->event_name.length() > 0 )
              strs.append("          case ").append(me->event_name).append(": return @\"")
                      .append(  str_android  ).append("\";\n");
 
@@ -1704,6 +1706,75 @@ int  D::getModelIndexById(const QString &id)
  }
 
 
+ bool D::createStrings()
+ {
+
+
+     if(true)  {
+
+
+       //android
+       QString path = DATA_OUT_DIR("java/");
+       path.append("Strings.java");
+
+
+       QString strs = "/*create my 17 */\n";
+
+
+       MData * data = DP->getProjectInfo("#package");
+       strs.append("package ").append(data->value).append(".common;\n");
+
+       strs.append("import ").append(data->value).append(".R;\n");
+
+       strs.append("public class ").append("Strings").append("{\n\n");
+
+       strs.append("  public static int getStringByKey(String k){\n\n");
+
+       strs.append("        switch(k){\n");
+
+       QMap<QString,MData*>::iterator it;
+       for(it = qlobal_strings.begin();it != qlobal_strings.end();++it)
+       {
+
+           MData * data = it.value();
+
+
+           strs.append("           case ").append("\"").append(data->key).append("\": return R.string.").append(data->key.right(data->key.length()-2)).append(" ;//");
+           strs.append(data->descript).append("\n");
+       }
+
+
+       /*
+       for(int i=0;i< global_strings.size();i++ )
+       {
+           MData * data = global_strings.at(i);
+       strs.append("           case ").append("\"").append(data->key).append("\": return R.string. ;//");
+       strs.append(data->descript).append("\n");
+       }
+        */
+
+       strs.append("        }\n");
+       strs.append("        return 0;\n\n");
+       strs.append("  }\n\n");
+       strs.append("}\n");
+
+       QFile file(path);
+       if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+       {
+
+
+           QTextStream out(&file);
+           out<<strs;
+
+
+       }
+       else
+           return false;
+      }
+
+
+ }
+
  bool D::createBusiness()
  {
 
@@ -1918,6 +1989,9 @@ if( true )
         return false;
     }
      **/
+
+     cleanGolableString();
+
      QString dirstr_android = DATA_OUT_DIR("java");
      QDir dir_android(dirstr_android);
      if( !dir_android.exists() )
@@ -1956,6 +2030,8 @@ if( true )
             return "create business error";
       createProjectInfos() ;
             strs.append("create project success.\n");
+    if( createStrings() )
+            strs.append("create Strings success.\n");
 
     return strs;
 

@@ -74,11 +74,14 @@ void  IconView::paint(QPaintEvent * event,QWidget * widget)
 void IconView::createCodes(QXmlStreamWriter &writer)
 {
 
-
+   NLog::i("createCodes : before");
 
     writer.writeAttribute("id",viewid);
 
     const MElement * ele = RP->getElement(m_element_id);
+
+
+    NLog::i("element :%s",ele->name.toStdString().c_str() );
 
     writer.writeAttribute("c_android",ele->c_android);
 

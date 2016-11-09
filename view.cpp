@@ -151,14 +151,16 @@ void View::setRoot(bool is)
            if( p->p_type == 1  )
            {
 
-
-
                writer.writeAttribute("value",DP->getPropertyValue(p->p_args,p->p_value));
            }
            else
            {
                writer.writeAttribute("value",p->p_value);
+               if( p->p_value.startsWith("R:") )
+               {
 
+                   DP->addGolableString(p->p_value,getDescript());
+               }
            }
 
            writer.writeEndElement();
