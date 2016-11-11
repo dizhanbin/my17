@@ -92,33 +92,58 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
 
 
             View * view = mViewForm->getRootView()->getFocus();
+
+
             if( view )
             {
 
-                void * data = view->getData();
-                if( data )
+                if( view->isLine() )
                 {
-                    MForm * mf = static_cast<MForm*>(data);
-                    if( mf )
+
+
+
+
+
+                    for(int i=DP->formlines.count()-1;i>-1;i--)
                     {
-
-                        for(int i=DP->formlines.count()-1;i>-1;i--)
-                        {
-                            MLine * line = DP->formlines.at(i);
-                            if( line->from == mf->formid || line->to == mf->formid )
-                            {
-                                DP->formlines.takeAt(i);
-                            }
-
-                        }
-
-                        int index = DP->forms.indexOf( mf );
-                        if( index > -1 )
-                            DP->forms.takeAt(index);
+                        MLine * line = DP->formlines.at(i);
+                        if( view->viewid == line->lineid )
+                            DP->formlines.takeAt(i);
 
                     }
 
+
                 }
+                else
+                {
+
+                    void * data = view->getData();
+                    if( data )
+                    {
+                        MForm * mf = static_cast<MForm*>(data);
+                        if( mf )
+                        {
+
+                            for(int i=DP->formlines.count()-1;i>-1;i--)
+                            {
+                                MLine * line = DP->formlines.at(i);
+                                if( line->from == mf->formid || line->to == mf->formid )
+                                {
+                                    DP->formlines.takeAt(i);
+                                }
+
+                            }
+
+                            int index = DP->forms.indexOf( mf );
+                            if( index > -1 )
+                                DP->forms.takeAt(index);
+
+                        }
+                    }
+
+
+                }
+
 
                 mViewForm->getRootView()->removeView(view);
                 delete view;
