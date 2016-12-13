@@ -8,7 +8,9 @@ DocFormEditor::DocFormEditor(QWidget *parent) :
     ui->setupUi(this);
 
     mViewForm = new ViewForms(ui->mScroll);
-    mViewForm->setGeometry(QRect(0, 0, 1200, 1200));
+    mViewForm->setGeometry(QRect(0, 0, 2000, 2000));
+    ui->mScroll->setWidget(mViewForm);
+     ui->mScroll->setWidgetResizable(false);
     setData((void*)1);
 
 }
@@ -24,8 +26,8 @@ void DocFormEditor::resizeEvent(QResizeEvent * qre)
 {
 
 
-   mViewForm->setGeometry(0,0,size().width(),size().height());
-   mViewForm->repaint();
+  // mViewForm->setGeometry(0,0,size().width(),size().height());
+  // mViewForm->repaint();
 }
 
 

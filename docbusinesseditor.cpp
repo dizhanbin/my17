@@ -16,7 +16,7 @@ DocBusinessEditor::DocBusinessEditor(QWidget *parent) :
 
     ui->mScroll->setWidget(mViewDoc);
 
-    mViewDoc->setGeometry(QRect(0, 0, 800, 900));
+    mViewDoc->setGeometry(QRect(0, 0, 2000, 2000));
 
   //  ui->mScroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     ui->mScroll->setWidgetResizable(false);
@@ -109,8 +109,8 @@ void DocBusinessEditor::setData(void *d)
  {
 
 
-    mViewDoc->setGeometry(0,0,size().width(),size().height());
-    mViewDoc->repaint();
+   // mViewDoc->setGeometry(0,0,size().width(),size().height());
+   // mViewDoc->repaint();
    // ui->mScroll->setGeometry(0,0,size().width()-100,size().height()-100);
 
 

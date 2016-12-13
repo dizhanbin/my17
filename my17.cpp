@@ -1335,6 +1335,37 @@ int  D::getModelIndexById(const QString &id)
      strs.append("          }\n");
      strs.append("      return null;\n");
      strs.append("  }\n");
+
+
+
+
+     strs.append("  public static String getFormName(Event event){\n");
+     strs.append("      switch(event){\n");
+
+     for(int i=0;i<forms.count();i++)
+     {
+
+         MForm * form = forms.at(i);
+
+
+         const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
+         const QString & str_name = RP->getPropertyByName(form->properties,"descript")->p_value;
+
+
+
+         MEventDelegate * me =  DP->getEventById( str_event );
+
+         if( me && me->event_name.length() > 0 )
+         strs.append("          case ").append(me->event_name).append(": return \"")
+                 .append(  str_name  ).append("\";\n");
+
+
+
+     }
+     strs.append("          }\n");
+     strs.append("      return \"\";\n");
+     strs.append("  }\n");
+
      strs.append("}\n");
 
 
