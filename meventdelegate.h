@@ -23,6 +23,26 @@ public:
     QString event_name;
     int event_type;
     QString event_descript;
+
+    bool operator >(const MEventDelegate * arg){
+        return event_name.compare(arg->event_name)>0;
+    }
+
+    bool operator <(const MEventDelegate * arg){
+        return event_name.compare(arg->event_name)<0;
+    }
+    bool operator ==(const MEventDelegate * arg){
+        return event_name.compare(arg->event_name)==0;
+    }
+
+    bool operator >=(const MEventDelegate * arg){
+        return event_name.compare(arg->event_name)>=0;
+    }
+    bool operator <=(const MEventDelegate * arg){
+        return event_name.compare(arg->event_name)<=0;
+    }
+
+
 signals:
 
 public slots:

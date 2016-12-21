@@ -249,6 +249,13 @@ bool D::saveEvents()
     return false;
 
 }
+
+bool event_comparator( MEventDelegate *s1, const MEventDelegate *s2)
+ {
+     return s1->operator <( s2 );
+ }
+
+
 void D::loadEvents()
 {
  QFile file(DATA_DIR ("events.xml"));
@@ -311,10 +318,19 @@ void D::loadEvents()
 
       file.close();
 
+
+      qSort(events.begin(),events.end(),event_comparator);
+      //qSort(events.begin(),events.end(),event_comparator);
+
+
  }
 
 
 }
+
+
+
+
 
 bool D::saveBusiness()
 {
@@ -352,6 +368,13 @@ bool D::saveBusiness()
 
 
 }
+
+bool business_comparator( MBusinessDelegate *s1, const MBusinessDelegate *s2)
+ {
+     return s1->name.compare(s2->name)>0;
+ }
+
+
 void D::loadBusiness()
 {
 
@@ -436,6 +459,8 @@ void D::loadBusiness()
         file.close();
 
     }
+
+    qSort(business.begin(),business.end(),business_comparator);
 
 
 

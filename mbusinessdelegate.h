@@ -30,6 +30,12 @@ public:
 
     ViewGroup * viewgroup;
 
+
+
+
+
+
+
 signals:
 
 public slots:
