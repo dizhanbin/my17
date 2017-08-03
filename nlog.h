@@ -28,5 +28,5 @@ public slots:
 };
 
 
-#define logi(arg) NLog::i(arg)
+#define logi(...) NLog::i(__VA_ARGS__)
 #endif // NLOG_H

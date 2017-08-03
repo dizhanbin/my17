@@ -997,7 +997,7 @@ int  D::getModelIndexById(const QString &id)
 
      MData * data = DP->getProjectInfo("#package");
 
-     strs.append("package ").append(data->value).append(".common;\n");
+     strs.append("package ").append(data->value).append(source_package_common).append(";\n");
 
      strs.append("public enum Event{\n\n");
 
@@ -1327,7 +1327,7 @@ int  D::getModelIndexById(const QString &id)
 
      MData * data = DP->getProjectInfo("#package");
 
-     strs.append("package ").append(data->value).append(".common;\n");
+    strs.append("package ").append(data->value).append(source_package_common).append(";\n");
 
      strs.append("import ").append(data->value).append(".forms.*;\n");
 
@@ -1778,7 +1778,7 @@ int  D::getModelIndexById(const QString &id)
 
 
        MData * data = DP->getProjectInfo("#package");
-       strs.append("package ").append(data->value).append(".common;\n");
+       strs.append("package ").append(data->value).append(source_package_common).append(";\n");
 
        strs.append("import ").append(data->value).append(".R;\n");
 
@@ -1843,7 +1843,7 @@ if( true )
 
      MData * data = DP->getProjectInfo("#package");
 
-     event_xmls.append("package ").append(data->value).append(".common;\n");
+     event_xmls.append("package ").append(data->value).append(source_package_common).append(";\n");
 
      event_xmls.append("public class FlowBoxs{\n");
      event_xmls.append("    public static String getBox(Event event){\n");
