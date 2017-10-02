@@ -68,12 +68,20 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
             mp3->p_title = "ios类";
             mp3->p_type = 0;
 
+            MProperty * mp4 = new MProperty();
+            mp4->p_name = "formtype";
+            mp4->p_title = "页面类型";
+            mp4->p_type = 1;
+            mp4->p_args = "$formtype";
+
+
 
 
             mform->properties.push_back(mp0);
             mform->properties.push_back(mp2);
             mform->properties.push_back(mp3);
             mform->properties.push_back(mp1);
+            mform->properties.push_back(mp4);
 
             fv->form = mform;
 

@@ -49,7 +49,7 @@ class View;
 
 #define model_type_count 7
 
-#define source_package_common ".common"
+#define source_package_common ".data"
 
 
 #define model_data_none "none"

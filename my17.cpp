@@ -38,33 +38,33 @@ void R::loadElements()
             QStringRef  name = reader.name();
             if( reader.isStartElement() )
             {
-              if( name == "element" )
-              {
-                  ele = new MElement();
-                  ele->ele_id = reader.attributes().value("id").toString();
-                  ele->name = reader.attributes().value("name").toString();
-                  ele->iconpath = reader.attributes().value("iconpath").toString();
-                  ele->descript = reader.attributes().value("descript").toString();
-                  if( reader.attributes().hasAttribute("c_android") )
-                      ele->c_android = reader.attributes().value("c_android").toString();
-                  if( reader.attributes().hasAttribute("c_ios") )
-                      ele->c_ios = reader.attributes().value("c_ios").toString();
+                if( name == "element" )
+                {
+                    ele = new MElement();
+                    ele->ele_id = reader.attributes().value("id").toString();
+                    ele->name = reader.attributes().value("name").toString();
+                    ele->iconpath = reader.attributes().value("iconpath").toString();
+                    ele->descript = reader.attributes().value("descript").toString();
+                    if( reader.attributes().hasAttribute("c_android") )
+                        ele->c_android = reader.attributes().value("c_android").toString();
+                    if( reader.attributes().hasAttribute("c_ios") )
+                        ele->c_ios = reader.attributes().value("c_ios").toString();
 
 
-              }
-              else if( name == "property" )
-              {
+                }
+                else if( name == "property" )
+                {
 
-                   MProperty * mp = new MProperty();
-                   ele->properties.push_back(mp);
+                    MProperty * mp = new MProperty();
+                    ele->properties.push_back(mp);
 
-                   mp->p_name = reader.attributes().value("name").toString();
-                   mp->p_title = reader.attributes().value("title").toString();
-                   mp->p_type = reader.attributes().value("type").toString().toInt();
-                   mp->p_args = reader.attributes().value("args").toString();
-                   mp->p_value =  reader.attributes().value("value").toString();
+                    mp->p_name = reader.attributes().value("name").toString();
+                    mp->p_title = reader.attributes().value("title").toString();
+                    mp->p_type = reader.attributes().value("type").toString().toInt();
+                    mp->p_args = reader.attributes().value("args").toString();
+                    mp->p_value =  reader.attributes().value("value").toString();
 
-              }
+                }
             }
             else if( reader.isEndElement() )
             {
@@ -112,8 +112,8 @@ void D::loadModel()
             QStringRef  name = reader.name();
             if( reader.isStartElement() )
             {
-              if( name == "model" )
-              {
+                if( name == "model" )
+                {
                     mmd =  newModel();
 
                     mmd->name = reader.attributes().value("name").toString();
@@ -122,33 +122,33 @@ void D::loadModel()
                     else
                         mmd->id = RP->getId();
 
-              }
-              else if( name== "field" )
-              {
+                }
+                else if( name== "field" )
+                {
                     field = new MModelFieldDelegate();
                     mmd->fields.push_back(field);
-              }
-              else if( name == "name")
-              {
-                  field->field_name = reader.readElementText();
+                }
+                else if( name == "name")
+                {
+                    field->field_name = reader.readElementText();
 
-              }else if( name == "type")
-              {
+                }else if( name == "type")
+                {
 
-                field->field_type = reader.readElementText().toInt();
+                    field->field_type = reader.readElementText().toInt();
 
-              }
-              else if( name == "value" )
-              {
-                  field->field_value = reader.readElementText();
+                }
+                else if( name == "value" )
+                {
+                    field->field_value = reader.readElementText();
 
-              }
-              else if( name == "descript" )
-              {
+                }
+                else if( name == "descript" )
+                {
 
-                field->field_descript = reader.readElementText();
+                    field->field_descript = reader.readElementText();
 
-              }
+                }
 
 
             }
@@ -183,7 +183,7 @@ bool D::saveModel()
         writer.writeStartDocument();
         writer.writeStartElement("models");
 
-       for(int i=0;i<models.size();i++)
+        for(int i=0;i<models.size();i++)
         {
 
 
@@ -227,9 +227,9 @@ bool D::saveEvents()
         writer.writeStartDocument();
         writer.writeStartElement("events");
 
-       for(int i=0;i<events.size();i++)
+        for(int i=0;i<events.size();i++)
         {
-           MEventDelegate *event = events.at(i);
+            MEventDelegate *event = events.at(i);
             writer.writeStartElement("event");
             if( event->event_id.length() == 0 )
                 event->event_id = RP->getId();
@@ -251,79 +251,145 @@ bool D::saveEvents()
 }
 
 bool event_comparator( MEventDelegate *s1, const MEventDelegate *s2)
- {
-     return s1->operator <( s2 );
- }
+{
+    return s1->operator <( s2 );
+}
 
 
 void D::loadEvents()
 {
- QFile file(DATA_DIR ("events.xml"));
- if(file.open(QIODevice::ReadOnly | QIODevice::Text))
- {
+    QFile file(DATA_DIR ("events.xml"));
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
 
-     QXmlStreamReader reader(&file);
-     reader.readNext();
+        QXmlStreamReader reader(&file);
+        reader.readNext();
 
-     MEventDelegate * med = NULL;
+        MEventDelegate * med = NULL;
 
-     while( !reader.atEnd() )
-     {
-         QStringRef  name = reader.name();
-         if( reader.isStartElement() )
-         {
-           if( name == "event" )
-           {
-                 med = new MEventDelegate();
-                 events.push_back(med);
+        while( !reader.atEnd() )
+        {
+            QStringRef  name = reader.name();
+            if( reader.isStartElement() )
+            {
+                if( name == "event" )
+                {
+                    med = new MEventDelegate();
+                    events.push_back(med);
 
-           }
+                }
 
-           else if( name == "id")
-           {
-                med->event_id = reader.readElementText();
+                else if( name == "id")
+                {
+                    med->event_id = reader.readElementText();
 
-           }
-           else if( name == "name")
-           {
-                med->event_name = reader.readElementText();
+                }
+                else if( name == "name")
+                {
+                    med->event_name = reader.readElementText();
 
-           }else if( name == "type")
-           {
+                }else if( name == "type")
+                {
 
-                med->event_type = reader.readElementText().toInt();
+                    med->event_type = reader.readElementText().toInt();
 
-           }
+                }
 
-           else if( name == "descript" )
-           {
+                else if( name == "descript" )
+                {
 
-             med->event_descript = reader.readElementText();
+                    med->event_descript = reader.readElementText();
 
-           }
-
-
-         }
-         else if( reader.isEndElement() )
-         {
+                }
 
 
-
-         }
+            }
+            else if( reader.isEndElement() )
+            {
 
 
 
-         reader.readNext();
-     }
-
-      file.close();
+            }
 
 
-      qSort(events.begin(),events.end(),event_comparator);
-      //qSort(events.begin(),events.end(),event_comparator);
+
+            reader.readNext();
+        }
+
+        file.close();
 
 
- }
+        qSort(events.begin(),events.end(),event_comparator);
+        //qSort(events.begin(),events.end(),event_comparator);
+
+
+
+    }
+
+
+    if( events.size() == 0 ){
+
+       MEventDelegate * med0 = new MEventDelegate();
+       med0->event_name = "SYS_DIALOG_INFO";
+       med0->event_type = T_SYS;
+       med0->event_descript = "消息提示框";
+
+       MEventDelegate * med1 = new MEventDelegate();
+       med1->event_name = "SYS_DIALOG_SURE";
+       med1->event_type = T_SYS;
+       med1->event_descript = "弹出确认对话框";
+
+       MEventDelegate * med2 = new MEventDelegate();
+       med2->event_name = "SYS_FORM_BACK";
+       med2->event_type = T_SYS;
+       med2->event_descript = "页面返回";
+
+
+       MEventDelegate * med3 = new MEventDelegate();
+       med3->event_name = "SYS_FROM_CLEAR";
+       med3->event_type = T_SYS;
+       med3->event_descript = "清空堆栈中所有页面";
+
+
+       MEventDelegate * med4 = new MEventDelegate();
+       med4->event_name = "SYS_NONE";
+       med4->event_type = T_SYS;
+       med4->event_descript = "空事件";
+
+
+       MEventDelegate * med5 = new MEventDelegate();
+       med5->event_name = "SYS_PUSH_TO_AND_CLEAR_ALL";
+       med5->event_type = T_SYS;
+       med5->event_descript = "进入并清除所有界面";
+
+       MEventDelegate * med6 = new MEventDelegate();
+       med6->event_name = "SYS_TOAST";
+       med6->event_type = T_SYS;
+       med6->event_descript = "提示信息";
+
+       MEventDelegate * med7 = new MEventDelegate();
+       med7->event_name = "SYS_WAITTING_HIDE";
+       med7->event_type = T_SYS;
+       med7->event_descript = "隐藏等待框";
+
+       MEventDelegate * med8 = new MEventDelegate();
+       med8->event_name = "SYS_WAITTING_SHOW";
+       med8->event_type = T_SYS;
+       med8->event_descript = "等待框";
+
+
+       events.push_back(med0);
+       events.push_back(med1);
+       events.push_back(med2);
+       events.push_back(med3);
+       events.push_back(med4);
+       events.push_back(med5);
+       events.push_back(med6);
+       events.push_back(med7);
+       events.push_back(med8);
+
+
+    }
 
 
 }
@@ -344,7 +410,7 @@ bool D::saveBusiness()
         writer.writeStartDocument();
         writer.writeStartElement("business");
 
-       for(int i=0;i<business.count();i++)
+        for(int i=0;i<business.count();i++)
         {
 
             writer.writeStartElement("item");
@@ -370,9 +436,9 @@ bool D::saveBusiness()
 }
 
 bool business_comparator( MBusinessDelegate *s1, const MBusinessDelegate *s2)
- {
-     return s1->name.compare(s2->name)>0;
- }
+{
+    return s1->name.compare(s2->name)>0;
+}
 
 
 void D::loadBusiness()
@@ -395,8 +461,8 @@ void D::loadBusiness()
             NLog::i("name %s",name.toString().toStdString().c_str() );
             if( reader.isStartElement() )
             {
-              if( name == "item" )
-              {
+                if( name == "item" )
+                {
 
 
                     med = newBusiness();
@@ -410,41 +476,41 @@ void D::loadBusiness()
                     else
                         med->type = 1;
 
-              }
-              else if( name == "view" )
-              {
-                 QString type = reader.attributes().value("type").toString();
-
-                 NLog::i("view type:%s",type.toStdString().c_str());
-
-                 View * view = createView(type );
-
-                if( !  view->load(reader) )
-                {
-                    NLog::i("read type:%s error",type.toStdString().c_str());
-                    return ;
                 }
-                med->viewgroup->addView(view);
+                else if( name == "view" )
+                {
+                    QString type = reader.attributes().value("type").toString();
 
-              }
-              else if( name == "Line" )
-              {
-                  View * view = createView("LineView");
+                    NLog::i("view type:%s",type.toStdString().c_str());
 
-                  med->viewgroup->addView(view);
-                 if( !  view->load(reader) )
-                 {
-                     NLog::i("read LineView error");
-                     return ;
-                 }
+                    View * view = createView(type );
 
-              }
+                    if( !  view->load(reader) )
+                    {
+                        NLog::i("read type:%s error",type.toStdString().c_str());
+                        return ;
+                    }
+                    med->viewgroup->addView(view);
+
+                }
+                else if( name == "Line" )
+                {
+                    View * view = createView("LineView");
+
+                    med->viewgroup->addView(view);
+                    if( !  view->load(reader) )
+                    {
+                        NLog::i("read LineView error");
+                        return ;
+                    }
+
+                }
 
             }else if( reader.isEndElement() )
             {
 
-                 if( name == "item" )
-                     dealLine(med);
+                if( name == "item" )
+                    dealLine(med);
             }
 
 
@@ -479,7 +545,7 @@ bool D::saveForms()
         writer.writeStartDocument();
         writer.writeStartElement("forms");
 
-       for(int i=0;i<forms.count();i++)
+        for(int i=0;i<forms.count();i++)
         {
 
             writer.writeStartElement("form");
@@ -529,42 +595,42 @@ bool D::saveForms()
 bool D::loadProperties(QList<MProperty *> & properties, QXmlStreamReader &reader )
 {
 
-      MProperty * mp = NULL;
-      while( true )
-      {
-          reader.readNext();
+    MProperty * mp = NULL;
+    while( true )
+    {
+        reader.readNext();
 
-          QString name = reader.name().toString();
+        QString name = reader.name().toString();
 
-          if( reader.isStartElement() )
-          {
-              if( name == "property" )
-              {
-                  mp = new MProperty();
-                  properties.push_back(mp);
+        if( reader.isStartElement() )
+        {
+            if( name == "property" )
+            {
+                mp = new MProperty();
+                properties.push_back(mp);
 
-                  mp->p_name = reader.attributes().value("name").toString();
-                  mp->p_title = reader.attributes().value("title").toString();
-                  mp->p_type = reader.attributes().value("type").toInt();
-                  mp->p_args = reader.attributes().value("args").toString();
-                  mp->p_value = reader.attributes().value("value").toString();
-
-
-
-              }
-          }
-          else if( reader.isEndElement() )
-          {
-
-              if( name == "data" || name == "condition" )
-
-                  return true;
-
-          }
+                mp->p_name = reader.attributes().value("name").toString();
+                mp->p_title = reader.attributes().value("title").toString();
+                mp->p_type = reader.attributes().value("type").toInt();
+                mp->p_args = reader.attributes().value("args").toString();
+                mp->p_value = reader.attributes().value("value").toString();
 
 
-      }
-      return true;
+
+            }
+        }
+        else if( reader.isEndElement() )
+        {
+
+            if( name == "data" || name == "condition" )
+
+                return true;
+
+        }
+
+
+    }
+    return true;
 
 
 }
@@ -607,45 +673,45 @@ void D::loadForms()
             QStringRef  name = reader.name();
             if( reader.isStartElement() )
             {
-              if( name == "form" )
-              {
+                if( name == "form" )
+                {
                     form = new MForm();
                     forms.push_back(form);
                     form->formid = reader.attributes().at(0).value().toString();
 
-              }
-              else if( name == "Line" )
-              {
+                }
+                else if( name == "Line" )
+                {
                     line = new MLine();
                     formlines.push_back(line);
                     line->lineid = reader.attributes().at(0).value().toString();
-              }
-              else if( name == "from" )
-              {
+                }
+                else if( name == "from" )
+                {
 
                     line->from = reader.readElementText();
-              }
-              else if( name == "to" )
-              {
+                }
+                else if( name == "to" )
+                {
 
                     line->to = reader.readElementText();
-              }
-              else if( name == "condition" )
-              {
-                 loadProperties(line->properties,reader);
-              }
-              else if( name == "data" )
-              {
-                 loadProperties(form->properties,reader);
-              }
-              else if( name == "x" )
-                  form->x = reader.readElementText().toInt();
-              else if( name == "y" )
-                  form->y = reader.readElementText().toInt();
-              else if( name == "w" )
-                  form->w = reader.readElementText().toInt();
-              else if( name == "h" )
-                  form->h = reader.readElementText().toInt();
+                }
+                else if( name == "condition" )
+                {
+                    loadProperties(line->properties,reader);
+                }
+                else if( name == "data" )
+                {
+                    loadProperties(form->properties,reader);
+                }
+                else if( name == "x" )
+                    form->x = reader.readElementText().toInt();
+                else if( name == "y" )
+                    form->y = reader.readElementText().toInt();
+                else if( name == "w" )
+                    form->w = reader.readElementText().toInt();
+                else if( name == "h" )
+                    form->h = reader.readElementText().toInt();
 
 
 
@@ -662,7 +728,7 @@ void D::loadForms()
             reader.readNext();
         }
 
-         file.close();
+        file.close();
 
     }
 }
@@ -740,7 +806,7 @@ bool D::saveProjectInfos()
         writer.writeStartDocument();
         writer.writeStartElement("project");
 
-       for(int i=0;i<projectinfos.size();i++)
+        for(int i=0;i<projectinfos.size();i++)
         {
             MData *md = projectinfos.at(i);
             writer.writeStartElement("data");
@@ -776,8 +842,8 @@ void D::loadProjectInfos()
             QStringRef  name = reader.name();
             if( reader.isStartElement() )
             {
-              if( name == "data" )
-              {
+                if( name == "data" )
+                {
                     MData  * data = new MData();
 
                     data->key = reader.attributes().value("key").toString();
@@ -786,7 +852,7 @@ void D::loadProjectInfos()
 
                     projectinfos.push_back(data);
 
-              }
+                }
 
             }
 
@@ -795,7 +861,24 @@ void D::loadProjectInfos()
             reader.readNext();
         }
 
-         file.close();
+        file.close();
+
+    }
+    else{
+        MData  * data_lib = new MData();
+        data_lib->key = "#package";
+        data_lib->value = "com.lrl.lrlib.data";
+        data_lib->descript = "lrlib package";
+
+
+        MData  * data_project = new MData();
+        data_project->key = "#project";
+        data_project->value = "com.*";
+        data_project->descript = "project package";
+
+
+        projectinfos.push_back(data_lib);
+        projectinfos.push_back(data_project);
 
     }
 
@@ -815,7 +898,7 @@ bool D::saveUrl()
         writer.writeStartDocument();
         writer.writeStartElement("urls");
 
-       for(int i=0;i<urls.size();i++)
+        for(int i=0;i<urls.size();i++)
         {
             MUrlDelegate *url = urls.at(i);
             writer.writeStartElement("url");
@@ -856,35 +939,35 @@ void D::loadUrl()
             QStringRef  name = reader.name();
             if( reader.isStartElement() )
             {
-              if( name == "url" )
-              {
+                if( name == "url" )
+                {
                     med = new MUrlDelegate();
                     urls.push_back(med);
 
 
-              }
-              else if( name == "id")
-              {
-                  med->url_id = reader.readElementText();
-              }
+                }
+                else if( name == "id")
+                {
+                    med->url_id = reader.readElementText();
+                }
 
-              else if( name == "name")
-              {
-                   med->url_name = reader.readElementText();
+                else if( name == "name")
+                {
+                    med->url_name = reader.readElementText();
 
-              }else if( name == "address")
-              {
+                }else if( name == "address")
+                {
 
-                   med->url_address =  reader.readElementText();
+                    med->url_address =  reader.readElementText();
 
-              }
+                }
 
-              else if( name == "descript" )
-              {
+                else if( name == "descript" )
+                {
 
-                med->url_descript = reader.readElementText();
+                    med->url_descript = reader.readElementText();
 
-              }
+                }
 
 
             }
@@ -894,7 +977,7 @@ void D::loadUrl()
             reader.readNext();
         }
 
-         file.close();
+        file.close();
 
     }
 
@@ -908,23 +991,23 @@ int  D::getModelIndexById(const QString &id)
 {
     if( id.length() == 0 )
         return -1;
-   for(int i=0;i<models.count();i++)
-   {
+    for(int i=0;i<models.count();i++)
+    {
 
-       if( models.at(i)->id == id )
-           return i;
+        if( models.at(i)->id == id )
+            return i;
 
-   }
+    }
     return -1;
 
 
 }
 
- int D::getEventIndexById(const QString &id)
- {
+int D::getEventIndexById(const QString &id)
+{
 
-     if( id.length() == 0 )
-         return -1;
+    if( id.length() == 0 )
+        return -1;
     for(int i=0;i<events.count();i++)
     {
 
@@ -932,14 +1015,14 @@ int  D::getModelIndexById(const QString &id)
             return i;
 
     }
-     return -1;
+    return -1;
 
- }
+}
 
- int D::getUrlIndexById(const QString &id)
- {
-     if( id.length() == 0 )
-         return -1;
+int D::getUrlIndexById(const QString &id)
+{
+    if( id.length() == 0 )
+        return -1;
     for(int i=0;i<urls.count();i++)
     {
 
@@ -947,127 +1030,125 @@ int  D::getModelIndexById(const QString &id)
             return i;
 
     }
-     return -1;
+    return -1;
 
 
- }
+}
 
 
- MModelDelegate * D::getModelById(const QString &id)
- {
-     if( id.length() == 0 ) return NULL;
-     for(MModelDelegate * mm : models)
-         if( mm->id == id )
-             return mm;
-     return NULL;
+MModelDelegate * D::getModelById(const QString &id)
+{
+    if( id.length() == 0 ) return NULL;
+    for(MModelDelegate * mm : models)
+        if( mm->id == id )
+            return mm;
+    return NULL;
 
- }
- MEventDelegate * D::getEventById(const QString &id)
- {
-     if( id.length() == 0 ) return NULL;
-     for(MEventDelegate * mm : events)
-         if( mm->event_id == id )
-             return mm;
-     return NULL;
+}
+MEventDelegate * D::getEventById(const QString &id)
+{
+    if( id.length() == 0 ) return NULL;
+    for(MEventDelegate * mm : events)
+        if( mm->event_id == id )
+            return mm;
+    return NULL;
 
- }
+}
 
- MUrlDelegate * D::getUrlById(const QString &id)
- {
-     if( id.length() == 0 ) return NULL;
-     for( MUrlDelegate * mm : urls)
-     {
-         if( mm->url_id == id )
-             return mm;
+MUrlDelegate * D::getUrlById(const QString &id)
+{
+    if( id.length() == 0 ) return NULL;
+    for( MUrlDelegate * mm : urls)
+    {
+        if( mm->url_id == id )
+            return mm;
 
-     }
-     return NULL;
+    }
+    return NULL;
 
- }
-
-
- bool D::createEvent()
- {
+}
 
 
-     if( true )
-     {
-     QString strs = "/* create my 17 */\n";
+bool D::createEvent()
+{
 
 
-     MData * data = DP->getProjectInfo("#package");
-
-     strs.append("package ").append(data->value).append(source_package_common).append(";\n");
-
-     strs.append("public enum Event{\n\n");
-
-     for(int i=0;i<events.count();i++)
-     {
-
-         MEventDelegate * event = events.at(i);
-
-         strs.append("  ").append(event->event_name);
-         if( events.count()-1 == i)
-           strs.append(";//");
-         else
-           strs.append(",//");
-         strs.append(event->event_descript).append("\n");
+    if( true )
+    {
+        QString strs = "/* create my 17 */\n";
 
 
-     }
+        MData * data = DP->getProjectInfo("#package");
+
+        strs.append("package ").append(data->value).append(";\n");
+
+        strs.append("public enum Event{\n\n");
+
+        for(int i=0;i<events.count();i++)
+        {
+
+            MEventDelegate * event = events.at(i);
+
+            strs.append("  ").append(event->event_name);
+            if( events.count()-1 == i)
+                strs.append(";//");
+            else
+                strs.append(",//");
+            strs.append(event->event_descript).append("\n");
 
 
-     strs.append("\n}\n");
+        }
 
 
-     QFile file(DATA_OUT_DIR("java/Event.java"));
-     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-          return false;
-     QTextStream out(&file);
-     out<<strs;
-
-     }
-     if( true )
-     {
+        strs.append("\n}\n");
 
 
-         QString strs = "/* create my 17 */\n";
+        QFile file(DATA_OUT_DIR("java/Event.java"));
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
+
+    }
+    if( true )
+    {
+
+
+        QString strs = "/* create my 17 */\n";
 
 
         strs.append("#import <Foundation/Foundation.h>\n");
 
 
 
-         strs.append("typedef enum{\n\n");
+        strs.append("typedef enum{\n\n");
 
-         for(int i=0;i<events.count();i++)
-         {
+        for(int i=0;i<events.count();i++)
+        {
 
-             MEventDelegate * event = events.at(i);
+            MEventDelegate * event = events.at(i);
 
-             strs.append("  ").append(event->event_name);
-             if( events.count()-1 == i)
-               strs.append("//");
-             else
-               strs.append(",//");
-             strs.append(event->event_descript).append("\n");
-
-
-         }
+            strs.append("  ").append(event->event_name);
+            if( events.count()-1 == i)
+                strs.append("//");
+            else
+                strs.append(",//");
+            strs.append(event->event_descript).append("\n");
 
 
-         strs.append("} Event;\n\n");
+        }
+
+
+        strs.append("} Event;\n\n");
 
 
 
-         strs.append("@interface EventUtil : NSObject\n\n");
+        strs.append("@interface EventUtil : NSObject\n\n");
 
-         strs.append("+(Event) event_by_str:(NSString *)eventstr;\n\n");
-         strs.append("+(NSString*)str_by_event:(Event)event;\n\n");
+        strs.append("+(Event) event_by_str:(NSString *)eventstr;\n\n");
+        strs.append("+(NSString*)str_by_event:(Event)event;\n\n");
 
-         strs.append("@end\n");
-
-
+        strs.append("@end\n");
 
 
 
@@ -1075,604 +1156,608 @@ int  D::getModelIndexById(const QString &id)
 
 
 
-         QFile file(DATA_OUT_DIR("ios/event.h"));
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
 
 
-     }
-     if( true )
-     {
+        QFile file(DATA_OUT_DIR("ios/event.h"));
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
-         QString strs = "/* create my 17 */\n";
+    }
+    if( true )
+    {
+
+
+        QString strs = "/* create my 17 */\n";
 
 
         strs.append("#import \"event.h\"\n");
 
 
 
-         strs.append("@implementation EventUtil\n\n");
+        strs.append("@implementation EventUtil\n\n");
 
 
-         strs.append("+(Event) event_by_str:(NSString *)eventstr{\n");
-         for(int i=0;i<events.count();i++)
-         {
+        strs.append("+(Event) event_by_str:(NSString *)eventstr{\n");
+        for(int i=0;i<events.count();i++)
+        {
 
-             MEventDelegate * event = events.at(i);
+            MEventDelegate * event = events.at(i);
 
-             strs.append("  if( [eventstr isEqual:@\"").append(event->event_name).append("\"] ) return ").append(event->event_name).append(";\n");
+            strs.append("  if( [eventstr isEqual:@\"").append(event->event_name).append("\"] ) return ").append(event->event_name).append(";\n");
 
 
 
 
-         }
+        }
 
-         strs.append("  return -1;\n");
-         strs.append("}\n\n");
+        strs.append("  return -1;\n");
+        strs.append("}\n\n");
 
 
-         strs.append("+(NSString*)str_by_event:(Event)event{\n");
+        strs.append("+(NSString*)str_by_event:(Event)event{\n");
 
-         strs.append("  switch(event){\n\n");
+        strs.append("  switch(event){\n\n");
 
-         for(int i=0;i<events.count();i++)
-         {
+        for(int i=0;i<events.count();i++)
+        {
 
-             MEventDelegate * event = events.at(i);
+            MEventDelegate * event = events.at(i);
 
-             strs.append("  case ").append(event->event_name).append(" : return @\"").append(event->event_name).append("\";\n");
+            strs.append("  case ").append(event->event_name).append(" : return @\"").append(event->event_name).append("\";\n");
 
 
-         }
+        }
 
-         strs.append("}\n\n");
-         strs.append("  return @\"not define\";\n");
-         strs.append("}\n\n");
+        strs.append("}\n\n");
+        strs.append("  return @\"not define\";\n");
+        strs.append("}\n\n");
 
 
 
 
 
 
-         strs.append("@end\n");
+        strs.append("@end\n");
 
 
 
 
-         QFile file(DATA_OUT_DIR("ios/event.m"));
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
+        QFile file(DATA_OUT_DIR("ios/event.m"));
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
-     }
-     return true;
- }
- bool D::createUrls()
- {
+    }
+    return true;
+}
+bool D::createUrls()
+{
 
-     QString strs = "/* create my 17 */\n";
-     strs.append("public class Urls{\n\n");
+    QString strs = "/* create my 17 */\n";
+    strs.append("public class Urls{\n\n");
 
-     for(int i=0;i<urls.count();i++)
-     {
+    for(int i=0;i<urls.count();i++)
+    {
 
-         MUrlDelegate * url = urls.at(i);
+        MUrlDelegate * url = urls.at(i);
 
-         strs.append("  public static final String ")
-                 .append(url->url_name)
-                 .append(" = \"")
-                 .append( url->url_address )
-                 .append("\";//")
-                 .append(url->url_descript)
-                 .append("\n");
+        strs.append("  public static final String ")
+                .append(url->url_name)
+                .append(" = \"")
+                .append( url->url_address )
+                .append("\";//")
+                .append(url->url_descript)
+                .append("\n");
 
-     }
+    }
 
 
-     strs.append("\n}\n");
+    strs.append("\n}\n");
 
 
-     QFile file(DATA_OUT_DIR("java/Urls.java"));
-     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-          return false;
-     QTextStream out(&file);
-     out<<strs;
+    QFile file(DATA_OUT_DIR("java/Urls.java"));
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+    QTextStream out(&file);
+    out<<strs;
 
 
-     return true;
- }
+    return true;
+}
 
 
- bool d_create_form_code(MForm * form)
- {
+bool d_create_form_code(MForm * form)
+{
 
 
 
-     if( true )//andoird
-     {
+    if( true )//andoird
+    {
 
-         MData * data = DP->getProjectInfo("#package");
+        MData * data = DP->getProjectInfo("#package");
 
 
-         QString strs = "/* create my 17 */\n ";
+        QString strs = "/* create my 17 */\n";
 
-         strs.append("package ").append(data->value).append(".forms;\n");
+        strs.append("package ").append(data->value).append(".forms;\n");
 
-         strs.append("import ").append(data->value).append(".Form;\n\n");
+        strs.append("import ").append("com.lrl.lrlib.Form;\n\n");
 
 
-         MProperty * formp = RP->getPropertyByName(form->properties,"android");
+        MProperty * formp = RP->getPropertyByName(form->properties,"android");
 
 
-         if( !formp )
-             return false;
+        if( !formp )
+            return false;
 
-         strs.append("public class ").append(formp->p_value).append("  extends Form{\n\n");
+        strs.append("public class ").append(formp->p_value).append("  extends Form{\n\n");
 
 
 
 
-         strs.append("\n}\n");
+        strs.append("\n}\n");
 
-         QString filename = DATA_OUT_DIR("");
-         filename.append("java/").append( formp->p_value).append(".java");
+        QString filename = DATA_OUT_DIR("");
+        filename.append("java/").append( formp->p_value).append(".java");
 
-         QFile file(filename);
+        QFile file(filename);
 
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
-     }
-     if( true )
-     {
+    }
+    if( true )
+    {
 
 
-         QString strs = "/* create my 17 */\n";
+        QString strs = "/* create my 17 */\n";
 
 
-         MProperty * formp = RP->getPropertyByName(form->properties,"android");
+        MProperty * formp = RP->getPropertyByName(form->properties,"android");
 
 
-         if( !formp )
-             return false;
+        if( !formp )
+            return false;
 
 
 
-         strs.append("#import <UIKit/UIKit.h>\n");
-         strs.append("#import \"Form.h\"\n");
-         strs.append("@interface  ").append(formp->p_value).append("  : Form\n\n\n\n");
+        strs.append("#import <UIKit/UIKit.h>\n");
+        strs.append("#import \"Form.h\"\n");
+        strs.append("@interface  ").append(formp->p_value).append("  : Form\n\n\n\n");
 
 
         // strs.append("-(BOOL)onMessage:(Event) event value:(id) value;\n\n");
 
 
-         strs.append("@end\n");
+        strs.append("@end\n");
 
-         QString filename = DATA_OUT_DIR("");
-         filename.append("ios/").append( formp->p_value).append(".h");
+        QString filename = DATA_OUT_DIR("");
+        filename.append("ios/").append( formp->p_value).append(".h");
 
-         QFile file(filename);
+        QFile file(filename);
 
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
 
-     }
+    }
 
-     if( true )
-     {
+    if( true )
+    {
 
 
-         QString strs = "/* create my 17 */\n";
+        QString strs = "/* create my 17 */\n";
 
 
-         MProperty * formp = RP->getPropertyByName(form->properties,"android");
+        MProperty * formp = RP->getPropertyByName(form->properties,"android");
 
 
-         if( !formp )
-             return false;
+        if( !formp )
+            return false;
 
 
 
-         strs.append("#import \"").append(formp->p_value).append(".h\"\n");
+        strs.append("#import \"").append(formp->p_value).append(".h\"\n");
 
-         strs.append("@implementation ").append(formp->p_value).append("  \n\n\n\n");
+        strs.append("@implementation ").append(formp->p_value).append("  \n\n\n\n");
 
 
-         strs.append("-(BOOL)onMessage:(Event) event value:(id) value{\n\n");
+        strs.append("-(BOOL)onMessage:(Event) event value:(id) value{\n\n");
 
-         strs.append("  return FALSE;\n\n");
+        strs.append("  return FALSE;\n\n");
 
-         strs.append("}\n\n");
+        strs.append("}\n\n");
 
 
-         strs.append("@end\n");
+        strs.append("@end\n");
 
-         QString filename = DATA_OUT_DIR("");
-         filename.append("ios/").append( formp->p_value).append(".m");
+        QString filename = DATA_OUT_DIR("");
+        filename.append("ios/").append( formp->p_value).append(".m");
 
-         QFile file(filename);
+        QFile file(filename);
 
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
 
-     }
+    }
 
 
-     return true;
- }
+    return true;
+}
 
- bool D::createForms()
- {
+bool D::createForms()
+{
 
 
 
-     {//andoird
-     QString strs = "/* create my 17 */\n";
+    {//andoird
+        QString strs = "/* create my 17 */\n";
 
 
-     MData * data = DP->getProjectInfo("#package");
+        MData * data = DP->getProjectInfo("#package");
 
-    strs.append("package ").append(data->value).append(source_package_common).append(";\n");
+        strs.append("package ").append(data->value).append(";\n");
 
-     strs.append("import ").append(data->value).append(".forms.*;\n");
+        strs.append("import ").append(data->value).append(".forms.*;\n");
+        strs.append("import com.lrl.lrlib.LFormFactory;\n");
 
 
 
-     strs.append("public class FormFactory{\n");
-     strs.append("  public static Class getForm(Event event){\n");
-     strs.append("      switch(event){\n");
 
+        strs.append("public class FormFactory implements LFormFactory<Event>{\n");
+        strs.append("  public  Class getForm(Event event){\n");
+        strs.append("      switch(event){\n");
 
-     for(int i=0;i<forms.count();i++)
-     {
 
-         MForm * form = forms.at(i);
+        for(int i=0;i<forms.count();i++)
+        {
 
+            MForm * form = forms.at(i);
 
-         const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
-         const QString & str_android = RP->getPropertyByName(form->properties,"android")->p_value;
 
-         MEventDelegate * me =  DP->getEventById( str_event );
+            const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
+            const QString & str_android = RP->getPropertyByName(form->properties,"android")->p_value;
 
-         if( me && me->event_name.length() > 0 )
-         strs.append("          case ").append(me->event_name).append(": return ")
-                 .append(  str_android  ).append(".class;\n");
+            MEventDelegate * me =  DP->getEventById( str_event );
 
-         d_create_form_code(form);
+            if( me && me->event_name.length() > 0 )
+                strs.append("          case ").append(me->event_name).append(": return ")
+                        .append(  str_android  ).append(".class;\n");
 
-     }
+            d_create_form_code(form);
 
-     strs.append("          }\n");
-     strs.append("      return null;\n");
-     strs.append("  }\n");
+        }
 
+        strs.append("      }\n");
+        strs.append("      return null;\n");
+        strs.append("  }\n");
 
 
 
-     strs.append("  public static String getFormName(Event event){\n");
-     strs.append("      switch(event){\n");
 
-     for(int i=0;i<forms.count();i++)
-     {
+        strs.append("  public  String getFormName(Event event){\n");
+        strs.append("      switch(event){\n");
 
-         MForm * form = forms.at(i);
+        for(int i=0;i<forms.count();i++)
+        {
 
+            MForm * form = forms.at(i);
 
-         const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
-         const QString & str_name = RP->getPropertyByName(form->properties,"descript")->p_value;
 
+            const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
+            const QString & str_name = RP->getPropertyByName(form->properties,"descript")->p_value;
 
 
-         MEventDelegate * me =  DP->getEventById( str_event );
 
-         if( me && me->event_name.length() > 0 )
-         strs.append("          case ").append(me->event_name).append(": return \"")
-                 .append(  str_name  ).append("\";\n");
+            MEventDelegate * me =  DP->getEventById( str_event );
 
+            if( me && me->event_name.length() > 0 )
+                strs.append("          case ").append(me->event_name).append(": return \"")
+                        .append(  str_name  ).append("\";\n");
 
 
-     }
-     strs.append("          }\n");
-     strs.append("      return \"\";\n");
-     strs.append("  }\n");
 
-     strs.append("}\n");
+        }
+        strs.append("      }\n");
+        strs.append("      return \"\";\n");
+        strs.append("  }\n");
 
+        strs.append("}\n");
 
 
-     QString filename = DATA_OUT_DIR("");
-     filename.append("java/FormFactory.java");
 
-     QFile file(filename);
+        QString filename = DATA_OUT_DIR("");
+        filename.append("java/FormFactory.java");
 
-     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-          return false;
-     QTextStream out(&file);
-     out<<strs;
+        QFile file(filename);
 
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
-     }
-     {
 
-         QString strs = "/* create my 17 */\n";
+    }
+    {
 
-         strs.append("#import <Foundation/Foundation.h>\n\n");
-         strs.append("#import \"event.h\"\n\n");
+        QString strs = "/* create my 17 */\n";
 
+        strs.append("#import <Foundation/Foundation.h>\n\n");
+        strs.append("#import \"event.h\"\n\n");
 
-         strs.append("@interface FormFactory : NSObject\n");
-         strs.append("+(NSString*) getForm:(Event) event;\n");
 
+        strs.append("@interface FormFactory : NSObject\n");
+        strs.append("+(NSString*) getForm:(Event) event;\n");
 
-         strs.append("@end;\n");
 
-         QString filename = DATA_OUT_DIR("");
-         filename.append("ios/FormFactory.h");
+        strs.append("@end;\n");
 
-         QFile file(filename);
+        QString filename = DATA_OUT_DIR("");
+        filename.append("ios/FormFactory.h");
 
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
+        QFile file(filename);
 
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
 
-     }
 
+    }
 
-     {//.m
 
-         QString strs = "/* create my 17 */\n";
+    {//.m
 
-         strs.append("#import \"FormFactory.h\"\n\n");
+        QString strs = "/* create my 17 */\n";
 
-         strs.append("@implementation FormFactory\n\n");
-         strs.append("+(NSString*) getForm:(Event) event{\n");
+        strs.append("#import \"FormFactory.h\"\n\n");
 
-         strs.append("      switch(event){\n");
+        strs.append("@implementation FormFactory\n\n");
+        strs.append("+(NSString*) getForm:(Event) event{\n");
 
-         for(int i=0;i<forms.count();i++)
-         {
+        strs.append("      switch(event){\n");
 
-             MForm * form = forms.at(i);
+        for(int i=0;i<forms.count();i++)
+        {
 
+            MForm * form = forms.at(i);
 
-             const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
-             const QString & str_android = RP->getPropertyByName(form->properties,"android")->p_value;
 
-             MEventDelegate * me =  DP->getEventById( str_event );
+            const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
+            const QString & str_android = RP->getPropertyByName(form->properties,"android")->p_value;
 
+            MEventDelegate * me =  DP->getEventById( str_event );
 
-             if( me && me->event_name.length() > 0 )
-             strs.append("          case ").append(me->event_name).append(": return @\"")
-                     .append(  str_android  ).append("\";\n");
 
-             d_create_form_code(form);
+            if( me && me->event_name.length() > 0 )
+                strs.append("          case ").append(me->event_name).append(": return @\"")
+                        .append(  str_android  ).append("\";\n");
 
-         }
+            d_create_form_code(form);
 
-         strs.append("     }\n");
-         strs.append("     return nil;\n");
+        }
 
+        strs.append("     }\n");
+        strs.append("     return nil;\n");
 
-         strs.append("}\n\n@end\n");
-         QString filename = DATA_OUT_DIR("");
-         filename.append("ios/FormFactory.m");
 
-         QFile file(filename);
+        strs.append("}\n\n@end\n");
+        QString filename = DATA_OUT_DIR("");
+        filename.append("ios/FormFactory.m");
 
-         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-              return false;
-         QTextStream out(&file);
-         out<<strs;
+        QFile file(filename);
 
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return false;
+        QTextStream out(&file);
+        out<<strs;
 
 
 
-     }
 
-
-
-
-
-
-     return true;
- }
-
-
- void createBusiness_one(MBusinessDelegate * mbd)
- {
-     QString path = DATA_OUT_DIR("");
-     path.append(mbd->alia).append(".xml");
-
-     QFile file(path);
-     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-     {
-
-         QXmlStreamWriter writer(&file);
-         writer.setAutoFormatting(true);
-         writer.writeStartDocument();
-         writer.writeStartElement("business");
-
-         writer.writeAttribute("descript",mbd->name);
-
-         mbd->viewgroup->createCodes(writer);
-         writer.writeEndElement();
-         writer.writeEndDocument();
-         file.close();
-
-
-     }
-
-
-
-
- }
-
- bool  createModel( MModelDelegate * md)
- {
-
-
-   if(true)  {
-
-
-     //android
-     QString path = DATA_OUT_DIR("java/");
-     path.append(md->name).append(".java");
-
-
-     QString strs = "/* create my 17 */\n";
-
-     MData * data = DP->getProjectInfo("#package");
-
-     strs.append("package ").append(data->value).append(".model;\n");
-
-
-     strs.append("import java.util.List;\n\n");
-     strs.append("public class ").append(md->name).append("{\n\n");
-
-
-     for(int i=0;i<md->fields.count();i++)
-     {
-         MModelFieldDelegate * field = md->fields.at(i);
-
-
-
-         QString fieldstr;
-
-         if( field->field_type == 4 )
-             fieldstr.append(field->field_value);
-         else if( field->field_type ==  3 )
-             fieldstr.append("List<").append(field->field_value).append("> ");
-         else
-             fieldstr.append( RP->model_field_type_index(field->field_type) );
-
-
-
-
-
-         strs.append("  public ").
-                 append( fieldstr ).
-                 append(" ").
-                 append(field->field_name).
-                 append(";//").append(field->field_descript).append("\n");
-
-
-     }
-
-
-     strs.append("\n}\n");
-
-     QFile file(path);
-     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-     {
-
-
-         QTextStream out(&file);
-         out<<strs;
-
-
-     }
-     else
-         return false;
     }
 
 
 
-   QString strs_arrays;
+
+
+
+    return true;
+}
+
+
+void createBusiness_one(MBusinessDelegate * mbd)
+{
+    QString path = DATA_OUT_DIR("");
+    path.append(mbd->alia).append(".xml");
+
+    QFile file(path);
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+
+        QXmlStreamWriter writer(&file);
+        writer.setAutoFormatting(true);
+        writer.writeStartDocument();
+        writer.writeStartElement("business");
+
+        writer.writeAttribute("descript",mbd->name);
+
+        mbd->viewgroup->createCodes(writer);
+        writer.writeEndElement();
+        writer.writeEndDocument();
+        file.close();
+
+
+    }
+
+
+
+
+}
+
+bool  createModel( MModelDelegate * md)
+{
+
+
+    if(true)  {
+
+
+        //android
+        QString path = DATA_OUT_DIR("java/");
+        path.append(md->name).append(".java");
+
+
+        QString strs = "/* create my 17 */\n";
+
+        MData * data = DP->getProjectInfo("#package");
+
+        strs.append("package ").append(data->value).append(".model;\n");
+
+
+        strs.append("import java.util.List;\n\n");
+        strs.append("public class ").append(md->name).append("{\n\n");
+
+
+        for(int i=0;i<md->fields.count();i++)
+        {
+            MModelFieldDelegate * field = md->fields.at(i);
+
+
+
+            QString fieldstr;
+
+            if( field->field_type == 4 )
+                fieldstr.append(field->field_value);
+            else if( field->field_type ==  3 )
+                fieldstr.append("List<").append(field->field_value).append("> ");
+            else
+                fieldstr.append( RP->model_field_type_index(field->field_type) );
+
+
+
+
+
+            strs.append("  public ").
+                    append( fieldstr ).
+                    append(" ").
+                    append(field->field_name).
+                    append(";//").append(field->field_descript).append("\n");
+
+
+        }
+
+
+        strs.append("\n}\n");
+
+        QFile file(path);
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+
+
+            QTextStream out(&file);
+            out<<strs;
+
+
+        }
+        else
+            return false;
+    }
+
+
+
+    QString strs_arrays;
 
 
 
 
     if(true) {
 
-         //ios
-         QString path = DATA_OUT_DIR("ios/");
-         path.append(md->name).append(".h");
+        //ios
+        QString path = DATA_OUT_DIR("ios/");
+        path.append(md->name).append(".h");
 
 
 
-         QString strs_include = "/* create my 17 */\n";
-         strs_include.append("#import <Foundation/Foundation.h>\n\n ");
+        QString strs_include = "/* create my 17 */\n";
+        strs_include.append("#import <Foundation/Foundation.h>\n\n ");
 
-         QString strs = "";
-
-
-         strs.append("@interface ").append(md->name).append(" : NSObject\n\n");
+        QString strs = "";
 
 
-         for(int i=0;i<md->fields.count();i++)
-         {
-             MModelFieldDelegate * field = md->fields.at(i);
+        strs.append("@interface ").append(md->name).append(" : NSObject\n\n");
+
+
+        for(int i=0;i<md->fields.count();i++)
+        {
+            MModelFieldDelegate * field = md->fields.at(i);
 
 
 
-             strs.append("@property  ").
-                     append( field->field_type  != 4 ? RP->model_field_type_index_ios(field->field_type) : "(retain,nonatomic) "+field->field_value +" * ").
-                     append(" ").
-                     append(field->field_name).
-                     append(";//").append(field->field_descript).append("\n");
+            strs.append("@property  ").
+                    append( field->field_type  != 4 ? RP->model_field_type_index_ios(field->field_type) : "(retain,nonatomic) "+field->field_value +" * ").
+                    append(" ").
+                    append(field->field_name).
+                    append(";//").append(field->field_descript).append("\n");
 
-             if( field->field_type ==  4 )
-             {
+            if( field->field_type ==  4 )
+            {
 
                 strs_include.append("#import \"").append(field->field_value).append(".h\"\n");
 
-             }
-             else if( field->field_type ==  3 )
-             {
+            }
+            else if( field->field_type ==  3 )
+            {
 
 
-                 strs_arrays.append("                    @\"").append(field->field_name).append("\" : @\"").append(field->field_value ).append("\",\n");
+                strs_arrays.append("                    @\"").append(field->field_name).append("\" : @\"").append(field->field_value ).append("\",\n");
 
-             }
-
-
-
-         }
-
-
-         strs.append("\n@end\n");
-
-         QFile file(path);
-         if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-         {
-
-
-             QTextStream out(&file);
-             out<<strs_include<<strs;
-
-
-         }
-         else
-             return false;
+            }
 
 
 
+        }
+
+
+        strs.append("\n@end\n");
+
+        QFile file(path);
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+
+
+            QTextStream out(&file);
+            out<<strs_include<<strs;
+
+
+        }
+        else
+            return false;
 
 
 
 
 
-     }
+
+
+
+    }
 
 
     if( true )//.m
@@ -1733,74 +1818,76 @@ int  D::getModelIndexById(const QString &id)
 
 
 
-     return false;
- }
+    return false;
+}
 
- bool D::createModels()
- {
+bool D::createModels()
+{
 
-     for(int i=0;i<models.count();i++)
-     {
+    for(int i=0;i<models.count();i++)
+    {
 
-         MModelDelegate * md = models.at(i);
+        MModelDelegate * md = models.at(i);
 
-         createModel(md);
-
-
-     }
-     return true;
-
- }
-
- bool D::createProjectInfos()
- {
-
-     const QString from_dir = DATA_DIR( "projectinfos.xml");
-     const QString to_dir = DATA_OUT_DIR("projectinfos.xml");
-     return QFile::copy(from_dir,to_dir);
-
- }
+        createModel(md);
 
 
- bool D::createStrings()
- {
+    }
+    return true;
+
+}
+
+bool D::createProjectInfos()
+{
+
+    const QString from_dir = DATA_DIR( "projectinfos.xml");
+    const QString to_dir = DATA_OUT_DIR("projectinfos.xml");
+    return QFile::copy(from_dir,to_dir);
+
+}
 
 
-     if(true)  {
+bool D::createStrings()
+{
 
 
-       //android
-       QString path = DATA_OUT_DIR("java/");
-       path.append("Strings.java");
+    if(true)  {
 
 
-       QString strs = "/*create my 17 */\n";
+        //android
+        QString path = DATA_OUT_DIR("java/");
+        path.append("Strings.java");
 
 
-       MData * data = DP->getProjectInfo("#package");
-       strs.append("package ").append(data->value).append(source_package_common).append(";\n");
-
-       strs.append("import ").append(data->value).append(".R;\n");
-
-       strs.append("public class ").append("Strings").append("{\n\n");
-
-       strs.append("  public static int getStringByKey(String k){\n\n");
-
-       strs.append("        switch(k){\n");
-
-       QMap<QString,MData*>::iterator it;
-       for(it = qlobal_strings.begin();it != qlobal_strings.end();++it)
-       {
-
-           MData * data = it.value();
+        QString strs = "/*create my 17 */\n";
 
 
-           strs.append("           case ").append("\"").append(data->key).append("\": return R.string.").append(data->key.right(data->key.length()-2)).append(" ;//");
-           strs.append(data->descript).append("\n");
-       }
+        MData * data = DP->getProjectInfo("#package");
+        MData * data_p = DP->getProjectInfo("#project");
+
+        strs.append("package ").append(data->value).append(";\n");
+
+        strs.append("import ").append(data_p->value).append(".R;\n");
+
+        strs.append("public class ").append("Strings").append("{\n\n");
+
+        strs.append("  public static int getStringByKey(String k){\n\n");
+
+        strs.append("        switch(k){\n");
+
+        QMap<QString,MData*>::iterator it;
+        for(it = qlobal_strings.begin();it != qlobal_strings.end();++it)
+        {
+
+            MData * data = it.value();
 
 
-       /*
+            strs.append("           case ").append("\"").append(data->key).append("\": return R.string.").append(data->key.right(data->key.length()-2)).append(" ;//");
+            strs.append(data->descript).append("\n");
+        }
+
+
+        /*
        for(int i=0;i< global_strings.size();i++ )
        {
            MData * data = global_strings.at(i);
@@ -1809,95 +1896,95 @@ int  D::getModelIndexById(const QString &id)
        }
         */
 
-       strs.append("        }\n");
-       strs.append("        return 0;\n\n");
-       strs.append("  }\n\n");
-       strs.append("}\n");
+        strs.append("        }\n");
+        strs.append("        return 0;\n\n");
+        strs.append("  }\n\n");
+        strs.append("}\n");
 
-       QFile file(path);
-       if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-       {
-
-
-           QTextStream out(&file);
-           out<<strs;
+        QFile file(path);
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
 
 
-       }
-       else
-           return false;
-      }
+            QTextStream out(&file);
+            out<<strs;
 
 
- }
+        }
+        else
+            return false;
+    }
 
- bool D::createBusiness()
- {
-
-
-
-if( true )
-{
-
-     QString event_xmls;
-
-     MData * data = DP->getProjectInfo("#package");
-
-     event_xmls.append("package ").append(data->value).append(source_package_common).append(";\n");
-
-     event_xmls.append("public class FlowBoxs{\n");
-     event_xmls.append("    public static String getBox(Event event){\n");
-     event_xmls.append("        switch(event){\n");
-
-
-
-
-
-
-
-     for(int i=0;i<business.count();i++)
-     {
-
-         MBusinessDelegate * mbd = business.at(i);
-
-         View * view = mbd->viewgroup->getStart();
-
-         if( view )
-         {
-            MProperty * mp = view-> getProperty("event");
-            if( mp )
-            {
-               MEventDelegate * me =   DP->getEventById(mp->p_value);
-               if( me )
-               {
-                    event_xmls.append("         case ").append( me->event_name ).append(": return \"flows/").append(mbd->alia).append(".xml\";\n");
-                   //NLog::i("event %s  -->%s.xml",me->event_name.toStdString().c_str(),mbd->alia.toStdString().c_str() );
-               }
-            }
-
-         }
-
-         createBusiness_one(mbd);
-
-
-     }
-
-     event_xmls.append("        }\n");
-     event_xmls.append("        return null;\n");
-     event_xmls.append("    }\n");
-     event_xmls.append("}\n");
-
-
-
-     createFile(DATA_OUT_DIR("java/FlowBoxs.java"),event_xmls);
 
 }
 
-     if( true )//ios
-     {
+bool D::createBusiness()
+{
 
 
-         QString event_xmls;
+
+    if( true )
+    {
+
+        QString event_xmls;
+
+        MData * data = DP->getProjectInfo("#package");
+
+        event_xmls.append("package ").append(data->value).append(";\n");
+
+        event_xmls.append("public class FlowBoxs{\n");
+        event_xmls.append("    public static String getBox(Event event){\n");
+        event_xmls.append("        switch(event){\n");
+
+
+
+
+
+
+
+        for(int i=0;i<business.count();i++)
+        {
+
+            MBusinessDelegate * mbd = business.at(i);
+
+            View * view = mbd->viewgroup->getStart();
+
+            if( view )
+            {
+                MProperty * mp = view-> getProperty("event");
+                if( mp )
+                {
+                    MEventDelegate * me =   DP->getEventById(mp->p_value);
+                    if( me )
+                    {
+                        event_xmls.append("         case ").append( me->event_name ).append(": return \"flows/").append(mbd->alia).append(".xml\";\n");
+                        //NLog::i("event %s  -->%s.xml",me->event_name.toStdString().c_str(),mbd->alia.toStdString().c_str() );
+                    }
+                }
+
+            }
+
+            createBusiness_one(mbd);
+
+
+        }
+
+        event_xmls.append("        }\n");
+        event_xmls.append("        return null;\n");
+        event_xmls.append("    }\n");
+        event_xmls.append("}\n");
+
+
+
+        createFile(DATA_OUT_DIR("java/FlowBoxs.java"),event_xmls);
+
+    }
+
+    if( true )//ios
+    {
+
+
+        QString event_xmls;
 
         event_xmls.append("#import <Foundation/Foundation.h>\n");
         event_xmls.append("#import \"FlowBox.h\"\n");
@@ -1911,17 +1998,17 @@ if( true )
         event_xmls.append("@end \n");
 
 
-         createFile(DATA_OUT_DIR("ios/FlowBoxs.h"),event_xmls);
+        createFile(DATA_OUT_DIR("ios/FlowBoxs.h"),event_xmls);
 
 
 
-     }
+    }
 
-     if( true )//ios
-     {
+    if( true )//ios
+    {
 
 
-         QString event_xmls;
+        QString event_xmls;
 
 
         event_xmls.append("#import \"FlowBoxs.h\"\n");
@@ -1945,16 +2032,16 @@ if( true )
 
             if( view )
             {
-               MProperty * mp = view-> getProperty("event");
-               if( mp )
-               {
-                  MEventDelegate * me =   DP->getEventById(mp->p_value);
-                  if( me )
-                  {
-                       event_xmls.append("         case ").append( me->event_name ).append(": return @\"").append(mbd->alia).append(".xml\";\n");
+                MProperty * mp = view-> getProperty("event");
+                if( mp )
+                {
+                    MEventDelegate * me =   DP->getEventById(mp->p_value);
+                    if( me )
+                    {
+                        event_xmls.append("         case ").append( me->event_name ).append(": return @\"").append(mbd->alia).append(".xml\";\n");
 
-                  }
-               }
+                    }
+                }
 
             }
 
@@ -1974,56 +2061,56 @@ if( true )
         event_xmls.append("@end \n");
 
 
-         createFile(DATA_OUT_DIR("ios/FlowBoxs.m"),event_xmls);
+        createFile(DATA_OUT_DIR("ios/FlowBoxs.m"),event_xmls);
 
 
 
-     }
+    }
 
 
 
-     return true;
+    return true;
 
- }
+}
 
- bool D::createFile(const QString & path,const QString & strs)
- {
-
-
-     QFile file(path);
-     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-     {
+bool D::createFile(const QString & path,const QString & strs)
+{
 
 
-         QTextStream out(&file);
-         out<<strs;
-         return true;
-
-     }
-     return false;
-
- }
-
- MData * D::getProjectInfo(const QString& key)
- {
+    QFile file(path);
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
 
 
-     for(MData * data : this->projectinfos)
-     {
-         if( data->key.compare( key ) == 0 )
-             return data;
-     }
-     return NULL;
+        QTextStream out(&file);
+        out<<strs;
+        return true;
 
- }
+    }
+    return false;
 
+}
 
- const QString  D::createCodes()
- {
-
+MData * D::getProjectInfo(const QString& key)
+{
 
 
-     /*
+    for(MData * data : this->projectinfos)
+    {
+        if( data->key.compare( key ) == 0 )
+            return data;
+    }
+    return NULL;
+
+}
+
+
+const QString  D::createCodes()
+{
+
+
+
+    /*
       *
     toDir.replace("\\","/");
     if (sourceDir == toDir){
@@ -2046,49 +2133,49 @@ if( true )
     }
      **/
 
-     cleanGolableString();
+    cleanGolableString();
 
-     QString dirstr_android = DATA_OUT_DIR("java");
-     QDir dir_android(dirstr_android);
-     if( !dir_android.exists() )
+    QString dirstr_android = DATA_OUT_DIR("java");
+    QDir dir_android(dirstr_android);
+    if( !dir_android.exists() )
         dir_android.mkpath(dirstr_android);
 
-     QString dirstr_ios = DATA_OUT_DIR("ios");
-     QDir dir_ios(dirstr_ios);
-     if( !dir_ios.exists() )
+    QString dirstr_ios = DATA_OUT_DIR("ios");
+    QDir dir_ios(dirstr_ios);
+    if( !dir_ios.exists() )
         dir_ios.mkpath(dirstr_ios);
 
 
 
 
-     QString strs;
+    QString strs;
 
-     if( createEvent()  )
-            strs.append("create event success.\n");
-         else
-            return "create event error";
-     if( createModels()  )
-            strs.append("create model success.\n");
-         else
-            return "create model error";
-     if( createUrls()  )
-            strs.append("create urls success.\n");
-         else
-            return "create urls error";
+    if( createEvent()  )
+        strs.append("create event success.\n");
+    else
+        return "create event error";
+    if( createModels()  )
+        strs.append("create model success.\n");
+    else
+        return "create model error";
+    if( createUrls()  )
+        strs.append("create urls success.\n");
+    else
+        return "create urls error";
 
-     if( createForms()  )
-            strs.append("create form success.\n");
-         else
-            return "create form error";
-     if( createBusiness()  )
-            strs.append("create business success.\n");
-         else
-            return "create business error";
-      createProjectInfos() ;
-            strs.append("create project success.\n");
+    if( createForms()  )
+        strs.append("create form success.\n");
+    else
+        return "create form error";
+    if( createBusiness()  )
+        strs.append("create business success.\n");
+    else
+        return "create business error";
+    createProjectInfos() ;
+    strs.append("create project success.\n");
     if( createStrings() )
-            strs.append("create Strings success.\n");
+        strs.append("create Strings success.\n");
 
     return strs;
 
- }
+}

@@ -68,6 +68,13 @@ MPropertyDelegate::MPropertyDelegate(QObject *parent):
              {
                  painter->drawText(option.rect,mp->p_value, o);
              }
+             else if( mp->p_args == "$formtype" )
+             {
+
+                painter->drawText(option.rect,mp->p_value, o);
+
+             }
+
          }
          else
               painter->drawText(option.rect,mp->p_value, o);
@@ -147,6 +154,14 @@ QWidget * MPropertyDelegate::createEditor(QWidget *parent,
                 comBox->addItem( "true" );
                 comBox->addItem( "false" );
             }
+            else if( mp->p_args == "$formtype" )
+            {
+
+                comBox->addItem("Empty");
+                comBox->addItem("RecyclerView");
+                comBox->addItem("Settings");
+
+            }
 
         }
 
@@ -214,6 +229,20 @@ QWidget * MPropertyDelegate::createEditor(QWidget *parent,
                      comBox->setCurrentIndex(index);
 
                  }
+                 else if( mp->p_args == "$formtype" ){
+
+                     int index = -1;
+
+                     if( mp->p_value == "Empty")
+                         index = 0;
+                     else if( mp->p_value == "RecyclerView" )
+                         index = 1;
+                     else if( mp->p_value == "Settings" )
+                         index = 2;
+                     comBox->setCurrentIndex(index);
+
+
+                 }
 
 
              }
@@ -270,6 +299,26 @@ QWidget * MPropertyDelegate::createEditor(QWidget *parent,
      else if(  mp->p_args == "$boolean"  )
      {
          mp->p_value = i==0? "true":"false";
+     }
+     else if( mp->p_args == "$formtype" )
+     {
+
+
+         switch (i) {
+             case 0:
+                 mp->p_value = "Empty";
+                 break;
+             case 1:
+                 mp->p_value = "RecyclerView";
+                 break;
+             case 2:
+                 mp->p_value = "Settings";
+                 break;
+             default:
+                 mp->p_value = "Empty";
+                 break;
+         }
+
 
      }
 
