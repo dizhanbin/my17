@@ -74,6 +74,16 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
             mp4->p_type = 1;
             mp4->p_args = "$formtype";
 
+            MProperty * mp5 = new MProperty();
+            mp5->p_name = "java_plate";
+            mp5->p_title = "java模版";
+            mp5->p_type = 0;
+
+
+            MProperty * mp6 = new MProperty();
+            mp6->p_name = "layout_plate";
+            mp6->p_title = "布局模版";
+            mp6->p_type = 0;
 
 
 
@@ -81,7 +91,9 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
             mform->properties.push_back(mp2);
             mform->properties.push_back(mp3);
             mform->properties.push_back(mp1);
-            mform->properties.push_back(mp4);
+           // mform->properties.push_back(mp4);
+            mform->properties.push_back(mp5);
+            mform->properties.push_back(mp6);
 
             fv->form = mform;
 

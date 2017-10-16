@@ -4,6 +4,7 @@
 #include "iconview.h"
 #include "lineview.h"
 #include "mproperty.h"
+#include "ftmp.h"
 
 using namespace my17;
 
@@ -219,6 +220,8 @@ bool D::saveEvents()
 {
 
     QFile file(DATA_DIR ("events.xml"));
+
+
     if(file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
 
@@ -1274,7 +1277,54 @@ bool D::createUrls()
 bool d_create_form_code(MForm * form)
 {
 
+   MProperty * formp = RP->getPropertyByName(form->properties,"android");
+   if( !formp )
+       return false;
 
+   MProperty * form_java = RP->getPropertyByName(form->properties,"java_plate");
+   if( !form_java )
+       return false;
+
+   MProperty * form_layout = RP->getPropertyByName(form->properties,"layout_plate");
+   if( !form_layout )
+       return false;
+
+
+   QString java_path = DATA_PLATE_DIR(form_java->p_value).append(".java");
+   QString layout_path = DATA_PLATE_DIR(form_layout->p_value).append(".xml");
+
+
+
+   QFile java_file(java_path);
+   if( java_file.exists() ){
+
+       FTmp java_ftmp(java_path);
+       java_ftmp.replace("${descript}",formp->p_title);
+       java_ftmp.replace("${android}",formp->p_value);
+       java_ftmp.replace( "${layout_plate}",formp->p_value.toLower().replace("form","form_") );
+       QString java_out = DATA_OUT_DIR("java/forms/").append(formp->p_value).append(".java");
+
+       java_ftmp.saveTmp(java_out);
+
+   }
+
+   QFile layout_file(layout_path);
+   if( layout_file.exists() ){
+
+       FTmp java_ftmp(layout_path);
+       //java_ftmp.replace("${android}",formp->p_value);
+       //java_ftmp.replace( "${layout_plate}",formp->p_value.toLower().replace("form","form_") );
+       QString java_out = DATA_OUT_DIR("java/forms/").append(formp->p_value.toLower().replace("form","form_")).append(".xml");
+       java_ftmp.saveTmp(java_out);
+
+   }
+
+
+    if( true ){
+
+
+        return true;
+    }
 
     if( true )//andoird
     {
@@ -1404,6 +1454,7 @@ bool D::createForms()
 
 
 
+
     {//andoird
         QString strs = "/* create my 17 */\n";
 
@@ -1489,6 +1540,13 @@ bool D::createForms()
             return false;
         QTextStream out(&file);
         out<<strs;
+        file.close();
+
+
+
+
+
+
 
 
 

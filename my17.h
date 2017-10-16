@@ -11,6 +11,8 @@
 #include "meventdelegate.h"
 #include "murldelegate.h"
 #include "mproperty.h"
+#include "ftmp.h"
+
 class View;
 
 //#define DATA_DIR(arg) QString("/Users/dzb/qt/my17/17data/").append(arg)
@@ -28,6 +30,9 @@ class View;
 //#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/qt/17out/").append(arg)
 
 #define DATA_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../17data/").append(arg)
+
+#define DATA_PLATE_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../17data/plate/").append(arg)
+
 #define DATA_OUT_DIR( arg ) QString(QCoreApplication::applicationDirPath()).append("/../../../17out/").append(arg)
 
 
@@ -250,7 +255,15 @@ namespace my17 {
          protected:
             R(){
 
+
+                QString path = DATA_DIR ("");
+                QDir dir(path);
+                if( !dir.exists() )
+                   dir.mkpath(path);
                 loadElements();
+
+
+
 
 
             }
@@ -427,6 +440,15 @@ namespace my17 {
                 loadBusiness();
                 loadUrl();
                 loadForms();
+
+
+                //load tmp
+
+
+
+                FTmp * ftmp = new FTmp(DATA_DIR("code_form.txt"));
+
+                delete ftmp;
 
 
             }

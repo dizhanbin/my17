@@ -43,7 +43,8 @@ SOURCES += main.cpp\
     formlineview.cpp \
     tablemodel.cpp \
     projectadapter.cpp \
-    commoneditdelegate.cpp
+    commoneditdelegate.cpp \
+    ftmp.cpp
 
 HEADERS  += mainwindow.h \
     my17.h \
@@ -75,7 +76,8 @@ HEADERS  += mainwindow.h \
     tablemodel.h \
     projectadapter.h \
     editoradapter.h \
-    commoneditdelegate.h
+    commoneditdelegate.h \
+    ftmp.h
 
 FORMS    += mainwindow.ui \
     docbusinesseditor.ui \
