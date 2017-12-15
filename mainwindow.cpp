@@ -115,7 +115,7 @@ void MainWindow::init_left_0()
 
         MBusinessDelegate * mm = DP->business.at(i);
         QStandardItem* item_m = new QStandardItem( mm->name);
-        item20->insertRow(item20->rowCount(),item_m);
+        item20->appendRow(item_m);
 
     }
 
@@ -451,9 +451,9 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
                 ui->right_bottom->setItemDelegate(mpd);
 
 
-                //QString  text = "提示：\n ";
-                //text.append(view->getTopDescript().toStdString().c_str());
-                //ui->right_top->setText(text);
+                QString  text = "提示：\n ";
+                text.append(view->getTopDescript());
+                ui->right_top->setText(text);
             }
 
              NLog::i("event_req_business_item_selected end");

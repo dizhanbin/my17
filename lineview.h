@@ -59,6 +59,8 @@ public:
     virtual const QString &  getDescript();
     virtual  QString  getCodeTag();
 
+    virtual const QString & getTopDescript();
+
 };
 
 

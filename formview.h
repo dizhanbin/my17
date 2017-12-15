@@ -31,7 +31,10 @@ public:
 
     };
     virtual void* getData(){ return form; };
+    virtual const QString & getTopDescript(){
 
+        return getDescript();
+    }
 
 };
 

@@ -546,3 +546,15 @@ void LineView::drawLine(QPainter & painter,int x0,int y0,int x1,int y1)
             return none;
 
     }
+
+    const QString & LineView::getTopDescript(){
+
+       MProperty * mp = getProperty("condition");
+
+       if( mp )
+           return mp->p_value;
+       else
+           return none;
+
+   }
+
