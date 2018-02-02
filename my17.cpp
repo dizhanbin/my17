@@ -334,51 +334,55 @@ void D::loadEvents()
 
        MEventDelegate * med0 = new MEventDelegate();
        med0->event_name = "SYS_DIALOG_INFO";
+       med0->event_id = "20171012114221000";
        med0->event_type = T_SYS;
        med0->event_descript = "消息提示框";
 
        MEventDelegate * med1 = new MEventDelegate();
        med1->event_name = "SYS_DIALOG_SURE";
+       med1->event_id = "20171012114221001";
        med1->event_type = T_SYS;
        med1->event_descript = "弹出确认对话框";
 
        MEventDelegate * med2 = new MEventDelegate();
        med2->event_name = "SYS_FORM_BACK";
+       med2->event_id = "20171012114221002";
        med2->event_type = T_SYS;
        med2->event_descript = "页面返回";
 
 
        MEventDelegate * med3 = new MEventDelegate();
        med3->event_name = "SYS_FROM_CLEAR";
+       med3->event_id = "20171012114221003";
        med3->event_type = T_SYS;
        med3->event_descript = "清空堆栈中所有页面";
 
 
        MEventDelegate * med4 = new MEventDelegate();
        med4->event_name = "SYS_NONE";
+       med4->event_id = "20171012114221004";
        med4->event_type = T_SYS;
        med4->event_descript = "空事件";
 
 
        MEventDelegate * med5 = new MEventDelegate();
        med5->event_name = "SYS_PUSH_TO_AND_CLEAR_ALL";
+       med5->event_id = "20171012114221005";
        med5->event_type = T_SYS;
        med5->event_descript = "进入并清除所有界面";
 
        MEventDelegate * med6 = new MEventDelegate();
        med6->event_name = "SYS_TOAST";
+       med6->event_id = "20171012114221006";
        med6->event_type = T_SYS;
        med6->event_descript = "提示信息";
 
        MEventDelegate * med7 = new MEventDelegate();
-       med7->event_name = "SYS_WAITTING_HIDE";
+       med7->event_name = "SYS_WAITTING";
+       med7->event_id = "20171012114221007";
        med7->event_type = T_SYS;
        med7->event_descript = "隐藏等待框";
 
-       MEventDelegate * med8 = new MEventDelegate();
-       med8->event_name = "SYS_WAITTING_SHOW";
-       med8->event_type = T_SYS;
-       med8->event_descript = "等待框";
 
 
        events.push_back(med0);
@@ -389,7 +393,7 @@ void D::loadEvents()
        events.push_back(med5);
        events.push_back(med6);
        events.push_back(med7);
-       events.push_back(med8);
+
 
 
     }
@@ -421,6 +425,7 @@ bool D::saveBusiness()
             writer.writeAttribute("name",model->name);
             writer.writeAttribute("type",QString::number(model->type) );
             writer.writeAttribute("alia",model->alia);
+            writer.writeAttribute("descript",model->descript);
             model->viewgroup->save(writer);
             writer.writeEndElement();
 
@@ -440,7 +445,7 @@ bool D::saveBusiness()
 
 bool business_comparator( MBusinessDelegate *s1, const MBusinessDelegate *s2)
 {
-    return s1->name.compare(s2->name)>0;
+    return s2->name.compare(s1->name)>0;
 }
 
 
@@ -473,6 +478,10 @@ void D::loadBusiness()
 
                     if( reader.attributes().hasAttribute("alia") )
                         med->alia = reader.attributes().value("alia").toString();
+
+                    if( reader.attributes().hasAttribute("descript") )
+                        med->descript = reader.attributes().value("descript").toString();
+
 
                     if( reader.attributes().hasAttribute("type") )
                         med->type = reader.attributes().value("type").toInt();
@@ -1289,6 +1298,9 @@ bool d_create_form_code(MForm * form)
    if( !form_layout )
        return false;
 
+   const QString & str_name = RP->getPropertyByName(form->properties,"descript")->p_value;
+
+
 
    QString java_path = DATA_PLATE_DIR(form_java->p_value).append(".java");
    QString layout_path = DATA_PLATE_DIR(form_layout->p_value).append(".xml");
@@ -1299,7 +1311,7 @@ bool d_create_form_code(MForm * form)
    if( java_file.exists() ){
 
        FTmp java_ftmp(java_path);
-       java_ftmp.replace("${descript}",formp->p_title);
+       java_ftmp.replace("${descript}",str_name);
        java_ftmp.replace("${android}",formp->p_value);
        java_ftmp.replace( "${layout_plate}",formp->p_value.toLower().replace("form","form_") );
        QString java_out = DATA_OUT_DIR("java/forms/").append(formp->p_value).append(".java");
@@ -1482,12 +1494,13 @@ bool D::createForms()
 
             const QString & str_event = RP->getPropertyByName(form->properties,"event")->p_value;
             const QString & str_android = RP->getPropertyByName(form->properties,"android")->p_value;
+            const QString & str_name = RP->getPropertyByName(form->properties,"descript")->p_value;
 
             MEventDelegate * me =  DP->getEventById( str_event );
 
             if( me && me->event_name.length() > 0 )
                 strs.append("          case ").append(me->event_name).append(": return ")
-                        .append(  str_android  ).append(".class;\n");
+                        .append(  str_android  ).append(".class;").append("//").append(str_name).append("\n");
 
             d_create_form_code(form);
 
@@ -2015,7 +2028,9 @@ bool D::createBusiness()
                     MEventDelegate * me =   DP->getEventById(mp->p_value);
                     if( me )
                     {
-                        event_xmls.append("         case ").append( me->event_name ).append(": return \"flows/").append(mbd->alia).append(".xml\";\n");
+
+                        event_xmls.append("         case ").append( me->event_name )
+                                .append(": return \"flows/").append(mbd->alia).append(".xml\";//").append(mbd->name).append(" -> ").append( QString::number(i+1) ).append("\n");
                         //NLog::i("event %s  -->%s.xml",me->event_name.toStdString().c_str(),mbd->alia.toStdString().c_str() );
                     }
                 }

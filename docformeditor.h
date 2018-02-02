@@ -19,6 +19,9 @@ public:
 
     virtual my17::TodoResult  todo(my17::Event event,void * arg);
 
+    virtual void keyPressEvent(QKeyEvent *event);
+
+
     ViewForms * mViewForm;
 private:
     Ui::DocFormEditor *ui;

@@ -182,3 +182,18 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
 
     return my17::todo_none;
 }
+
+void DocFormEditor::keyPressEvent(QKeyEvent *event)
+{
+    if( event->type() == QKeyEvent::KeyPress )
+    switch (event->key()) {
+
+        case Qt::Key_Backspace:
+            todo(my17::Event::event_req_toolbar_del,NULL);
+            NLog::i("key press delete");
+        break;
+    default:
+        break;
+    }
+
+}

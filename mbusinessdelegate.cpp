@@ -49,6 +49,15 @@ void MBusinessDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
             painter->drawText(option.rect, "流程保存名", o);
         }
         break;
+        case 3:
+        {
+            QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
+            painter->drawText(option.rect, "流程描述", o);
+
+        }
+        break;
+
+
 
 
     }
@@ -74,6 +83,12 @@ void MBusinessDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
                 QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
                 painter->drawText(option.rect,RP->business_type_index(type), o);
 
+            }
+            break;
+            case 3:
+            {
+                QTextOption o(Qt::AlignHCenter | Qt::AlignVCenter);
+                painter->drawText(option.rect, descript, o);
             }
             break;
 
@@ -120,6 +135,13 @@ QWidget *MBusinessDelegate::createEditor(QWidget *parent,
 
             return comBox;
          }
+        case 3:
+        {
+             QLineEdit *m_pTxt = new QLineEdit(parent);
+             connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged_descript()) );
+
+             return m_pTxt;
+        }
 
     }
     return NULL;
@@ -167,6 +189,14 @@ void MBusinessDelegate::setEditorData(QWidget *editor, const QModelIndex &index)
 
        }
            break;
+       case 3:
+       {
+
+           QLineEdit * text = (QLineEdit*)editor;
+           if( text->text().length() == 0 )
+              text->setText(this->descript );
+       }
+       break;
    }
 
 }
@@ -185,10 +215,30 @@ void MBusinessDelegate::slots_datachanged()
       QLineEdit * text = qobject_cast<QLineEdit *>( sender() );
       this->name =  text->text();
 
+
       MessageCenter::getInstence()->sendMessage(my17::event_req_business_data_changed,this);
 
 
 }
+void MBusinessDelegate::slots_datachanged_descript()
+{
+
+      NLog::i("MModel delegate  slots_datachanged");
+
+      QLineEdit *editor = qobject_cast<QLineEdit *>(sender());
+      emit commitData(editor);
+      emit closeEditor(editor);
+
+
+      QLineEdit * text = qobject_cast<QLineEdit *>( sender() );
+      this->descript =  text->text();
+
+      MessageCenter::getInstence()->sendMessage(my17::event_req_business_data_changed,this);
+
+
+}
+
+
 void MBusinessDelegate::slots_datachanged_alia()
 {
 

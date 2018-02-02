@@ -19,6 +19,9 @@ public:
 
     virtual my17::TodoResult  todo(my17::Event event,void * arg);
     virtual void setData(void *d);
+
+     virtual void keyPressEvent(QKeyEvent *event);
+
 private:
     Ui::DocBusinessEditor *ui;
     ViewDoc * mViewDoc;

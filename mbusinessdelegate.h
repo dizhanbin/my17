@@ -27,6 +27,7 @@ public:
     QString name;
     QString alia;
     int type; //business_type_index
+    QString descript;
 
     ViewGroup * viewgroup;
 
@@ -42,6 +43,7 @@ public slots:
       void slots_datachanged();
       void slots_datachanged_alia();
       void slots_datachanged_type(int);
+      void slots_datachanged_descript();
 
 };
 

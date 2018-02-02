@@ -21,6 +21,9 @@ public:
     virtual my17::TodoResult  todo(my17::Event event,void * arg);
     virtual void setData(void * d);
     void setFieldData(int row,MEventDelegate * event);
+
+    virtual void keyPressEvent(QKeyEvent *event);
+
 private:
     Ui::DocEventEditor *ui;
 

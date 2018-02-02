@@ -39,8 +39,16 @@ void  IconView::paint(QPaintEvent * event,QWidget * widget)
     if( !m_bitmap )
     {
         const MElement * ele =  my17::R::getInstance()->getElement(m_element_id);
-        if( ele )
-        m_bitmap = new QPixmap(ele->iconpath);
+
+        if( ele ){
+
+            if( ele->iconpath.startsWith("./") ){
+                QString path = DATA_DIR("").append(ele->iconpath);
+                m_bitmap = new QPixmap(path);
+            }
+            else
+                m_bitmap = new QPixmap(ele->iconpath);
+        }
 
     }
     if( m_bitmap )

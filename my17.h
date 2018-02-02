@@ -29,6 +29,9 @@ class View;
 //#define DATA_DIR(arg) QString("/Users/dizhanbin/work/qt/17data/").append(arg)
 //#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/qt/17out/").append(arg)
 
+
+#define DATA_ROOT(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../").append(arg)
+
 #define DATA_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../17data/").append(arg)
 
 #define DATA_PLATE_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../17data/plate/").append(arg)
@@ -685,7 +688,7 @@ namespace my17 {
                    return value;
                }
 
-                R::getInstance()->result = "not set";
+                R::getInstance()->result = "";
                 return R::getInstance()->result;
            }
 

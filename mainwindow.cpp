@@ -114,7 +114,7 @@ void MainWindow::init_left_0()
     {
 
         MBusinessDelegate * mm = DP->business.at(i);
-        QStandardItem* item_m = new QStandardItem( mm->name);
+        QStandardItem* item_m = new QStandardItem( mm->name +" ->"+ QString::number(i+1) );
         item20->appendRow(item_m);
 
     }
@@ -197,7 +197,15 @@ void MainWindow::init_left_1_items()
         MElement * e = vecs.at(i);
 
         QStandardItem* item = new QStandardItem(    e->name  );
-        item->setIcon( QIcon(QPixmap(   e->iconpath  )) );
+
+
+        if( e->iconpath.startsWith("./") ){
+            QString path = DATA_DIR("").append(e->iconpath);
+
+            item->setIcon(QIcon(QPixmap(path)));
+        }
+        else
+            item->setIcon( QIcon(QPixmap(   e->iconpath  )) );
         item->setToolTip( e->descript );
         model->insertRow(i,item);
 
@@ -397,6 +405,7 @@ void MainWindow::slot_left_0_menu_new_model_triggered(bool checked)
 
      MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
 
+
  }
 
 void MainWindow::slot_tab_close(int index)
@@ -485,6 +494,7 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             while( ui->right_bottom->rowCount()>0 )
                 ui->right_bottom->removeRow(0);
             MBusinessDelegate * mm  = (MBusinessDelegate*)arg;
+            ui->right_bottom->insertRow(0);
             ui->right_bottom->insertRow(0);
             ui->right_bottom->insertRow(0);
             ui->right_bottom->insertRow(0);
@@ -606,8 +616,23 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
                 QString strs = QString(DP->createCodes());
 
+                //QString cd = "cd ";
+                //cd.append(DATA_ROOT("")).append( "\n./copy.sh");
+                //system(cd.toStdString().c_str());
+                //system("./copy.sh");
+                //strs.append(cd).append("\n");
+
 
                 QMessageBox::information(NULL,"提示", strs );
+
+
+
+                    QProcess p(0);
+                    p.setWorkingDirectory(DATA_ROOT(""));
+                    p.start("./copy.sh");
+                    p.waitForFinished();
+
+
 
 
 
@@ -723,8 +748,11 @@ void MainWindow::do_add_tree_item_for_business()
 
     QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
     QStandardItem * item = model->item(index_business);
-    QStandardItem* item_new = new QStandardItem(mb->name);
-    item->insertRow(item->rowCount(),item_new);
+
+    int i = item->rowCount();
+
+    QStandardItem* item_new = new QStandardItem(mb->name +" ->"+ QString::number(i+1) );
+    item->insertRow(i,item_new);
     ui->left_0->setCurrentIndex( item_new->index() );
 
     DocBusinessEditor * doc = new DocBusinessEditor();
