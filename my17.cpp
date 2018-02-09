@@ -14,8 +14,12 @@ static D* s_d_instance = NULL;
 R* R::getInstance()
 {
 
-    if( s_r_instance == NULL )
+    if( s_r_instance == NULL ){
         s_r_instance = new R();
+        s_r_instance->ids = QDateTime::currentDateTime();;
+
+        s_r_instance->ids_i = s_r_instance->ids.toMSecsSinceEpoch();
+    }
     return s_r_instance;
 
 }
@@ -333,10 +337,10 @@ void D::loadEvents()
     if( events.size() == 0 ){
 
        MEventDelegate * med0 = new MEventDelegate();
-       med0->event_name = "SYS_DIALOG_INFO";
-       med0->event_id = "20171012114221000";
-       med0->event_type = T_SYS;
-       med0->event_descript = "消息提示框";
+//       med0->event_name = "SYS_DIALOG_INFO";
+//       med0->event_id = "20171012114221000";
+//       med0->event_type = T_SYS;
+//       med0->event_descript = "消息提示框";
 
        MEventDelegate * med1 = new MEventDelegate();
        med1->event_name = "SYS_DIALOG_SURE";
@@ -385,7 +389,7 @@ void D::loadEvents()
 
 
 
-       events.push_back(med0);
+    //   events.push_back(med0);
        events.push_back(med1);
        events.push_back(med2);
        events.push_back(med3);
@@ -402,7 +406,73 @@ void D::loadEvents()
 }
 
 
+bool var_comparator( MData *s1, const MData *s2)
+{
+    return s1->operator <( s2 );
+}
 
+
+void D::loadVars()
+{
+    QFile file(DATA_DIR ("vars.xml"));
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+
+        QXmlStreamReader reader(&file);
+        reader.readNext();
+
+        MData * data = NULL;
+
+        while( !reader.atEnd() )
+        {
+            QStringRef  name = reader.name();
+            if( reader.isStartElement() )
+            {
+                if( name == "var" )
+                {
+                    data = new MData();
+                    qlobal_vars.append(data);
+
+                }
+
+                else if( name == "name")
+                {
+                    data->key = reader.readElementText();
+
+                }
+                else if( name == "descript")
+                {
+                    data->descript = reader.readElementText();
+
+                }
+
+
+            }
+            else if( reader.isEndElement() )
+            {
+
+
+
+            }
+
+
+
+            reader.readNext();
+        }
+
+        file.close();
+
+
+        qSort(qlobal_vars.begin(),qlobal_vars.end(),var_comparator);
+
+
+
+
+    }
+
+
+
+}
 
 
 bool D::saveBusiness()
@@ -449,8 +519,32 @@ bool business_comparator( MBusinessDelegate *s1, const MBusinessDelegate *s2)
 }
 
 
+inline int D::getGlobalVar(const QString &str,QString * result){
+
+    QString pattener = "#[A-Za-z0-9_]+";
+
+    QRegExp regExp(pattener);
+
+    int index = str.indexOf(regExp);
+
+    if( index > -1 && result){
+
+        int length = regExp.matchedLength();
+        result->append(str.mid(index,length));
+        NLog::i("math global var : index:%d length:%d =%s",index,length,result->toStdString().c_str());
+
+
+   }
+
+
+    return index;
+
+}
+
 void D::loadBusiness()
 {
+
+    //[A-Za-z0-9_]
 
 
     QFile file(DATA_DIR ("business.xml"));
@@ -466,7 +560,7 @@ void D::loadBusiness()
         while( !reader.atEnd() )
         {
             QStringRef  name = reader.name();
-            NLog::i("name %s",name.toString().toStdString().c_str() );
+            //NLog::i("name %s",name.toString().toStdString().c_str() );
             if( reader.isStartElement() )
             {
                 if( name == "item" )
@@ -493,7 +587,7 @@ void D::loadBusiness()
                 {
                     QString type = reader.attributes().value("type").toString();
 
-                    NLog::i("view type:%s",type.toStdString().c_str());
+                    //NLog::i("view type:%s",type.toStdString().c_str());
 
                     View * view = createView(type );
 
@@ -503,6 +597,24 @@ void D::loadBusiness()
                         return ;
                     }
                     med->viewgroup->addView(view);
+
+
+                    for(int i=0;i<view->getProperties().size();i++){
+
+                        MProperty * mp = view->getProperties().at(i);
+
+                        QString field;
+                        int index = getGlobalVar(mp->p_value,&field);
+
+                        if( index > -1 ){
+                            view->hasGlobalVar = true;
+                            addVarString(field,med->name,false);
+                        }
+
+
+
+                    }
+
 
                 }
                 else if( name == "Line" )
@@ -515,6 +627,7 @@ void D::loadBusiness()
                         NLog::i("read LineView error");
                         return ;
                     }
+
 
                 }
 
@@ -715,6 +828,40 @@ void D::loadForms()
                 else if( name == "data" )
                 {
                     loadProperties(form->properties,reader);
+                    MProperty * p_j = RP->getPropertyByName(form->properties,"java_plate");
+                    if( p_j ){
+                        if( p_j->p_value.length() == 0 )
+                            p_j->p_value = "form_empty";
+                        MProperty * p_l = RP->getPropertyByName(form->properties,"layout_plate");
+                        if( p_l->p_value.length() == 0 )
+                            p_l->p_value = "layout_empty";
+                    }
+                    else{
+
+                        MProperty * p_j = new MProperty();
+
+                        p_j->p_name = "java_plate";
+                        p_j->p_title = "java模版";
+                        p_j->p_value = "form_empty";
+                        p_j->p_type = 0;
+
+                        form->properties.push_back(p_j);
+
+                        MProperty * p_l = new MProperty();
+
+                        p_l->p_name = "layout_plate";
+                        p_l->p_value = "layout_empty";
+                        p_l->p_title = "布局模版";
+                        p_l->p_type = 0;
+
+                        form->properties.push_back(p_l);
+
+
+
+
+
+                    }
+
                 }
                 else if( name == "x" )
                     form->x = reader.readElementText().toInt();
@@ -1080,6 +1227,44 @@ MUrlDelegate * D::getUrlById(const QString &id)
 
 }
 
+bool D::saveVars()
+{
+
+    QFile file(DATA_DIR ("vars.xml"));
+
+
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+
+        QXmlStreamWriter writer(&file);
+        writer.setAutoFormatting(true);
+        writer.writeStartDocument();
+        writer.writeStartElement("vars");
+
+
+        QMap<QString,MData*>::iterator it;
+        for(int i=0;i<DP->qlobal_vars.size();i++)
+        {
+
+            MData * data = DP->qlobal_vars.at(i);
+            writer.writeStartElement("var");
+            writer.writeTextElement("name",data->key);
+            writer.writeTextElement("descript",data->descript);
+            writer.writeEndElement();
+
+        }
+
+        writer.writeEndElement();
+        writer.writeEndDocument();
+        file.close();
+
+
+        return true;
+    }
+
+    return false;
+}
+
 
 bool D::createEvent()
 {
@@ -1250,7 +1435,16 @@ bool D::createEvent()
 bool D::createUrls()
 {
 
-    QString strs = "/* create my 17 */\n";
+    QString strs = "";
+
+
+    MData * data = DP->getProjectInfo("#package");
+    MData * data_p = DP->getProjectInfo("#project");
+
+    strs.append("package ").append(data->value).append(";\n");
+
+
+
     strs.append("public class Urls{\n\n");
 
     for(int i=0;i<urls.count();i++)
@@ -1942,6 +2136,8 @@ bool D::createStrings()
 
         strs.append("public class ").append("Strings").append("{\n\n");
 
+        strs.append("  public static final String KEY = \"R:\";\n\n");
+
         strs.append("  public static int getStringByKey(String k){\n\n");
 
         strs.append("        switch(k){\n");
@@ -1979,12 +2175,142 @@ bool D::createStrings()
 
             QTextStream out(&file);
             out<<strs;
-
+            return true;
 
         }
         else
             return false;
     }
+
+
+}
+bool D::createVars()
+{
+
+    QString path = DATA_OUT_DIR("java/");
+    path.append("Vars.java");
+
+
+    QString strs = "/*create my 17 \n 用来定义全局变量\n*/\n";
+
+
+    MData * data = DP->getProjectInfo("#package");
+    MData * data_p = DP->getProjectInfo("#project");
+
+    strs.append("package ").append(data->value).append(";\n");
+
+    strs.append("import com.lrl.lrlib.flow.FlowBox;\n\n");
+
+    strs.append("public class ").append("Vars").append("{\n\n");
+
+    strs.append("  public static final String KEY = \"#\";\n\n");
+
+
+    NLog::i("qlobal vars size:%d",qlobal_vars.size());
+
+    for(int i=0;i<qlobal_vars.size();i++)
+    {
+
+        MData * data = qlobal_vars.at(i);
+        strs.append("  public static final String KEY_").append(data->key.right(data->key.length()-1)).append("=\"").append(data->key).append("\";//");
+        strs.append(data->descript).append("\n");
+    }
+
+    strs.append("\n\n");
+    strs.append("   public static Object getGlobalValue(String k){\n\n");
+
+    strs.append("       return FlowBox.getGlobalValue(k);\n\n");
+
+    strs.append("   }\n\n");
+
+
+    strs.append("}\n");
+
+    QFile file(path);
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+
+
+        QTextStream out(&file);
+        out<<strs;
+        return true;
+
+    }
+    else
+        return false;
+
+}
+
+bool D::createWWWStrings()
+{
+
+    if(true)  {
+
+
+        //android
+        QString path = DATA_OUT_DIR("java/");
+        path.append("Define.java");
+
+
+        QString strs = "/*create my 17 \n用来定义分包数据*/\n";
+
+
+        MData * data = DP->getProjectInfo("#package");
+        MData * data_p = DP->getProjectInfo("#project");
+
+        strs.append("package ").append(data->value).append(";\n");
+
+        strs.append("import ").append(data_p->value).append(".R;\n");
+
+        strs.append("public class ").append("Define").append("{\n\n");
+
+        strs.append("  public static final String KEY = \"W:\";\n\n");
+
+        strs.append("  public static String getStringByKey(String k){\n\n");
+
+        strs.append("        switch(k){\n");
+
+        QMap<QString,MData*>::iterator it;
+        for(it = qlobal_wwws.begin();it != qlobal_wwws.end();++it)
+        {
+
+            MData * data = it.value();
+
+
+            strs.append("           case ").append("\"").append(data->key).append("\": return Const.").append(data->key.right(data->key.length()-2)).append(" ;//");
+            strs.append(data->descript).append("\n");
+        }
+
+
+        /*
+       for(int i=0;i< global_strings.size();i++ )
+       {
+           MData * data = global_strings.at(i);
+       strs.append("           case ").append("\"").append(data->key).append("\": return R.string. ;//");
+       strs.append(data->descript).append("\n");
+       }
+        */
+
+        strs.append("        }\n");
+        strs.append("        return null;\n\n");
+        strs.append("  }\n\n");
+        strs.append("}\n");
+
+        QFile file(path);
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+
+
+            QTextStream out(&file);
+            out<<strs;
+            return true;
+
+        }
+        else
+            return false;
+    }
+
+
 
 
 }
@@ -2178,6 +2504,33 @@ MData * D::getProjectInfo(const QString& key)
 }
 
 
+void D::addVarString(const QString& key,const QString& desc,bool replace){
+
+    int index = -1;
+
+    for(int i=0;i<qlobal_vars.size();i++){
+
+        MData * data = qlobal_vars.at(i);
+        if( data->key == key ){
+            index = i;
+            break;
+        }
+    }
+
+    if( index > -1 && !replace )
+        return;
+    if( index > -1 && replace )
+        qlobal_vars.takeAt( index );
+
+    MData * data = new MData();
+    data->key = key;
+    data->descript = desc;
+    qlobal_vars.push_back(data);
+
+
+}
+
+
 const QString  D::createCodes()
 {
 
@@ -2206,7 +2559,7 @@ const QString  D::createCodes()
     }
      **/
 
-    cleanGolableString();
+    //cleanGolableString();
 
     QString dirstr_android = DATA_OUT_DIR("java");
     QDir dir_android(dirstr_android);
@@ -2231,7 +2584,8 @@ const QString  D::createCodes()
         strs.append("create model success.\n");
     else
         return "create model error";
-    if( createUrls()  )
+
+   if( createUrls()  )
         strs.append("create urls success.\n");
     else
         return "create urls error";
@@ -2245,9 +2599,15 @@ const QString  D::createCodes()
     else
         return "create business error";
     createProjectInfos() ;
+
     strs.append("create project success.\n");
+
     if( createStrings() )
         strs.append("create Strings success.\n");
+    if( createWWWStrings() )
+        strs.append("create wwws success.\n");
+    if( createVars() )
+        strs.append("create vars success.\n");
 
     return strs;
 

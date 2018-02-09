@@ -44,7 +44,8 @@ SOURCES += main.cpp\
     tablemodel.cpp \
     projectadapter.cpp \
     commoneditdelegate.cpp \
-    ftmp.cpp
+    ftmp.cpp \
+    varadapter.cpp
 
 HEADERS  += mainwindow.h \
     my17.h \
@@ -77,7 +78,8 @@ HEADERS  += mainwindow.h \
     projectadapter.h \
     editoradapter.h \
     commoneditdelegate.h \
-    ftmp.h
+    ftmp.h \
+    varadapter.h
 
 FORMS    += mainwindow.ui \
     docbusinesseditor.ui \
@@ -85,7 +87,8 @@ FORMS    += mainwindow.ui \
     doceventeditor.ui \
     docurleditor.ui \
     doccommoneditor.ui \
-    docformeditor.ui
+    docformeditor.ui \
+    docvars.ui
 
 OTHER_FILES +=
 

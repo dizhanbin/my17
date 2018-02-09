@@ -131,7 +131,7 @@ DocCommonEditor::~DocCommonEditor()
   QWidget * DocCommonEditor::getEditor(QWidget *parent,int row,int col)
  {
 
-      if( col == 1 )
+      if( adapter->isEditable(row,col) )
       {
       QLineEdit *m_pTxt = new QLineEdit(parent);
       //connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged_name()) );

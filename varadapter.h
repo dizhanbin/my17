@@ -1,12 +1,12 @@
-#ifndef PROJECTADAPTER_H
-#define PROJECTADAPTER_H
+#ifndef VARADAPTER_H
+#define VARADAPTER_H
 
 #include "tablemodel.h"
 
-class ProjectAdapter : public TableAdapter
+class VarAdapter : public TableAdapter
 {
 public:
-    ProjectAdapter();
+    VarAdapter();
 
     virtual const QString  getHeder(int col);
     virtual const QString  getValue(int row,int col);
@@ -14,7 +14,6 @@ public:
     virtual int getColCount();
     virtual void onValueChanged(int row,int col,const QString & value);
     virtual bool isEditable(int row,int col);
-
 };
 
-#endif // PROJECTADAPTER_H
+#endif // VARADAPTER_H

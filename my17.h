@@ -30,6 +30,18 @@ class View;
 //#define DATA_OUT_DIR( arg ) QString("/Users/dizhanbin/work/qt/17out/").append(arg)
 
 
+#if defined(Q_OS_WIN32)
+
+#define DATA_ROOT(arg) QString(QCoreApplication::applicationDirPath()).append("/").append(arg)
+
+#define DATA_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/17data/").append(arg)
+
+#define DATA_PLATE_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/17data/plate/").append(arg)
+
+#define DATA_OUT_DIR( arg ) QString(QCoreApplication::applicationDirPath()).append("/17out/").append(arg)
+
+#else
+
 #define DATA_ROOT(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../").append(arg)
 
 #define DATA_DIR(arg) QString(QCoreApplication::applicationDirPath()).append("/../../../17data/").append(arg)
@@ -39,6 +51,7 @@ class View;
 #define DATA_OUT_DIR( arg ) QString(QCoreApplication::applicationDirPath()).append("/../../../17out/").append(arg)
 
 
+#endif
 
 
 
@@ -166,6 +179,29 @@ public :
     }
 
 
+
+
+    bool operator >(const MData * arg){
+        return key.compare(arg->key)>0;
+    }
+
+    bool operator <(const MData * arg){
+        return key.compare(arg->key)<0;
+    }
+    bool operator ==(const MData * arg){
+        return key.compare(arg->key)==0;
+    }
+
+    bool operator >=(const MData * arg){
+        return key.compare(arg->key)>=0;
+    }
+    bool operator <=(const MData * arg){
+        return key.compare(arg->key)<=0;
+    }
+
+
+
+
 };
 
 
@@ -231,6 +267,7 @@ namespace my17 {
             event_property_selectd,//属性编辑 MPropertyEdit
             event_property_changed,//
 
+            event_req_var_item_selected,
 
 
         };
@@ -277,7 +314,7 @@ namespace my17 {
               QVector<MElement*> elements;//控件
               ~R(){
 
-                NLog::i("release R");
+                //NLog::i("release R");
                 while(elements.size()>0)
                 {
                     MElement * e = elements.at(0);
@@ -377,7 +414,7 @@ namespace my17 {
 
 
                     NLog::i("-------------------");
-                    NLog::i("i=%d",i);
+                    //NLog::i("i=%d",i);
 
 
 
@@ -408,11 +445,22 @@ namespace my17 {
 
 
 
+            QDateTime ids;
+
+            qint64 ids_i;
 
             inline const QString  getId()
             {
-                QDateTime time = QDateTime::currentDateTime();//获取系统现在的时间
-                return time.toString("yyyyMMddhhmmsszzz");;
+
+               // QDateTime time = //获取系统现在的时间
+
+                ids_i += 10;
+
+               // ids.addMSecs(10);
+
+                return QString::number(ids_i);
+
+                //return ids.toString("yyyyMMddhhmmsszzz");;
             }
 
             MProperty * getPropertyByName(QList<MProperty*> & properties,const QString &name)
@@ -440,18 +488,18 @@ namespace my17 {
                 loadProjectInfos();
                 loadModel();
                 loadEvents();
+                loadVars();
                 loadBusiness();
                 loadUrl();
                 loadForms();
-
+                
 
                 //load tmp
 
 
 
-                FTmp * ftmp = new FTmp(DATA_DIR("code_form.txt"));
-
-                delete ftmp;
+                //FTmp * ftmp = new FTmp(DATA_DIR("code_form.txt"));
+                //delete ftmp;
 
 
             }
@@ -461,7 +509,7 @@ namespace my17 {
 
             ~D(){
 
-                NLog::i("release D");
+                //NLog::i("release D");
 
                 while ( !business.isEmpty() )
                    delete business.takeFirst();
@@ -477,6 +525,7 @@ namespace my17 {
                 while( !forms.isEmpty() )
                     delete forms.takeFirst();
                 cleanGolableString();
+
 
 
             }
@@ -498,7 +547,11 @@ namespace my17 {
             //QVector<MData *> global_strings;
 
             QMap<QString,MData*> qlobal_strings;
+            QMap<QString,MData*> qlobal_wwws;
+            QVector<MData*>      qlobal_vars;
 
+
+            QString current_business;
 
             MBusinessDelegate * newBusiness()
             {
@@ -576,6 +629,9 @@ namespace my17 {
             bool saveEvents();
             void loadEvents();
 
+            void loadVars();
+
+
             bool saveBusiness();
             void loadBusiness();
 
@@ -608,6 +664,11 @@ namespace my17 {
            MUrlDelegate * getUrlById(const QString &id);
 
 
+           inline int getGlobalVar(const QString &str,QString * result);
+
+
+
+           bool createVars();
 
            bool createEvent();
            bool createUrls();
@@ -617,6 +678,9 @@ namespace my17 {
            bool createProjectInfos();
 
            bool createStrings();
+           bool createWWWStrings();
+
+           bool saveVars();
 
            bool createFile(const QString & path,const QString & strs);
 
@@ -630,13 +694,33 @@ namespace my17 {
 
 
               qlobal_strings.clear();
-
-
+              qlobal_wwws.clear();
+              while( !qlobal_vars.isEmpty() )
+                  delete qlobal_vars.takeFirst();
 
           }
+
+          void addWWWString(const QString& key,const QString& desc){
+
+
+              qlobal_wwws.remove(key);
+              if( !qlobal_wwws.contains(key) )
+              {
+                  MData * mdata = new MData();
+                  mdata->key = key;
+                  mdata->descript = desc;
+
+                  qlobal_wwws.insert(key,mdata);
+              }
+
+          }
+
+          void addVarString(const QString& key,const QString& desc,bool replace);
+
+
           void addGolableString(const QString& key,const QString& desc){
 
-
+              qlobal_strings.remove(key);
               if( !qlobal_strings.contains(key) )
               {
                   MData * mdata = new MData();
@@ -646,14 +730,12 @@ namespace my17 {
                   qlobal_strings.insert(key,mdata);
               }
 
-
-
           }
           const QString& getPropertyValue(const QString& args,const QString& value)
            {
 
 
-               NLog::i("getPropertyValue %s v:%s",args.toStdString().c_str(),value.toStdString().c_str() );
+               //NLog::i("getPropertyValue %s v:%s",args.toStdString().c_str(),value.toStdString().c_str() );
                if( args ==  "$model" )
                {
                    MModelDelegate * mmd = getModelById(value);

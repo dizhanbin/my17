@@ -14,6 +14,7 @@
 #include "docformeditor.h"
 #include "projectadapter.h"
 #include "commoneditdelegate.h"
+#include "varadapter.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -68,11 +69,20 @@ void MainWindow::init_left_0()
     QStandardItem* item10 = new QStandardItem("事件");
     model->insertRow(index_event,item10);
 
-    QStandardItem* item30 = new QStandardItem("页面");
+
+
+    QStandardItem* item30 = new QStandardItem("页面 ("+QString::number(DP->forms.size())+")");
+
+
+
     model->insertRow(index_form,item30);
 
     QStandardItem* item20 = new QStandardItem("业务");
     model->insertRow(index_business,item20);
+
+    QStandardItem* item40 = new QStandardItem("全局数据");
+    model->insertRow(index_vars,item40);
+
 
 
     ui->left_0->setHeaderHidden(true);
@@ -115,9 +125,13 @@ void MainWindow::init_left_0()
 
         MBusinessDelegate * mm = DP->business.at(i);
         QStandardItem* item_m = new QStandardItem( mm->name +" ->"+ QString::number(i+1) );
+        item_m->setToolTip(mm->descript);
         item20->appendRow(item_m);
 
     }
+
+
+
 
 
 }
@@ -320,6 +334,46 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
 
                 }
                 break;
+                case index_vars:
+                {
+
+
+
+
+
+                        void * data = (void*)6;
+
+                        for(int i=0;i<ui->center_document->count() ;i++)
+                        {
+                            IExec * exec = dynamic_cast<IExec*>(ui->center_document->widget( i));
+
+                            if( exec )
+                            {
+                                if( exec->getData() == data )
+                                {
+                                    ui->center_document->removeTab(i);
+                                    break;
+
+                                }
+
+                            }
+
+                        }
+                            DocCommonEditor * doc = new DocCommonEditor();
+
+                            //DocVarEditor * doc = new DocVarEditor();
+                            doc->setData(data);
+
+                            VarAdapter * adapter = new VarAdapter();
+                            doc->setAdapter(adapter);
+
+                            ui->center_document->addTab(doc,"全局变量");
+                            ui->center_document->setCurrentWidget(doc);
+
+
+
+                }
+                break;
 
 
 
@@ -338,10 +392,12 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
             return;
 
 
-        case index_business://business
+       case index_business://business
        {
 
            MBusinessDelegate * mb = DP->getBusiness(index.row());
+
+           DP->current_business = mb->name;
 
            MC->sendMessage(my17::event_req_business_selected,mb);
 
@@ -454,6 +510,7 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
                 View * view = (View*)arg;
                 MPropertyDelegate * mpd = new MPropertyDelegate();
                 mpd->properties = & view->getProperties();
+                mpd->view_focus = view;
 
                 for(int i=0;i<mpd->properties->count();i++)
                     ui->right_bottom->insertRow(0);
@@ -603,6 +660,12 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             else
                 msgs.append("工程数据保存失败；\n");
 
+            if( DP->saveVars() )
+                msgs.append("全局变量保存成功；\n");
+            else
+                msgs.append("全局变量保存失败；\n");
+
+
 
             QMessageBox::information(NULL,"提示",msgs);
 
@@ -653,6 +716,7 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
         }
         return my17::todo_done_only;
+        case my17::event_req_var_item_selected:
         case my17::event_property_selectd:
         {
 
@@ -677,6 +741,7 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
 
             CommonEditDelegate * delegate = new CommonEditDelegate();
+
             delegate->setAdapter(adapter);
 
 
@@ -689,6 +754,8 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
         }
         return my17::todo_done_only;
+
+
 
     }
 
@@ -817,8 +884,12 @@ void MainWindow::do_business_data_changed(MBusinessDelegate * business)
 
     QStandardItem * item =  model->item(index_business)->child(index);
 
-     if( item )
-       item->setText( business->name  );
+    if( item ) {
+
+        item->setText( business->name  + " ->" + QString::number(index+1)   );
+        item->setToolTip(business->descript);
+
+    }
 
     do_focus_tab_by_data(business,business->name);
 

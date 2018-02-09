@@ -269,14 +269,21 @@ QWidget * MPropertyDelegate::createEditor(QWidget *parent,
       int index = text->property("row").value<int>();
       MProperty * mp = properties->at(index);
       mp->p_value = text->text();
-      NLog::i("data changed...index:%d",index);
+      QString var;
+      if( DP->getGlobalVar(mp->p_value,&var)>-1 ){
+         DP->addVarString(mp->p_value,DP->current_business,false);
+      }
+      view_focus->updateHasGlobalVar();
+
+     // NLog::i("data changed...index:%d",index);
+
 
  }
  void MPropertyDelegate::slots_datachanged_index(int i)
  {
      QComboBox *comBox = (QComboBox*)sender();
       int index = comBox->property("row").value<int>();
-      NLog::i("data combox changed...index:%d  p-index:%d",i,index);
+      //NLog::i("data combox changed...index:%d  p-index:%d",i,index);
 
 
      MProperty * mp = properties->at(index);

@@ -27,6 +27,10 @@ class IconView :public View
 
     virtual const QString & getElementid(){ return m_element_id; };
 
+
+
+
+
 };
 
 

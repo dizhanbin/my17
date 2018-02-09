@@ -15,6 +15,7 @@ typedef enum{
     index_form,
 
     index_business,
+    index_vars,
 
 
 
@@ -57,6 +58,8 @@ public slots:
     void slot_left_0_menu_new_bus_triggered(bool checked = false);
     void slot_left_0_menu_new_model_triggered(bool checked = false);
     void slot_left_1_item_double_click(const QModelIndex & index);
+
+
 
     void slot_toolbar_del_click(bool checked = false);
     void slot_toolbar_add_click(bool checked = false);

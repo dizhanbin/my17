@@ -3,6 +3,7 @@
 
 #include <QStyledItemDelegate>
 #include "mproperty.h"
+#include "view.h"
 
 class MPropertyDelegate : public QStyledItemDelegate
 {
@@ -18,6 +19,7 @@ public:
 
 public:
     QList<MProperty*> * properties;
+    View * view_focus;
 
 
 public slots:

@@ -69,3 +69,8 @@ ProjectAdapter::ProjectAdapter()
      }
 
  }
+ bool ProjectAdapter::isEditable(int row,int col)
+ {
+     return col!=0;
+
+ }

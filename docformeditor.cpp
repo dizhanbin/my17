@@ -77,11 +77,13 @@ my17::TodoResult  DocFormEditor::todo(my17::Event event,void * arg)
             MProperty * mp5 = new MProperty();
             mp5->p_name = "java_plate";
             mp5->p_title = "java模版";
+            mp5->p_value = "form_empty";
             mp5->p_type = 0;
 
 
             MProperty * mp6 = new MProperty();
             mp6->p_name = "layout_plate";
+            mp6->p_value = "layout_empty";
             mp6->p_title = "布局模版";
             mp6->p_type = 0;
 

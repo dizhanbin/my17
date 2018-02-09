@@ -19,6 +19,7 @@ IconView::~IconView(){
 
 }
 
+
 void  IconView::paint(QPaintEvent * event,QWidget * widget)
 {
 
@@ -35,6 +36,16 @@ void  IconView::paint(QPaintEvent * event,QWidget * widget)
         painter.setPen(pen);
         painter.setBrush( QBrush(pal.toolTipBase().color(),Qt::SolidPattern ) );
         painter.drawRect(drawrect);
+    }
+    else if( hasGlobalVar ){
+
+        int off = m_isfocus ? 3 : 2;
+        QPen pen = QPen( QColor::fromRgb(0xff,0x00,0xff,0x55) );
+        pen.setWidth(off);
+        painter.setPen(pen);
+        painter.setBrush( QBrush( QColor::fromRgb(0xff,0x00,0xff,0x55) ,Qt::SolidPattern ) );
+        painter.drawRect(drawrect);
+
     }
     if( !m_bitmap )
     {

@@ -40,6 +40,20 @@ QWidget * CommonEditDelegate::createEditor(QWidget *parent,
 {
 
 
+    QLineEdit *m_pTxt  =  (QLineEdit *)adapter->getEditor(parent,index.row(),index.column());
+
+   if( m_pTxt ){
+
+       QVariant q(index.row());
+
+       m_pTxt->setProperty("index",q);
+
+       connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged()) );
+
+   }
+    return m_pTxt;
+
+    /*
     QLineEdit *m_pTxt = new QLineEdit(parent);
 
 
@@ -48,16 +62,21 @@ QWidget * CommonEditDelegate::createEditor(QWidget *parent,
     m_pTxt->setProperty("index",q);
 
     connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged()) );
+
     return m_pTxt;
+
+    */
 
 }
 
-  void CommonEditDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void CommonEditDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
 
+    if( editor )  {
     QLineEdit *m_pTxt = ( QLineEdit *)editor;
     if( m_pTxt->text().length() == 0 )
         m_pTxt->setText( adapter->getEditValue(index.row(),1) );
+    }
 
 }
 

@@ -23,6 +23,8 @@ public:
     QRect m_rect;
     bool m_isfocus;
     bool isroot;
+    bool hasGlobalVar;
+
 
     QList<MProperty*> properties;
 
@@ -34,7 +36,7 @@ public:
 
     virtual void setData(void * data){};
     virtual void* getData(){ return NULL; };
-
+    virtual void updateHasGlobalVar();
 
 public:
 

@@ -12,7 +12,7 @@ public:
     virtual int getRowCount()=0;
     virtual int getColCount()=0;
     virtual void onValueChanged(int row,int col,const QString & value)=0;
-
+    virtual bool isEditable(int row,int col)=0;
 
 };
 

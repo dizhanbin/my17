@@ -2,7 +2,7 @@
 
 
 
-View::View():m_isfocus(false),m_rect(30,30,ELE_W_H,ELE_W_H)
+View::View():m_isfocus(false),m_rect(30,30,ELE_W_H,ELE_W_H),hasGlobalVar(false)
 {
     viewid = RP->getId();
 }
@@ -161,6 +161,11 @@ void View::setRoot(bool is)
 
                    DP->addGolableString(p->p_value,getDescript());
                }
+               else if( p->p_value.startsWith("W:") ){
+
+                   DP->addWWWString( p->p_value,getDescript() );
+
+               }
            }
 
            writer.writeEndElement();
@@ -210,7 +215,7 @@ void View::setRoot(bool is)
                 if( name == "property" )
                 {
                     mp = new MProperty();
-                    properties.push_back(mp);
+
 
                     mp->p_name = reader.attributes().value("name").toString();
                     mp->p_title = reader.attributes().value("title").toString();
@@ -218,8 +223,9 @@ void View::setRoot(bool is)
                     mp->p_args = reader.attributes().value("args").toString();
                     mp->p_value = reader.attributes().value("value").toString();
 
+//                    NLog::i("p name:%s value:%s",mp->p_name.toStdString().c_str(),mp->p_value.toStdString().c_str());
 
-
+                    properties.push_back(mp);
                 }
             }
             else if( reader.isEndElement() )
@@ -279,6 +285,25 @@ void View::setRoot(bool is)
        return NULL;
 
    }
+
+
+    void View::updateHasGlobalVar()
+    {
+        for(int i=0;i<this->properties.size();i++)
+        {
+           MProperty * mp = properties.at(i);
+
+           if( DP->getGlobalVar(mp->p_value,0) > -1 )
+           {
+               hasGlobalVar = true;
+               return;
+           }
+
+        }
+
+        hasGlobalVar = false;
+
+    }
 
 
    const QString & View::getDescript()
