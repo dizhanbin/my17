@@ -545,6 +545,8 @@ namespace my17 {
 
             QVector<MData *> projectinfos;
 
+            void * copyvalue;
+
             //QVector<MData *> global_strings;
 
             QMap<QString,MData*> qlobal_strings;

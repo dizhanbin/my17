@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 
- //  my17::event ev = my17::event_req_view_add;
+    //  my17::event ev = my17::event_req_view_add;
 
 
     showMaximized();
@@ -198,11 +198,11 @@ void MainWindow::init_left_1_items()
 
 
 
- //QStandardItem* s0 = new QStandardItem(  "item0" );
- //s0->setTextAlignment(Qt::AlignLeft);
+    //QStandardItem* s0 = new QStandardItem(  "item0" );
+    //s0->setTextAlignment(Qt::AlignLeft);
 
- //s0->setBackground(QBrush(QColor(0xee,0xee,0x99)));
- //model->insertRow(0,s0);
+    //s0->setBackground(QBrush(QColor(0xee,0xee,0x99)));
+    //model->insertRow(0,s0);
 
 
     for(int i=0;i<vecs.size();i++)
@@ -256,160 +256,160 @@ void MainWindow::slot_left_0_item_selected(const QModelIndex & index)
 
 
     NLog::i("select left pr:%d r:%d",index.parent().row(),index.row() );
-   switch( index.parent().row() )
-   {
+    switch( index.parent().row() )
+    {
 
-        case -1:
-       {
+    case -1:
+    {
 
-            switch( index.row() )
-            {
-
-
-                case index_const://const
-                 {
-
-
-                      MessageCenter::getInstence()->sendMessage( my17::event_req_const_selected,NULL);
-
-                 }
-                 return;
-
-                case index_event:
-               {
-
-
-
-                   int index = do_focus_tab_by_data(&DP->events,"事件");
-
-                   if( index == -1 )
-                   {
-
-                        DocEventEditor * doc = new DocEventEditor();
-                        ui->center_document->addTab(doc,"事件");
-                        doc->setData(&DP->events);
-                        ui->center_document->setCurrentWidget(doc);
-
-                   }
-                   break;
-
-
-                }
-                case index_url:
-                {
-
-                     int index = do_focus_tab_by_data(&DP->urls,"请求地址");
-
-                     if( index == -1 )
-                     {
-                         DocUrlEditor * doc = new DocUrlEditor();
-                         ui->center_document->addTab(doc,"请求地址");
-                         doc->setData(&DP->urls);
-                         ui->center_document->setCurrentWidget(doc);
-
-                     }
-                     break;
-
-                }
-                case index_form:
-                {
-                    //DocCommonEditor * doc = new DocCommonEditor();
-                    //ui->center_document->addTab(doc,"页面");
-                   // doc->setData(&DP->urls);
-                   // ui->center_document->setCurrentWidget(doc);
-
-
-
-                    int index = do_focus_tab_by_data((void*)1,"页面");
-
-
-                    if( index == -1 )
-                    {
-                        DocFormEditor * doc = new DocFormEditor();
-                        ui->center_document->addTab(doc,"页面");
-                        ui->center_document->setCurrentWidget(doc);
-                    }
-
-
-
-                }
-                break;
-                case index_vars:
-                {
-
-
-
-
-
-                        void * data = (void*)6;
-
-                        for(int i=0;i<ui->center_document->count() ;i++)
-                        {
-                            IExec * exec = dynamic_cast<IExec*>(ui->center_document->widget( i));
-
-                            if( exec )
-                            {
-                                if( exec->getData() == data )
-                                {
-                                    ui->center_document->removeTab(i);
-                                    break;
-
-                                }
-
-                            }
-
-                        }
-                            DocCommonEditor * doc = new DocCommonEditor();
-
-                            //DocVarEditor * doc = new DocVarEditor();
-                            doc->setData(data);
-
-                            VarAdapter * adapter = new VarAdapter();
-                            doc->setAdapter(adapter);
-
-                            ui->center_document->addTab(doc,"全局变量");
-                            ui->center_document->setCurrentWidget(doc);
-
-
-
-                }
-                break;
-
-
-
-            }
-
-
-       }
-        return;
-
-
-        case index_model://model
+        switch( index.row() )
         {
-            MModelDelegate * mm =   my17::D::getInstance()->getModel(index.row());
-            MessageCenter::getInstence()->sendMessage( my17::event_req_model_selected,mm  );
+
+
+        case index_const://const
+        {
+
+
+            MessageCenter::getInstence()->sendMessage( my17::event_req_const_selected,NULL);
+
         }
             return;
 
-
-       case index_business://business
-       {
-
-           MBusinessDelegate * mb = DP->getBusiness(index.row());
-
-           DP->current_business = mb->name;
-
-           MC->sendMessage(my17::event_req_business_selected,mb);
+        case index_event:
+        {
 
 
-       }
+
+            int index = do_focus_tab_by_data(&DP->events,"事件");
+
+            if( index == -1 )
+            {
+
+                DocEventEditor * doc = new DocEventEditor();
+                ui->center_document->addTab(doc,"事件");
+                doc->setData(&DP->events);
+                ui->center_document->setCurrentWidget(doc);
+
+            }
+            break;
+
+
+        }
+        case index_url:
+        {
+
+            int index = do_focus_tab_by_data(&DP->urls,"请求地址");
+
+            if( index == -1 )
+            {
+                DocUrlEditor * doc = new DocUrlEditor();
+                ui->center_document->addTab(doc,"请求地址");
+                doc->setData(&DP->urls);
+                ui->center_document->setCurrentWidget(doc);
+
+            }
+            break;
+
+        }
+        case index_form:
+        {
+            //DocCommonEditor * doc = new DocCommonEditor();
+            //ui->center_document->addTab(doc,"页面");
+            // doc->setData(&DP->urls);
+            // ui->center_document->setCurrentWidget(doc);
+
+
+
+            int index = do_focus_tab_by_data((void*)1,"页面");
+
+
+            if( index == -1 )
+            {
+                DocFormEditor * doc = new DocFormEditor();
+                ui->center_document->addTab(doc,"页面");
+                ui->center_document->setCurrentWidget(doc);
+            }
+
+
+
+        }
+            break;
+        case index_vars:
+        {
+
+
+
+
+
+            void * data = (void*)6;
+
+            for(int i=0;i<ui->center_document->count() ;i++)
+            {
+                IExec * exec = dynamic_cast<IExec*>(ui->center_document->widget( i));
+
+                if( exec )
+                {
+                    if( exec->getData() == data )
+                    {
+                        ui->center_document->removeTab(i);
+                        break;
+
+                    }
+
+                }
+
+            }
+            DocCommonEditor * doc = new DocCommonEditor();
+
+            //DocVarEditor * doc = new DocVarEditor();
+            doc->setData(data);
+
+            VarAdapter * adapter = new VarAdapter();
+            doc->setAdapter(adapter);
+
+            ui->center_document->addTab(doc,"全局变量");
+            ui->center_document->setCurrentWidget(doc);
+
+
+
+        }
+            break;
+
+
+
+        }
+
+
+    }
+        return;
+
+
+    case index_model://model
+    {
+        MModelDelegate * mm =   my17::D::getInstance()->getModel(index.row());
+        MessageCenter::getInstence()->sendMessage( my17::event_req_model_selected,mm  );
+    }
+        return;
+
+
+    case index_business://business
+    {
+
+        MBusinessDelegate * mb = DP->getBusiness(index.row());
+
+        DP->current_business = mb->name;
+
+        MC->sendMessage(my17::event_req_business_selected,mb);
+
+
+    }
         break;
 
 
-   }
+    }
 
 
-   // NLog::i("menu click row: %d,col :%d parent:row:%d",index.row(),index.column(),index.parent().row());
+    // NLog::i("menu click row: %d,col :%d parent:row:%d",index.row(),index.column(),index.parent().row());
 
 }
 
@@ -433,36 +433,36 @@ void MainWindow::slot_left_0_menu_new_model_triggered(bool checked)
 
 }
 
- void MainWindow::slot_toolbar_del_click(bool checked)
- {
+void MainWindow::slot_toolbar_del_click(bool checked)
+{
 
-       MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_del);
+    MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_del);
 
- }
+}
 
- void MainWindow::slot_toolbar_add_click(bool checked)
- {
+void MainWindow::slot_toolbar_add_click(bool checked)
+{
 
-     MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_add);
+    MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_add);
 
- }
-
-
-
- void MainWindow::slot_toolbar_save_click(bool checked)
- {
-
-     MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save);
-
- }
-
- void MainWindow::slot_toolbar_run_click(bool checked)
- {
-
-     MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+}
 
 
- }
+
+void MainWindow::slot_toolbar_save_click(bool checked)
+{
+
+    MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save);
+
+}
+
+void MainWindow::slot_toolbar_run_click(bool checked)
+{
+
+    MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+
+
+}
 
 void MainWindow::slot_tab_close(int index)
 {
@@ -479,281 +479,281 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
     switch( event )
     {
 
-        case my17::event_req_menu_init:
-            init_left_0();
-            init_left_1_items();
-            init_toolbar();
-            init_right_1();
+    case my17::event_req_menu_init:
+        init_left_0();
+        init_left_1_items();
+        init_toolbar();
+        init_right_1();
 
-            connect(ui->center_document,SIGNAL(tabCloseRequested(int)),this,SLOT(slot_tab_close(int)));
+        connect(ui->center_document,SIGNAL(tabCloseRequested(int)),this,SLOT(slot_tab_close(int)));
 
 
-            return my17::todo_done_only;
-        case my17::event_req_add_business:
-            do_add_tree_item_for_business();
-            return my17::todo_done_only;
-        case my17::event_req_add_model:
+        return my17::todo_done_only;
+    case my17::event_req_add_business:
+        do_add_tree_item_for_business();
+        return my17::todo_done_only;
+    case my17::event_req_add_model:
 
-            do_add_tree_item_for_model();
-            return my17::todo_done_only;
-        case my17::event_req_business_item_selected:
+        do_add_tree_item_for_model();
+        return my17::todo_done_only;
+    case my17::event_req_business_item_selected:
+    {
+
+        NLog::i("event_req_business_item_selected item");
+
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
+
+
+        if( arg )
         {
+            View * view = (View*)arg;
+            MPropertyDelegate * mpd = new MPropertyDelegate();
+            mpd->properties = & view->getProperties();
+            mpd->view_focus = view;
 
-            NLog::i("event_req_business_item_selected item");
-
-            while( ui->right_bottom->rowCount()>0 )
-                ui->right_bottom->removeRow(0);
-
-
-            if( arg )
-            {
-                View * view = (View*)arg;
-                MPropertyDelegate * mpd = new MPropertyDelegate();
-                mpd->properties = & view->getProperties();
-                mpd->view_focus = view;
-
-                for(int i=0;i<mpd->properties->count();i++)
-                    ui->right_bottom->insertRow(0);
-                ui->right_bottom->setItemDelegate(mpd);
-
-
-                QString  text = "提示：\n ";
-                text.append(view->getTopDescript());
-                ui->right_top->setText(text);
-            }
-
-             NLog::i("event_req_business_item_selected end");
-
-        }
-            return my17::todo_done_only;
-        case my17::event_req_model_selected:
-        {
-
-            while( ui->right_bottom->rowCount()>0 )
-                ui->right_bottom->removeRow(0);
-            MModelDelegate * mm  = (MModelDelegate*)arg;
-            ui->right_bottom->insertRow(0);
-            ui->right_bottom->setItemDelegate(mm);
-
-            if(  do_focus_tab_by_data(mm,mm->name) == -1 )
-            {
-                DocModelEditor * doc = new DocModelEditor();
-                ui->center_document->addTab(doc,mm->name);
-                doc->setData(mm);
-                ui->center_document->setCurrentWidget(doc);
-            }
-
-        }
-            return my17::todo_done_only;
-        case my17::event_req_business_selected:
-        {
-
-            while( ui->right_bottom->rowCount()>0 )
-                ui->right_bottom->removeRow(0);
-            MBusinessDelegate * mm  = (MBusinessDelegate*)arg;
-            ui->right_bottom->insertRow(0);
-            ui->right_bottom->insertRow(0);
-            ui->right_bottom->insertRow(0);
-            ui->right_bottom->insertRow(0);
-            ui->right_bottom->setItemDelegate(mm);
-
-           if( do_focus_tab_by_data(mm,mm->name) == -1 )
-           {
-               DocBusinessEditor * doc = new DocBusinessEditor();
-               ui->center_document->addTab(doc,mm->name);
-               doc->setData(mm);
-               ui->center_document->setCurrentWidget(doc);
-           }
-
-        }
-            return my17::todo_done_only;
-        case my17::event_req_model_data_changed:
-        {
-
-
-            MModelDelegate * d = (MModelDelegate*)arg;
-            do_model_data_changed(d);
-
-
-        }
-            return my17::todo_done_only;
-         case my17::event_req_business_data_changed:
-        {
-            MBusinessDelegate * md = (MBusinessDelegate*)arg;
-            do_business_data_changed(md);
-        }
-            return my17::todo_done_only;
-        case my17::event_req_model_field_selected:
-        {
-            MModelFieldDelegate * mm  = (MModelFieldDelegate*)arg;
-            while( ui->right_bottom->rowCount()>0 )
-                ui->right_bottom->removeRow(0);
-
-            for(int i=0;i<4;i++)
+            for(int i=0;i<mpd->properties->count();i++)
                 ui->right_bottom->insertRow(0);
+            ui->right_bottom->setItemDelegate(mpd);
 
-            ui->right_bottom->setItemDelegate(mm);
 
+            QString  text = "提示：\n ";
+            text.append(view->getTopDescript());
+            ui->right_top->setText(text);
         }
-            return my17::todo_done_only;
-        case my17::event_req_url_item_selected:
-        {
-            MUrlDelegate * mm  = (MUrlDelegate*)arg;
-            while( ui->right_bottom->rowCount()>0 )
-                ui->right_bottom->removeRow(0);
 
-            for(int i=0;i<4;i++)
-                ui->right_bottom->insertRow(0);
+        NLog::i("event_req_business_item_selected end");
 
-            ui->right_bottom->setItemDelegate(mm);
-
-        }
+    }
         return my17::todo_done_only;
-        case my17::event_req_event_item_selected:
-        {
-            MEventDelegate * med = (MEventDelegate *)arg;
-             while( ui->right_bottom->rowCount()>0 )
-                  ui->right_bottom->removeRow(0);
-             for(int i=0;i<3;i++)
-                 ui->right_bottom->insertRow(0);
+    case my17::event_req_model_selected:
+    {
 
-             ui->right_bottom->setItemDelegate(med);
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
+        MModelDelegate * mm  = (MModelDelegate*)arg;
+        ui->right_bottom->insertRow(0);
+        ui->right_bottom->setItemDelegate(mm);
+
+        if(  do_focus_tab_by_data(mm,mm->name) == -1 )
+        {
+            DocModelEditor * doc = new DocModelEditor();
+            ui->center_document->addTab(doc,mm->name);
+            doc->setData(mm);
+            ui->center_document->setCurrentWidget(doc);
         }
+
+    }
+        return my17::todo_done_only;
+    case my17::event_req_business_selected:
+    {
+
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
+        MBusinessDelegate * mm  = (MBusinessDelegate*)arg;
+        ui->right_bottom->insertRow(0);
+        ui->right_bottom->insertRow(0);
+        ui->right_bottom->insertRow(0);
+        ui->right_bottom->insertRow(0);
+        ui->right_bottom->setItemDelegate(mm);
+
+        if( do_focus_tab_by_data(mm,mm->name) == -1 )
+        {
+            DocBusinessEditor * doc = new DocBusinessEditor();
+            ui->center_document->addTab(doc,mm->name);
+            doc->setData(mm);
+            ui->center_document->setCurrentWidget(doc);
+        }
+
+    }
+        return my17::todo_done_only;
+    case my17::event_req_model_data_changed:
+    {
+
+
+        MModelDelegate * d = (MModelDelegate*)arg;
+        do_model_data_changed(d);
+
+
+    }
+        return my17::todo_done_only;
+    case my17::event_req_business_data_changed:
+    {
+        MBusinessDelegate * md = (MBusinessDelegate*)arg;
+        do_business_data_changed(md);
+    }
+        return my17::todo_done_only;
+    case my17::event_req_model_field_selected:
+    {
+        MModelFieldDelegate * mm  = (MModelFieldDelegate*)arg;
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
+
+        for(int i=0;i<4;i++)
+            ui->right_bottom->insertRow(0);
+
+        ui->right_bottom->setItemDelegate(mm);
+
+    }
+        return my17::todo_done_only;
+    case my17::event_req_url_item_selected:
+    {
+        MUrlDelegate * mm  = (MUrlDelegate*)arg;
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
+
+        for(int i=0;i<4;i++)
+            ui->right_bottom->insertRow(0);
+
+        ui->right_bottom->setItemDelegate(mm);
+
+    }
+        return my17::todo_done_only;
+    case my17::event_req_event_item_selected:
+    {
+        MEventDelegate * med = (MEventDelegate *)arg;
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
+        for(int i=0;i<3;i++)
+            ui->right_bottom->insertRow(0);
+
+        ui->right_bottom->setItemDelegate(med);
+    }
 
         return my17::todo_done_only;
 
-        case my17::event_req_toolbar_save:
-        {
+    case my17::event_req_toolbar_save:
+    {
 
-            QString msgs;
-
-
-
-            if( DP->saveEvents() )
-                msgs.append("事件数据保存成功；\n");
-            else
-                msgs.append("事件数据保存失败；\n");
-
-
-            if( DP->saveModel() )
-                msgs.append("模型数据保存成功；\n");
-            else
-                msgs.append("模型数据保存失败；\n");
-
-
-            if( DP->saveBusiness() )
-                msgs.append("业务数据保存成功；\n");
-            else
-                msgs.append("业务数据保存失败；\n");
-
-            if( DP->saveUrl() )
-                msgs.append("访问地址据保存成功；\n");
-            else
-                msgs.append("访问地址保存失败；\n");
-
-            if( DP->saveForms() )
-                msgs.append("页面数据保存成功；\n");
-            else
-                msgs.append("页面数据保存失败；\n");
-
-            if( DP->saveProjectInfos() )
-                msgs.append("工程数据保存成功；\n");
-            else
-                msgs.append("工程数据保存失败；\n");
-
-            if( DP->saveVars() )
-                msgs.append("全局变量保存成功；\n");
-            else
-                msgs.append("全局变量保存失败；\n");
+        QString msgs;
 
 
 
-            QMessageBox::information(NULL,"提示",msgs);
+        if( DP->saveEvents() )
+            msgs.append("事件数据保存成功；\n");
+        else
+            msgs.append("事件数据保存失败；\n");
 
 
-        }
+        if( DP->saveModel() )
+            msgs.append("模型数据保存成功；\n");
+        else
+            msgs.append("模型数据保存失败；\n");
+
+
+        if( DP->saveBusiness() )
+            msgs.append("业务数据保存成功；\n");
+        else
+            msgs.append("业务数据保存失败；\n");
+
+        if( DP->saveUrl() )
+            msgs.append("访问地址据保存成功；\n");
+        else
+            msgs.append("访问地址保存失败；\n");
+
+        if( DP->saveForms() )
+            msgs.append("页面数据保存成功；\n");
+        else
+            msgs.append("页面数据保存失败；\n");
+
+        if( DP->saveProjectInfos() )
+            msgs.append("工程数据保存成功；\n");
+        else
+            msgs.append("工程数据保存失败；\n");
+
+        if( DP->saveVars() )
+            msgs.append("全局变量保存成功；\n");
+        else
+            msgs.append("全局变量保存失败；\n");
+
+
+
+        QMessageBox::information(NULL,"提示",msgs);
+
+
+    }
         return my17::todo_done_only;
 
-        case my17::event_req_toolbar_run:
-        {
+    case my17::event_req_toolbar_run:
+    {
 
 
-                QString strs = QString(DP->createCodes());
+        QString strs = QString(DP->createCodes());
 
-                //QString cd = "cd ";
-                //cd.append(DATA_ROOT("")).append( "\n./copy.sh");
-                //system(cd.toStdString().c_str());
-                //system("./copy.sh");
-                //strs.append(cd).append("\n");
-
-
-                QMessageBox::information(NULL,"提示", strs );
+        //QString cd = "cd ";
+        //cd.append(DATA_ROOT("")).append( "\n./copy.sh");
+        //system(cd.toStdString().c_str());
+        //system("./copy.sh");
+        //strs.append(cd).append("\n");
 
 
-
-                    QProcess p(0);
-                    p.setWorkingDirectory(DATA_ROOT(""));
-                    p.start("./copy.sh");
-                    p.waitForFinished();
+        QMessageBox::information(NULL,"提示", strs );
 
 
 
+        QProcess p(0);
+        p.setWorkingDirectory(DATA_ROOT(""));
+        p.start("./copy.sh");
+        p.waitForFinished();
 
 
-        }
+
+
+
+    }
         return my17::todo_done_only;
-        case my17::event_req_const_selected:
+    case my17::event_req_const_selected:
+    {
+
+        int index = do_focus_tab_by_data( (void*) TAB_INDEX_GCXX ,"工程信息");
+        if( index == -1 )
         {
-
-            int index = do_focus_tab_by_data( (void*) TAB_INDEX_GCXX ,"工程信息");
-            if( index == -1 )
-            {
-                DocCommonEditor * doc = new DocCommonEditor();
-                ProjectAdapter * adapter = new ProjectAdapter();
-                doc->setAdapter(adapter);
-                doc->setData( (void*) TAB_INDEX_GCXX );
-                ui->center_document->addTab(doc,"工程信息");
-            }
-
+            DocCommonEditor * doc = new DocCommonEditor();
+            ProjectAdapter * adapter = new ProjectAdapter();
+            doc->setAdapter(adapter);
+            doc->setData( (void*) TAB_INDEX_GCXX );
+            ui->center_document->addTab(doc,"工程信息");
         }
+
+    }
         return my17::todo_done_only;
-        case my17::event_req_var_item_selected:
-        case my17::event_property_selectd:
-        {
+    case my17::event_req_var_item_selected:
+    case my17::event_property_selectd:
+    {
 
 
 
 
-            DocCommonEditor * adapter =static_cast<DocCommonEditor*>(arg) ;
+        DocCommonEditor * adapter =static_cast<DocCommonEditor*>(arg) ;
 
 
 
 
-            while( ui->right_bottom->rowCount()>0 )
-                 ui->right_bottom->removeRow(0);
+        while( ui->right_bottom->rowCount()>0 )
+            ui->right_bottom->removeRow(0);
 
 
-            int rowcount = adapter->getEditRowCount();
+        int rowcount = adapter->getEditRowCount();
 
-            for(int i=0;i<rowcount;i++){
-               ui->right_bottom->insertRow(0);
-            }
-
-
-
-            CommonEditDelegate * delegate = new CommonEditDelegate();
-
-            delegate->setAdapter(adapter);
-
-
-            //ui->right_top->setText( ) ;
-
-            ui->right_bottom->setItemDelegate(delegate);
-
-
-
-
+        for(int i=0;i<rowcount;i++){
+            ui->right_bottom->insertRow(0);
         }
+
+
+
+        CommonEditDelegate * delegate = new CommonEditDelegate();
+
+        delegate->setAdapter(adapter);
+
+
+        //ui->right_top->setText( ) ;
+
+        ui->right_bottom->setItemDelegate(delegate);
+
+
+
+
+    }
         return my17::todo_done_only;
 
 
@@ -763,16 +763,16 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
 
 
 
-   QWidget * widget =  ui->center_document->currentWidget();
+    QWidget * widget =  ui->center_document->currentWidget();
 
 
-   IExec * exe = dynamic_cast<IExec*>(widget);
+    IExec * exe = dynamic_cast<IExec*>(widget);
 
 
 
     if( exe )
     {
-      return  exe->todo(event,arg);
+        return  exe->todo(event,arg);
     }
 
 
@@ -855,16 +855,16 @@ void MainWindow::do_model_data_changed(MModelDelegate * mmd)
 {
 
 
-     int index = my17::D::getInstance()->getIndex(mmd);
+    int index = my17::D::getInstance()->getIndex(mmd);
 
-     NLog::i("do_model_data_changed name:%s index:%d",mmd->name.toStdString().c_str(),index);
+    NLog::i("do_model_data_changed name:%s index:%d",mmd->name.toStdString().c_str(),index);
 
 
-     QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
+    QStandardItemModel * model = (QStandardItemModel*)ui->left_0->model();
 
-     QStandardItem * item =  model->item(index_model)->child(index);
+    QStandardItem * item =  model->item(index_model)->child(index);
 
-     NLog::i("do_model_data_changed name item:%d count:%d",item,model->item(0)->rowCount());
+    NLog::i("do_model_data_changed name item:%d count:%d",item,model->item(0)->rowCount());
 
     if( item )
         item->setText( mmd->name  );
@@ -896,21 +896,48 @@ void MainWindow::do_business_data_changed(MBusinessDelegate * business)
 
 
 }
+void MainWindow::keyPressEvent(QKeyEvent * event)
+{
+
+   NLog::i("key press  key:%d  modifiers:%d",event->key(),event->modifiers() );
+   switch (event->key()) {
+       case Qt::Key_S:
+       {
+            NLog::i("key release ctrl s");
+
+           if( event->modifiers()  == Qt::ControlModifier )
+           {
+              MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save);
+              event->accept();
+           }
+       }
+       break;
+       case Qt::Key_R:
+       {
+            NLog::i("key release ctrl s");
+
+           if( event->modifiers()  == Qt::ControlModifier )
+           {
+              MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+              event->accept();
+           }
+       }
+       break;
+
+   default:
+       break;
+   }
+
+}
 
 void  MainWindow::keyReleaseEvent(QKeyEvent * event)
 {
     event->accept();
 
-    //NLog::i("key Release :%d",event->key());
-
-    if( event->key() == Qt::Key_Backspace || event->key() == Qt::Key_Delete )
-    {
+    NLog::i("key release key:%d  modifiers:%d",event->key(),event->modifiers() );
 
 
 
-      //  MC->sendMessage(my17::event_req_toolbar_del);
-
-    }
 
 
 }

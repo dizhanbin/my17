@@ -120,13 +120,67 @@ void DocBusinessEditor::setData(void *d)
 void DocBusinessEditor::keyPressEvent(QKeyEvent *event)
  {
 
+
+
     if( event->type() == QKeyEvent::KeyPress )
     switch (event->key()) {
 
         case Qt::Key_Backspace:
             todo(my17::Event::event_req_toolbar_del,NULL);
             NLog::i("key press delete");
+        case Qt::Key_C:
+        {
+
+          if( event->modifiers()  == Qt::ControlModifier )
+          {
+               // NLog::i("key press key c :%d  :%d :%d  modifiers:%d",event->nativeScanCode(),event->nativeVirtualKey(),event->nativeModifiers(),event->modifiers());
+
+              View * view = mViewDoc->getRootView()->getFocus();
+
+              if( view ){
+
+                  IconView * icon = dynamic_cast<IconView*>(view);
+                  if( icon ){
+
+
+                        DP->copyvalue = icon->copy();
+
+
+                  }
+
+              }
+
+
+          }
+
+        }
         break;
+
+    case Qt::Key_V:
+        {
+
+            if( event->modifiers()  == Qt::ControlModifier )
+            {
+
+                if( DP->copyvalue ){
+                    IconView * icon = (IconView*) DP->copyvalue ;
+                    if( icon ){
+                        mViewDoc->addView(icon );
+                        mViewDoc->getRootView()->setFocus(icon);
+                        mViewDoc->repaint();
+                        DP->copyvalue = NULL;
+                    }
+                }
+
+            }
+
+
+        }
+        break;
+
+
+
+
     default:
         break;
     }

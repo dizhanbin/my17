@@ -90,6 +90,29 @@ void  IconView::paint(QPaintEvent * event,QWidget * widget)
 
 }
 
+IconView * IconView::copy()
+{
+
+
+    IconView * icon = new IconView();
+
+    //memcpy(icon,this,sizeof(IconView));
+    icon->m_element_id = m_element_id;
+    icon->m_bitmap = NULL;
+    icon->m_rect = m_rect;
+    //icon->m_rect.moveLeft();
+    icon->m_rect.moveTo( QPoint(m_rect.left()+m_rect.width()/2,m_rect.top()+m_rect.height()/2) );
+
+    icon->newProperties(properties);
+    icon->viewid = RP->getId();
+
+
+
+    return icon;
+
+
+}
+
 void IconView::createCodes(QXmlStreamWriter &writer)
 {
 

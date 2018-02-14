@@ -15,9 +15,9 @@ ViewDoc::ViewDoc(QWidget *parent) :
 ViewDoc::~ViewDoc()
 {
 
-    NLog::i("release ViewDoc");
+   // NLog::i("release ViewDoc");
    // delete mRootView;
-    NLog::i("release ViewDoc end");
+   // NLog::i("release ViewDoc end");
 }
 
 void ViewDoc::paintEvent(QPaintEvent * event)

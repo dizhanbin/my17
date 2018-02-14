@@ -10,13 +10,13 @@ m_current_line = NULL;
 
  ViewGroup::~ViewGroup(){
 
-    NLog::i("release ViewGroup ");
+    //NLog::i("release ViewGroup ");
 
 
     while ( !m_children.isEmpty() )
        delete m_children.takeFirst();
 
-    NLog::i("release ViewGroup end.");
+    //NLog::i("release ViewGroup end.");
 }
 
  void ViewGroup::paint(QPaintEvent * event,QWidget * widget)
@@ -42,11 +42,11 @@ m_current_line = NULL;
 
  void ViewGroup::paint(QPainter & painter,const QPalette & pal)
  {
-     NLog::i("draw ViewGroup.paint ---------------");
+     //NLog::i("draw ViewGroup.paint ---------------");
      View * focus = getFocus();
      for(View * view:m_children)
      {
-         NLog::i("draw ViewGroup.paint....%s",view->getTypeName());
+        // NLog::i("draw ViewGroup.paint....%s",view->getTypeName());
 
 
 

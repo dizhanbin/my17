@@ -52,6 +52,7 @@ private:
     int do_focus_tab_by_data(void * data,const QString &name);
 
     virtual void keyReleaseEvent(QKeyEvent * event);
+    virtual void keyPressEvent(QKeyEvent * event);
 
 public slots:
     void slot_left_0_item_selected(const QModelIndex & index);
@@ -68,6 +69,8 @@ public slots:
 
 
     void slot_tab_close(int index);
+
+
 
 
 public: //qtabledelegate

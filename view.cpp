@@ -21,7 +21,7 @@ View::View():m_isfocus(false),m_rect(30,30,ELE_W_H,ELE_W_H),hasGlobalVar(false)
  void View::paint(QPainter & painter,const QPalette & pal)
  {
 
-     NLog::i("draw in view.cpp ...24");
+     //NLog::i("draw in view.cpp ...24");
 
      QRect drawrect = m_rect;
 
@@ -99,7 +99,7 @@ void View::setRoot(bool is)
 
  bool  View::isPointIn(const QPoint &p)
 {
-    NLog::i("view l,t,r,b:%d,%d,%d,%d",m_rect.left(),m_rect.top(),m_rect.right(),m_rect.bottom());
+    //NLog::i("view l,t,r,b:%d,%d,%d,%d",m_rect.left(),m_rect.top(),m_rect.right(),m_rect.bottom());
 
     return ( m_rect.left() < p.x() && m_rect.right() > p.x()
              && m_rect.top() < p.y() && m_rect.bottom() > p.y() );

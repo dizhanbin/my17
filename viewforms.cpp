@@ -41,9 +41,9 @@ ViewForms::ViewForms(QWidget *parent) :
 ViewForms::~ViewForms()
 {
 
-    NLog::i("release ViewForms");
+   // NLog::i("release ViewForms");
     delete mRootView;
-    NLog::i("release ViewForms end");
+   // NLog::i("release ViewForms end");
 }
 
 void ViewForms::paintEvent(QPaintEvent * event)

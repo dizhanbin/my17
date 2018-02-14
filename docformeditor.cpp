@@ -194,6 +194,17 @@ void DocFormEditor::keyPressEvent(QKeyEvent *event)
             todo(my17::Event::event_req_toolbar_del,NULL);
             NLog::i("key press delete");
         break;
+        case Qt::Key_S:
+        {
+            if( event->modifiers()  == Qt::ControlModifier )
+            {
+                todo(my17::event_req_toolbar_save,NULL);
+
+            }
+
+
+        }
+            break;
     default:
         break;
     }
