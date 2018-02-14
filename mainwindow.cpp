@@ -602,12 +602,13 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             while( ui->right_bottom->rowCount()>0 )
                 ui->right_bottom->removeRow(0);
 
-            for(int i=0;i<3;i++)
+            for(int i=0;i<4;i++)
                 ui->right_bottom->insertRow(0);
 
             ui->right_bottom->setItemDelegate(mm);
 
         }
+        return my17::todo_done_only;
         case my17::event_req_event_item_selected:
         {
             MEventDelegate * med = (MEventDelegate *)arg;

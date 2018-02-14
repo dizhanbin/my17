@@ -96,7 +96,7 @@ void ViewForms::mousePressEvent(QMouseEvent *event)
     if( view )
     {
 
-        if( !mPressed_btn_right )
+        //if( !mPressed_btn_right )
         {
              mRootView->setFocus(view);
 
@@ -159,7 +159,7 @@ void ViewForms::mouseReleaseEvent(QMouseEvent *event)
         View * view = mRootView->getViewAtPoint(event->pos(),mPressed_btn_right);
 
 
-            if( view && !view->isLine() )
+            if( view && !view->isLine() && view != mRootView->getFocus() )
             {
 
                FormLineView * line = (FormLineView*) mRootView->getCurrentLine();

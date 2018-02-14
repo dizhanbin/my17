@@ -65,7 +65,7 @@ void ViewDoc::mousePressEvent(QMouseEvent *event)
     if( view )
     {
 
-        if( !mPressed_btn_right )
+        //if( !mPressed_btn_right )
         {
              mRootView->setFocus(view);
 
@@ -119,7 +119,7 @@ void ViewDoc::mouseReleaseEvent(QMouseEvent *event)
         View * view = mRootView->getViewAtPoint(event->pos(),mPressed_btn_right);
 
 
-            if( view && !view->isLine() )
+            if( view && !view->isLine()  && view != mRootView->getFocus() )
             {
 
                LineView * line = (LineView*) mRootView->getCurrentLine();

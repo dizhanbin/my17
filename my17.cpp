@@ -5,6 +5,7 @@
 #include "lineview.h"
 #include "mproperty.h"
 #include "ftmp.h"
+#include "formjsdo.h"
 
 using namespace my17;
 
@@ -1065,6 +1066,7 @@ bool D::saveUrl()
             writer.writeTextElement("id",url->url_id);
             writer.writeTextElement("name",url->url_name);
             writer.writeTextElement("address", url->url_address );
+            writer.writeTextElement("configure",url->url_configure );
             writer.writeTextElement("descript",url->url_descript );
             writer.writeEndElement();
         }
@@ -1121,6 +1123,12 @@ void D::loadUrl()
 
                 }
 
+                else if( name == "configure" )
+                {
+
+                    med->url_configure = reader.readElementText();
+
+                }
                 else if( name == "descript" )
                 {
 
@@ -1451,14 +1459,16 @@ bool D::createUrls()
     {
 
         MUrlDelegate * url = urls.at(i);
+        //@see <a href=\"")  \">http://google.com</a>
 
+
+        strs.append("  /* @see <a href=\"").append(url->url_configure).append("\">").append(url->url_descript).append("</a>").append(" */\n");
         strs.append("  public static final String ")
                 .append(url->url_name)
                 .append(" = \"")
                 .append( url->url_address )
-                .append("\";//")
-                .append(url->url_descript)
-                .append("\n");
+                .append("\";")
+                .append("\n\n");
 
     }
 
@@ -1493,7 +1503,7 @@ bool d_create_form_code(MForm * form)
        return false;
 
    const QString & str_name = RP->getPropertyByName(form->properties,"descript")->p_value;
-
+   const QString & str_event = DP->getEventById( RP->getPropertyByName(form->properties,"event")->p_value )->event_name;
 
 
    QString java_path = DATA_PLATE_DIR(form_java->p_value).append(".java");
@@ -1504,11 +1514,25 @@ bool d_create_form_code(MForm * form)
    QFile java_file(java_path);
    if( java_file.exists() ){
 
-       FTmp java_ftmp(java_path);
+       FTmp java_ftmp;
+       java_ftmp.setFtmpPath(java_path);
        java_ftmp.replace("${descript}",str_name);
        java_ftmp.replace("${android}",formp->p_value);
        java_ftmp.replace( "${layout_plate}",formp->p_value.toLower().replace("form","form_") );
+
+
+
        QString java_out = DATA_OUT_DIR("java/forms/").append(formp->p_value).append(".java");
+
+
+
+       JS_FormLinkCase formlink;
+
+       java_ftmp.executeJS(&formlink,form);
+
+      // java_ftmp.replace( "${event}", str_event );
+
+
 
        java_ftmp.saveTmp(java_out);
 
@@ -1517,9 +1541,19 @@ bool d_create_form_code(MForm * form)
    QFile layout_file(layout_path);
    if( layout_file.exists() ){
 
-       FTmp java_ftmp(layout_path);
+       FTmp java_ftmp;
+       java_ftmp.setFtmpPath(layout_path);
        //java_ftmp.replace("${android}",formp->p_value);
        //java_ftmp.replace( "${layout_plate}",formp->p_value.toLower().replace("form","form_") );
+
+       JS_LayoutLink formlink;
+
+       java_ftmp.executeJS(&formlink,form);
+
+      // java_ftmp.replace( "${event}", str_event.toLower() );
+
+
+
        QString java_out = DATA_OUT_DIR("java/forms/").append(formp->p_value.toLower().replace("form","form_")).append(".xml");
        java_ftmp.saveTmp(java_out);
 
@@ -2503,6 +2537,48 @@ MData * D::getProjectInfo(const QString& key)
 
 }
 
+
+
+MForm * D::getFormById(const QString &formid)
+{
+
+    for(MForm * form : this->forms ){
+
+        if( form->formid == formid )
+            return form;
+
+    }
+    return NULL;
+
+}
+QString D::create_form_line_click_case(MForm * form)
+{
+
+    QString strs;
+
+    for(MLine * line : formlines){
+
+        if( line->from == form->formid ){
+
+            MForm * toform = getFormById(line->to);
+
+            const QString & str_event = RP->getPropertyByName(toform->properties,"event")->p_value;
+
+            MEventDelegate * me =  DP->getEventById( str_event );
+
+            if( toform ){
+                strs.append("   case R.id.btn_").append( str_event.toLower()  ).append(" : sendMessage(Event.").append(str_event).append(");\n");
+            }
+
+
+        }
+
+    }
+    return strs;
+
+
+
+}
 
 void D::addVarString(const QString& key,const QString& desc,bool replace){
 

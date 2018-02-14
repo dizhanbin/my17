@@ -8,7 +8,11 @@
 #include <QList>
 #include "nlog.h"
 #include "mproperty.h"
+#include <QScriptEngine>
 
+
+
+class MForm;
 
 class RepDo{
 
@@ -17,9 +21,21 @@ class RepDo{
 
 };
 
-class FTmp
+
+class JSDo : public QObject{
+
+    public :
+        virtual QString create_form_codes(MForm * from,const QString & arg ="" )=0;
+
+};
+
+
+
+class FTmp : public QObject
 {
 public:
+
+
 
 
     QMap<QString,QList<QString> *> tmps;
@@ -28,7 +44,12 @@ public:
 
     QString ftmp_path;
 
-    FTmp(const QString & path);
+    explicit FTmp(QObject *parent = 0):QObject(parent){}
+
+    //FTmp();
+
+    void setFtmpPath(const QString & path);
+
 
     ~FTmp();
 
@@ -38,6 +59,14 @@ public:
 
 
     void replace(const QString & tar,const QString & rep);
+
+
+
+
+    void executeJS(JSDo * jsdo,MForm * form);
+
+    static QScriptValue create_form_line_click_case(QScriptContext * qsc, QScriptEngine * qse);
+    static QScriptValue create_form_line_click_case2(QScriptContext * qsc, QScriptEngine * qse);
 
 };
 

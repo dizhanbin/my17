@@ -9,6 +9,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 QT += widgets
+QT += script
 
 TARGET = my17
 TEMPLATE = app
@@ -45,7 +46,8 @@ SOURCES += main.cpp\
     projectadapter.cpp \
     commoneditdelegate.cpp \
     ftmp.cpp \
-    varadapter.cpp
+    varadapter.cpp \
+    formjsdo.cpp
 
 HEADERS  += mainwindow.h \
     my17.h \
@@ -79,7 +81,8 @@ HEADERS  += mainwindow.h \
     editoradapter.h \
     commoneditdelegate.h \
     ftmp.h \
-    varadapter.h
+    varadapter.h \
+    formjsdo.h
 
 FORMS    += mainwindow.ui \
     docbusinesseditor.ui \

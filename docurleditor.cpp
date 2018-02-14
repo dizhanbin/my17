@@ -11,9 +11,11 @@ DocUrlEditor::DocUrlEditor(QWidget *parent) :
     headers.append(RP->url_title_index(0));
     headers.append(RP->url_title_index(1));
     headers.append(RP->url_title_index(2));
+    headers.append(RP->url_title_index(3));
+
+    ui->mtable->setColumnCount(4);
 
 
-    ui->mtable->setColumnCount(3);
     ui->mtable->setHorizontalHeaderLabels(headers);
 
 
@@ -99,7 +101,9 @@ void DocUrlEditor::setFieldData(int row,MUrlDelegate * url)
 
     ui->mtable->setItem(row,0,new QTableWidgetItem( url->url_name ));
     ui->mtable->setItem(row,1,new QTableWidgetItem( url->url_address) );
-    ui->mtable->setItem(row,2,new QTableWidgetItem( url->url_descript));
+    ui->mtable->setItem(row,2,new QTableWidgetItem( url->url_configure) );
+    ui->mtable->setItem(row,3,new QTableWidgetItem( url->url_descript));
+
 
 }
 

@@ -30,6 +30,9 @@ MUrlDelegate::MUrlDelegate(QObject *parent):
              case 2:
              painter->drawText(option.rect, RP->url_title_index(2), o);
              break;
+             case 3:
+             painter->drawText(option.rect, RP->url_title_index(3), o);
+             break;
 
          }
      }
@@ -47,6 +50,9 @@ MUrlDelegate::MUrlDelegate(QObject *parent):
              painter->drawText(option.rect,url_address, o);
              break;
              case 2:
+             painter->drawText(option.rect,url_configure, o);
+             break;
+             case 3:
              painter->drawText(option.rect,url_descript, o);
              break;
 
@@ -79,11 +85,17 @@ QWidget *MUrlDelegate::createEditor(QWidget *parent,
          case 2:
          {
               QLineEdit *m_pTxt = new QLineEdit(parent);
-              connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged_descript()) );
+              connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged_configure()) );
 
               return m_pTxt;
          }
+     case 3:
+     {
+          QLineEdit *m_pTxt = new QLineEdit(parent);
+          connect(m_pTxt, SIGNAL(editingFinished()), this, SLOT(slots_datachanged_descript()) );
 
+          return m_pTxt;
+     }
 
      }
      return NULL;
@@ -109,7 +121,15 @@ QWidget *MUrlDelegate::createEditor(QWidget *parent,
               if( text->text().length() == 0 )
              text->setText( url_address );
          }
-         case 2:
+         break;
+     case 2:
+     {
+         QLineEdit * text = (QLineEdit*)editor;
+          if( text->text().length() == 0 )
+         text->setText( url_configure );
+     }
+     break;
+         case 3:
          {
              QLineEdit * text = (QLineEdit*)editor;
               if( text->text().length() == 0 )
@@ -152,6 +172,16 @@ QWidget *MUrlDelegate::createEditor(QWidget *parent,
      emit commitData(editor);
      emit closeEditor(editor);
      this->url_descript = editor->text();
+      MC->sendMessage(my17::event_req_url_item_data_changed,this);
+
+ }
+
+ void MUrlDelegate::slots_datachanged_configure()
+ {
+     QLineEdit *editor = qobject_cast<QLineEdit *>(sender());
+     emit commitData(editor);
+     emit closeEditor(editor);
+     this->url_configure = editor->text();
       MC->sendMessage(my17::event_req_url_item_data_changed,this);
 
  }

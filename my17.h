@@ -120,7 +120,7 @@ public:
 
 };
 
-class MForm
+class MForm : public QObject
 {
 public:
     QString formid;
@@ -394,7 +394,8 @@ namespace my17 {
                    {
                      case 0: return "变量名";
                      case 1: return "地址";
-                     case 2: return "描述";
+                     case 2: return "confluence";
+                     case 3: return "描述";
 
                    }
                  return "index out range";
@@ -773,9 +774,20 @@ namespace my17 {
                 R::getInstance()->result = "";
                 return R::getInstance()->result;
            }
+            MForm * getFormById(const QString &formid);
+
+
+
+
+           QString create_form_line_click_case(MForm * form);
+
+
 
 
         };
+
+
+
 
 
 

@@ -20,11 +20,13 @@ public:
     QString url_name;
     QString url_address;
     QString url_descript;
+    QString url_configure;
 
 public slots:
       void slots_datachanged_name();
       void slots_datachanged_address();
       void slots_datachanged_descript();
+      void slots_datachanged_configure();
 
 
 };
