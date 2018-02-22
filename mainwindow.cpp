@@ -204,13 +204,35 @@ void MainWindow::init_left_1_items()
     //s0->setBackground(QBrush(QColor(0xee,0xee,0x99)));
     //model->insertRow(0,s0);
 
+    QMap<QString,QStandardItem*> groups;
+
+
 
     for(int i=0;i<vecs.size();i++)
     {
 
         MElement * e = vecs.at(i);
 
+
+
+
         QStandardItem* item = new QStandardItem(    e->name  );
+
+        QStandardItem * group = NULL;
+        if( groups.contains(e->group) )
+        {
+            group = groups.value(e->group,NULL);
+        }
+        else
+        {
+
+            group = new QStandardItem(    e->group  );
+            model->insertRow(model->rowCount(),group);
+
+            groups.insert(e->group,group);
+        }
+
+
 
 
         if( e->iconpath.startsWith("./") ){
@@ -221,7 +243,19 @@ void MainWindow::init_left_1_items()
         else
             item->setIcon( QIcon(QPixmap(   e->iconpath  )) );
         item->setToolTip( e->descript );
-        model->insertRow(i,item);
+
+        //QVariant v(QVariant::UserType,e);
+
+        //QVariant v = QVariant::fromValue(*e);
+       // QVariant v(QMetaType::QObjectStar, e);
+
+        QVariant v(i);
+
+        item->setData(v,Qt::UserRole);
+
+        group->insertRow(group->rowCount(),item);
+
+
 
     }
 
@@ -230,7 +264,7 @@ void MainWindow::init_left_1_items()
     ui->left_1->setModel(model);
     ui->left_1->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(ui->left_1,SIGNAL(doubleClicked(const QModelIndex)),SLOT(slot_left_1_item_double_click(const QModelIndex &)) );
-
+    groups.clear();
 
 
 
@@ -242,10 +276,15 @@ void MainWindow::slot_left_1_item_double_click(const QModelIndex & index)
 
     NLog::i("business item double click..row:%d col:%d",index.row(),index.column());
 
+ //   MElement * ele =  qvariant_cast<MElement *>(index.data(Qt::UserRole).data());
 
-    int  ele = index.row();
+//    qvariant_cast<QObject *>(item->data(Qt::UserRole))
+//    MElement  ele =  index.data().value<MElement>();
+    //int  ele = index.row();
 
-    MessageCenter::getInstence()->sendMessage(my17::event_req_business_item_double_click,&ele);
+     int i = index.data(Qt::UserRole).toInt();
+
+    MessageCenter::getInstence()->sendMessage(my17::event_req_business_item_double_click,&i);
 }
 
 

@@ -64,15 +64,23 @@ void DocBusinessEditor::setData(void *d)
         {
             int * index = (int*)arg;
 
-            MElement * e = R::getInstance()->elements.at(*index);
+//            MElement * e = (MElement*)arg;//
+            MElement * e =  R::getInstance()->elements.at(*index);
 
             IconView * view = new IconView(     );
+
+
+            if( view ){
             view->m_element_id = e->ele_id;
 
             view->newProperties(e->properties);
 
             mViewDoc->addView(view );
             mViewDoc->repaint();
+            }else{
+
+                NLog::i("can not creatae View event_req_business_item_double_click docbusiness");
+            }
 
         }
             return my17::todo_done;

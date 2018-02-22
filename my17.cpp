@@ -55,6 +55,8 @@ void R::loadElements()
                         ele->c_android = reader.attributes().value("c_android").toString();
                     if( reader.attributes().hasAttribute("c_ios") )
                         ele->c_ios = reader.attributes().value("c_ios").toString();
+                    if( reader.attributes().hasAttribute("group") )
+                        ele->group = reader.attributes().value("group").toString();
 
 
                 }
@@ -76,6 +78,8 @@ void R::loadElements()
             {
                 if( name == "element" )
                 {
+                    if( ele->group.length() == 0 )
+                        ele->group = "group";
                     elements.push_back(ele);
                 }
             }

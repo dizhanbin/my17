@@ -89,7 +89,7 @@ typedef enum  {
 } property_type;
 
 
-class  MElement//左下角 元素
+class  MElement //: public QObject//左下角 元素
 {
 public:
     QString name;
@@ -100,12 +100,25 @@ public:
     QString c_android;
     QString c_ios;
 
+    QString group;
+
     QList<MProperty*> properties;
 
 public:
     MElement(){
 
     };
+
+    MElement(const MElement * copy){
+
+        this->name = copy->name;
+        this->iconpath = copy->iconpath;
+        this->ele_id = copy->ele_id;
+        this->descript = copy->descript;
+        this->c_android = copy->c_android;
+        this->group = copy->group;
+        this->properties = copy->properties;
+    }
     ~MElement(){
 
         while( properties.size() > 0 )
@@ -797,6 +810,7 @@ namespace my17 {
 };
 
 
+//Q_DECLARE_METATYPE(MElement)
 
 #define RP my17::R::getInstance()
 
