@@ -31,7 +31,7 @@ public:
 
     ViewGroup * viewgroup;
 
-
+    QString event;
 
 
 

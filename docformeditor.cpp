@@ -198,7 +198,7 @@ void DocFormEditor::keyPressEvent(QKeyEvent *event)
         {
             if( event->modifiers()  == Qt::ControlModifier )
             {
-                todo(my17::event_req_toolbar_save,NULL);
+                MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save,NULL);
 
             }
 

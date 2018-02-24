@@ -74,3 +74,21 @@ ProjectAdapter::ProjectAdapter()
      return col!=0;
 
  }
+bool ProjectAdapter::deleteRow(int row)
+{
+
+    DP->projectinfos.takeAt(row);
+    return true;
+}
+
+void ProjectAdapter::addRow()
+{
+
+    MData * mdata = new MData();
+    mdata->key = "key_new";
+    mdata->value = "value_new";
+    mdata->descript = "descript_new";
+
+    DP->projectinfos.push_back( mdata );
+
+}

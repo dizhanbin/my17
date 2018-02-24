@@ -156,16 +156,20 @@ void View::setRoot(bool is)
            else
            {
                writer.writeAttribute("value",p->p_value);
-               if( p->p_value.startsWith("R:") )
-               {
-
-                   DP->addGolableString(p->p_value,getDescript());
+               QString rstr,wstr;
+               if( DP->getRString(p->p_value,&rstr) > -1 ){
+                   DP->addGolableString(rstr,getDescript());
+               }else if( DP->getWString(p->p_value,&wstr) > -1 ){
+                    DP->addWWWString( wstr,getDescript() );
                }
-               else if( p->p_value.startsWith("W:") ){
 
-                   DP->addWWWString( p->p_value,getDescript() );
-
-               }
+//               if( p->p_value.startsWith("R:") )
+//               {
+//                   DP->addGolableString(p->p_value,getDescript());
+//               }
+//               else if( p->p_value.startsWith("W:") ){
+//                   DP->addWWWString( p->p_value,getDescript() );
+//               }
            }
 
            writer.writeEndElement();
@@ -293,7 +297,7 @@ void View::setRoot(bool is)
         {
            MProperty * mp = properties.at(i);
 
-           if( DP->getGlobalVar(mp->p_value,0) > -1 )
+           if( DP->getGlobalVar(mp->p_value,NULL) > -1 )
            {
                hasGlobalVar = true;
                return;

@@ -40,6 +40,7 @@ private:
 public://IExec implements
 
     my17::TodoResult todo(my17::Event event, void *arg);
+     void setOpenArgs(char * arg);
 private:
     void init_left_0();
     void init_left_1_items();
@@ -53,6 +54,8 @@ private:
 
     virtual void keyReleaseEvent(QKeyEvent * event);
     virtual void keyPressEvent(QKeyEvent * event);
+
+
 
 public slots:
     void slot_left_0_item_selected(const QModelIndex & index);

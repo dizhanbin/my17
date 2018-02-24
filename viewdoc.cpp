@@ -103,6 +103,7 @@ void ViewDoc::mousePressEvent(QMouseEvent *event)
         mPressed = false;
         mPressed_btn_right = false;
         mRootView->setFocus(NULL);
+        setFocus(Qt::ActiveWindowFocusReason);
         repaint();
     }
 

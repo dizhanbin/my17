@@ -56,7 +56,7 @@ void DocBusinessEditor::setData(void *d)
  my17::TodoResult  DocBusinessEditor::todo(my17::Event event,void * arg)
 {
 
-    NLog::i("todo in DocBusinessEditor.");
+    NLog::i("todo in DocBusinessEditor. %d",event);
 
     switch( event )
     {
@@ -136,6 +136,7 @@ void DocBusinessEditor::keyPressEvent(QKeyEvent *event)
         case Qt::Key_Backspace:
             todo(my17::Event::event_req_toolbar_del,NULL);
             NLog::i("key press delete");
+            break;
         case Qt::Key_C:
         {
 
@@ -186,7 +187,29 @@ void DocBusinessEditor::keyPressEvent(QKeyEvent *event)
         }
         break;
 
+    case Qt::Key_S:
+    {
+        if( event->modifiers()  == Qt::ControlModifier )
+        {
+            MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save,NULL);
 
+        }
+
+
+    }
+        break;
+
+    case Qt::Key_R:
+    {
+         NLog::i("key release ctrl s");
+
+        if( event->modifiers()  == Qt::ControlModifier )
+        {
+           MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+           event->accept();
+        }
+    }
+    break;
 
 
     default:

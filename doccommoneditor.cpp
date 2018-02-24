@@ -58,32 +58,27 @@ DocCommonEditor::~DocCommonEditor()
          return my17::todo_done_only;
         case my17::event_req_toolbar_add:
          {
-             ui->mtable->insertRow(ui->mtable->rowCount());
+            // ui->mtable->insertRow(ui->mtable->rowCount());
+             adapter->addRow();
+             refreshAdapter();
              ui->mtable->selectRow(ui->mtable->rowCount()-1);
-
-             MData * mdata = new MData();
-             mdata->key = "key_new";
-             mdata->value = "value_new";
-             mdata->descript = "descript_new";
-
-             DP->projectinfos.push_back( mdata );
-
-             row_selected = ui->mtable->rowCount()-1;
-
-             for(int k=0;k<adapter->getColCount();k++)
-             {
-
-                 ui->mtable->setItem(row_selected,k,new QTableWidgetItem( adapter->getValue(row_selected,k) ) );
-             }
 
 
          }
         return my17::todo_done_only;
         case my17::event_req_toolbar_del:
         {
+
+
              int row = ui->mtable->currentIndex().row();
-             ui->mtable->removeRow( row );
-             DP->projectinfos.takeAt(row);
+
+             //DP->projectinfos.takeAt(row);
+
+             if( adapter->deleteRow(row) )
+                ui->mtable->removeRow( row );
+
+
+
         }
          return my17::todo_done_only;
 
@@ -166,23 +161,33 @@ DocCommonEditor::~DocCommonEditor()
 
  }
 
+ void DocCommonEditor::refreshAdapter(){
+
+     while( ui->mtable->rowCount()>0)
+        ui->mtable->removeRow(ui->mtable->rowCount()-1);
+
+    setAdapter(adapter);
+
+ }
+
+
  void DocCommonEditor::setAdapter(TableAdapter * a)
  {
 
      adapter = a;
 
      QStringList headers;
-
      for(int i=0;i<adapter->getColCount();i++)
      {
 
          headers.append( adapter->getHeder(i) );
      }
-
      ui->mtable->setColumnCount( adapter->getColCount() );
-
      ui->mtable->setHorizontalHeaderLabels(headers);
 
+
+
+     NLog::i("adapter row count:%d",adapter->getRowCount());
 
      for(int i=0;i<adapter->getRowCount();i++)
      {
@@ -204,3 +209,40 @@ DocCommonEditor::~DocCommonEditor()
 
 
  }
+ void DocCommonEditor::keyPressEvent(QKeyEvent *event)
+  {
+
+
+
+     if( event->type() == QKeyEvent::KeyPress )
+           switch (event->key()) {
+
+             case Qt::Key_Backspace:
+                 MessageCenter::getInstence()->sendMessage(my17::Event::event_req_toolbar_del,NULL);
+                 NLog::i("key press delete");
+                 break;
+           case Qt::Key_S:
+           {
+               if( event->modifiers()  == Qt::ControlModifier )
+               {
+                   MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save,NULL);
+
+               }
+
+
+           }
+               break;
+           case Qt::Key_R:
+           {
+                NLog::i("key release ctrl s");
+               if( event->modifiers()  == Qt::ControlModifier )
+               {
+                  MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+                  event->accept();
+               }
+           }
+           break;
+
+           }
+ }
+

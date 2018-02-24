@@ -145,13 +145,24 @@ void DocEventEditor::keyPressEvent(QKeyEvent *event)
     {
         if( event->modifiers()  == Qt::ControlModifier )
         {
-            todo(my17::event_req_toolbar_save,NULL);
+            MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_save,NULL);
 
         }
 
 
     }
         break;
+    case Qt::Key_R:
+    {
+         NLog::i("key release ctrl s");
+
+        if( event->modifiers()  == Qt::ControlModifier )
+        {
+           MessageCenter::getInstence()->sendMessage(my17::event_req_toolbar_run);
+           event->accept();
+        }
+    }
+    break;
     default:
         break;
     }

@@ -523,6 +523,42 @@ bool business_comparator( MBusinessDelegate *s1, const MBusinessDelegate *s2)
     return s2->name.compare(s1->name)>0;
 }
 
+ int D::getRString(const QString &str,QString * result)
+{
+    QString pattener = "R:[A-Za-z0-9_]+";
+
+    QRegExp regrExp(pattener);
+
+    int index = str.indexOf(regrExp);
+
+    if( index > -1 && result){
+
+        int length = regrExp.matchedLength();
+        result->append(str.mid(index,length));
+        //NLog::i("math global var : index:%d length:%d =%s",index,length,result->toStdString().c_str());
+
+    }
+    return index;
+
+}
+ int D::getWString(const QString &str,QString * result)
+{
+    QString pattener = "W:[A-Za-z0-9_]+";
+
+    QRegExp regwExp(pattener);
+
+    int index = str.indexOf(regwExp);
+
+    if( index > -1 && result){
+
+        int length = regwExp.matchedLength();
+        result->append(str.mid(index,length));
+        //NLog::i("math global var : index:%d length:%d =%s",index,length,result->toStdString().c_str());
+
+    }
+    return index;
+
+}
 
 inline int D::getGlobalVar(const QString &str,QString * result){
 
@@ -601,6 +637,43 @@ void D::loadBusiness()
                         NLog::i("read type:%s error",type.toStdString().c_str());
                         return ;
                     }
+
+                    if( !view->isLine() ){
+
+                        IconView * iconview = dynamic_cast<IconView*>(view);
+
+
+                        if(iconview && iconview->m_element_id == "001" ){
+
+
+                             MProperty * mp = RP->getPropertyByName(view->getProperties(),"event");
+
+                             if( mp ){
+
+                                    NLog::i("business eventid:%s",mp->p_value.toStdString().c_str());
+
+                                    MEventDelegate * ed = getEventById(mp->p_value);
+
+                                    if( ed ){
+                                        QString & ename = ed->event_name;
+                                        NLog::i("business event:%s",ename.toStdString().c_str());
+                                        med->event = ename;
+                                    }
+                                    else{
+
+                                        NLog::i("business not found id:%s",iconview->m_element_id.toStdString().c_str());
+                                    }
+                             }
+                             else{
+
+                                 NLog::i("business not set Event ");
+
+                             }
+
+                        }
+                    }
+
+
                     med->viewgroup->addView(view);
 
 
@@ -610,11 +683,12 @@ void D::loadBusiness()
 
                         QString field;
                         int index = getGlobalVar(mp->p_value,&field);
-
                         if( index > -1 ){
                             view->hasGlobalVar = true;
                             addVarString(field,med->name,false);
                         }
+
+
 
 
 

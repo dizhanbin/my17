@@ -69,8 +69,20 @@ void VarAdapter::onValueChanged(int row,int col,const QString & value)
 
 }
 
+
 bool VarAdapter::isEditable(int row,int col)
 {
 
     return row==1&&col==1;
 }
+
+ bool VarAdapter::deleteRow(int row)
+ {
+     DP->qlobal_vars.takeAt(row);
+     return true;
+
+ }
+ void VarAdapter::addRow()
+ {
+
+ }

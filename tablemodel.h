@@ -13,6 +13,10 @@ public:
     virtual int getColCount()=0;
     virtual void onValueChanged(int row,int col,const QString & value)=0;
     virtual bool isEditable(int row,int col)=0;
+    virtual bool deleteRow(int row)=0;
+    virtual void addRow()=0;
+
+
 
 };
 

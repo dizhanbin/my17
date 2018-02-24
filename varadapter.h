@@ -14,6 +14,9 @@ public:
     virtual int getColCount();
     virtual void onValueChanged(int row,int col,const QString & value);
     virtual bool isEditable(int row,int col);
+
+    virtual bool deleteRow(int row);
+    virtual void addRow();
 };
 
 #endif // VARADAPTER_H

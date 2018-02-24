@@ -938,7 +938,7 @@ void MainWindow::do_business_data_changed(MBusinessDelegate * business)
 void MainWindow::keyPressEvent(QKeyEvent * event)
 {
 
-   NLog::i("key press  key:%d  modifiers:%d",event->key(),event->modifiers() );
+   NLog::i("MainWindow key press  key:%d  modifiers:%d",event->key(),event->modifiers() );
    switch (event->key()) {
        case Qt::Key_S:
        {
@@ -973,10 +973,31 @@ void  MainWindow::keyReleaseEvent(QKeyEvent * event)
 {
     event->accept();
 
-    NLog::i("key release key:%d  modifiers:%d",event->key(),event->modifiers() );
+    NLog::i("MainWindow key release key:%d  modifiers:%d",event->key(),event->modifiers() );
 
 
 
 
 
 }
+
+void MainWindow::setOpenArgs(char * arg){
+
+
+    //DP->getBusiness()
+
+    QString sel(arg);
+
+    MBusinessDelegate * md = DP->getBusinessByEvent( sel );
+    if( md )
+        MC->sendMessage(my17::event_req_business_selected,md);
+    else{
+
+        if( sel.length() > 0 && sel != "null" )
+            QMessageBox::information(NULL,"提示","未设置: "+sel+" 相关业务");
+    }
+
+}
+
+
+

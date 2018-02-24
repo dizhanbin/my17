@@ -271,7 +271,7 @@ QWidget * MPropertyDelegate::createEditor(QWidget *parent,
       mp->p_value = text->text();
       QString var;
       if( DP->getGlobalVar(mp->p_value,&var)>-1 ){
-         DP->addVarString(mp->p_value,DP->current_business,false);
+         DP->addVarString(var,DP->current_business,false);
       }
       view_focus->updateHasGlobalVar();
 

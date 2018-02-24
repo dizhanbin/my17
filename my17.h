@@ -499,6 +499,7 @@ namespace my17 {
         private:
             D(){
 
+                NLog::i("createD .....");
                 loadProjectInfos();
                 loadModel();
                 loadEvents();
@@ -583,6 +584,23 @@ namespace my17 {
 
                 return business.at(index);
             }
+
+            MBusinessDelegate * getBusinessByEvent(const QString & eventname)
+            {
+
+                for(int i=0;i<business.size();i++){
+                    MBusinessDelegate * md = business.at(i);
+                    if( md->event == eventname){
+
+                        return md;
+
+                    }
+
+                }
+
+                return NULL ;
+            }
+
 
 
             MModelDelegate * newModel()
@@ -681,7 +699,8 @@ namespace my17 {
 
 
            inline int getGlobalVar(const QString &str,QString * result);
-
+            int getRString(const QString &str,QString * result);
+            int getWString(const QString &str,QString * result);
 
 
            bool createVars();

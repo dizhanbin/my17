@@ -21,8 +21,9 @@ public:
     virtual my17::TodoResult  todo(my17::Event event,void * arg);
 
     void setAdapter(TableAdapter * a);
+    void refreshAdapter();
 
-
+    virtual void keyPressEvent(QKeyEvent *event);
 
     ////////// EditorAdapter
 
@@ -32,6 +33,7 @@ public:
     virtual const QString  getEditValue(int row,int col);
     virtual QWidget * getEditor(QWidget *parent,int row,int col) ;
     virtual void setEditorValue(const QString & text,int row,int col);
+
 
     TableAdapter * adapter;
 
