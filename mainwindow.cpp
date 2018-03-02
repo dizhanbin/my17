@@ -15,6 +15,8 @@
 #include "projectadapter.h"
 #include "commoneditdelegate.h"
 #include "varadapter.h"
+#include "iconview.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -556,8 +558,27 @@ my17::TodoResult MainWindow::todo(my17::Event event, void *arg)
             ui->right_bottom->setItemDelegate(mpd);
 
 
-            QString  text = "提示：\n ";
+            QString  text = "提示：";
+
+            if( !view->isLine() ){
+
+                IconView * icon = dynamic_cast<IconView*>(view);
+                if( icon )
+                {
+                   const MElement *  ele = RP->getElement(icon->getElementid());
+
+                    if( ele )
+                        text.append( ele->c_android ).append("\n");
+
+                }
+
+            }
+
             text.append(view->getTopDescript());
+
+
+
+
             ui->right_top->setText(text);
         }
 
