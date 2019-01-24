@@ -17,10 +17,3 @@
 ![pics-p3](https://github.com/dizhanbin/my17/blob/master/pics/p3.png)
 ![pics-p4](https://github.com/dizhanbin/my17/blob/master/pics/p4.png)
 
-
-## 有问题反馈
-在使用中有任何问题，欢迎反馈给我，可以用以下联系方式跟我交流 
-
-* 邮件(zhanbin.di@gmail.com)
-* QQ: 84708022
-
